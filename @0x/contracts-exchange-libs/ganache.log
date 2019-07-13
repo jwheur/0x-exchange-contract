@@ -205,3 +205,35 @@ Reverting to snapshot #2
 Saved snapshot #2
 Reverting to snapshot #2
 Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x8694e2dd3b34392a910100149ccf1f406fc59a682a36c903ef67b2f400178447
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1166162
+  Block Number: 1
+  Block Time: Tue Jun 04 2019 13:50:45 GMT+0100 (BST)
+
+Saved snapshot #2
+Reverting to snapshot #2
+Saved snapshot #2
+Reverting to snapshot #2
+Saved snapshot #2
+Reverting to snapshot #2
+Saved snapshot #2
+Reverting to snapshot #2
+Saved snapshot #2
+Reverting to snapshot #2
+Saved snapshot #2
+Reverting to snapshot #2
+Saved snapshot #2
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x833534299c2d2b3e3dd8f0c4a303b89fe1cd1a86f2f0acf1596a530d6b8b54d1
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1931324
+  Block Number: 1
+  Block Time: Tue Jun 04 2019 13:50:45 GMT+0100 (BST)
+
+Reverting to snapshot #1

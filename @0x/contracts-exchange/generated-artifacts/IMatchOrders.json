@@ -185,6 +185,20 @@
 				"type": "function"
 			}
 		],
+		"devdoc": {
+			"methods": {
+				"matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)": {
+					"details": "Match two complementary orders that have a profitable spread.      Each order is filled at their respective price point. However, the calculations are      carried out as though the orders are both being filled at the right order's price point.      The profit made by the left order goes to the taker (who matched the two orders).",
+					"params": {
+						"leftOrder": "First order to match.",
+						"leftSignature": "Proof that order was created by the left maker.",
+						"rightOrder": "Second order to match.",
+						"rightSignature": "Proof that order was created by the right maker."
+					},
+					"return": "matchedFillResults Amounts filled and fees paid by maker and taker of matched orders."
+				}
+			}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
@@ -227,7 +241,7 @@
 	"sourceTreeHashHex": "0x537eca091208e20afb54a28c9b30841553379f927b77c7954b72f4a7a12ba2dd",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -243,6 +257,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",

@@ -17,7 +17,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -31,7 +31,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -45,21 +45,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[]): string;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -79,6 +65,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[]): string;
     };
     fillOrderNoThrow: {
         sendTransactionAsync(order: {
@@ -94,7 +94,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData>): Promise<string>;
+        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(order: {
             makerAddress: string;
             takerAddress: string;
@@ -108,7 +108,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string, txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(order: {
             makerAddress: string;
             takerAddress: string;
@@ -122,21 +122,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(order: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string): string;
+        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(order: {
             makerAddress: string;
             takerAddress: string;
@@ -156,6 +142,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(order: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }, takerAssetFillAmount: BigNumber, signature: string): string;
     };
     batchCancelOrders: {
         sendTransactionAsync(orders: {
@@ -171,7 +171,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], txData?: Partial<TxData>): Promise<string>;
+        }[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -185,7 +185,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -199,21 +199,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[]): string;
+        }[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -228,6 +214,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerAssetData: string;
             takerAssetData: string;
         }[], callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<void>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[]): string;
     };
     batchFillOrKillOrders: {
         sendTransactionAsync(orders: {
@@ -243,7 +243,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -257,7 +257,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -271,21 +271,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[]): string;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -305,6 +291,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[]): string;
     };
     batchFillOrdersNoThrow: {
         sendTransactionAsync(orders: {
@@ -320,7 +320,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -334,7 +334,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -348,21 +348,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], takerAssetFillAmounts: BigNumber[], signatures: string[]): string;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -382,6 +368,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], takerAssetFillAmounts: BigNumber[], signatures: string[]): string;
     };
     fillOrKillOrder: {
         sendTransactionAsync(order: {
@@ -397,7 +397,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData>): Promise<string>;
+        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(order: {
             makerAddress: string;
             takerAddress: string;
@@ -411,7 +411,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string, txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(order: {
             makerAddress: string;
             takerAddress: string;
@@ -425,21 +425,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(order: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }, takerAssetFillAmount: BigNumber, signature: string): string;
+        }, takerAssetFillAmount: BigNumber, signature: string, txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(order: {
             makerAddress: string;
             takerAddress: string;
@@ -459,6 +445,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(order: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }, takerAssetFillAmount: BigNumber, signature: string): string;
     };
     marketSellOrders: {
         sendTransactionAsync(orders: {
@@ -474,7 +474,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -488,7 +488,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -502,21 +502,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[]): string;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -536,6 +522,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[]): string;
     };
     getOrdersInfo: {
         callAsync(orders: {
@@ -556,6 +556,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             orderHash: string;
             orderTakerAssetFilledAmount: BigNumber;
         }[]>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[]): string;
     };
     marketBuyOrdersNoThrow: {
         sendTransactionAsync(orders: {
@@ -571,7 +585,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -585,7 +599,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -599,21 +613,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[]): string;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -633,6 +633,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[]): string;
     };
     marketSellOrdersNoThrow: {
         sendTransactionAsync(orders: {
@@ -648,7 +662,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -662,7 +676,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -676,21 +690,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], takerAssetFillAmount: BigNumber, signatures: string[]): string;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -710,6 +710,20 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], takerAssetFillAmount: BigNumber, signatures: string[]): string;
     };
     marketBuyOrders: {
         sendTransactionAsync(orders: {
@@ -725,7 +739,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<string>;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<string>;
         awaitTransactionSuccessAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -739,7 +753,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
         estimateGasAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -753,21 +767,7 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             salt: BigNumber;
             makerAssetData: string;
             takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(orders: {
-            makerAddress: string;
-            takerAddress: string;
-            feeRecipientAddress: string;
-            senderAddress: string;
-            makerAssetAmount: BigNumber;
-            takerAssetAmount: BigNumber;
-            makerFee: BigNumber;
-            takerFee: BigNumber;
-            expirationTimeSeconds: BigNumber;
-            salt: BigNumber;
-            makerAssetData: string;
-            takerAssetData: string;
-        }[], makerAssetFillAmount: BigNumber, signatures: string[]): string;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[], txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(orders: {
             makerAddress: string;
             takerAddress: string;
@@ -787,9 +787,27 @@ export declare class IWrapperFunctionsContract extends BaseContract {
             makerFeePaid: BigNumber;
             takerFeePaid: BigNumber;
         }>;
+        getABIEncodedTransactionData(orders: {
+            makerAddress: string;
+            takerAddress: string;
+            feeRecipientAddress: string;
+            senderAddress: string;
+            makerAssetAmount: BigNumber;
+            takerAssetAmount: BigNumber;
+            makerFee: BigNumber;
+            takerFee: BigNumber;
+            expirationTimeSeconds: BigNumber;
+            salt: BigNumber;
+            makerAssetData: string;
+            takerAssetData: string;
+        }[], makerAssetFillAmount: BigNumber, signatures: string[]): string;
     };
     static deployFrom0xArtifactAsync(artifact: ContractArtifact | SimpleContractArtifact, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>): Promise<IWrapperFunctionsContract>;
     static deployAsync(bytecode: string, abi: ContractAbi, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>): Promise<IWrapperFunctionsContract>;
-    constructor(abi: ContractAbi, address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>);
+    /**
+     * @returns      The contract ABI
+     */
+    static ABI(): ContractAbi;
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>);
 }
 //# sourceMappingURL=i_wrapper_functions.d.ts.map

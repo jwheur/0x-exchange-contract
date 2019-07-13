@@ -59,12 +59,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 var TestSignatureValidatorEvents;
 (function (TestSignatureValidatorEvents) {
@@ -75,16 +77,18 @@ var TestSignatureValidatorEvents;
 // tslint:disable-next-line:class-name
 var TestSignatureValidatorContract = /** @class */ (function (_super) {
     __extends(TestSignatureValidatorContract, _super);
-    function TestSignatureValidatorContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'TestSignatureValidator', abi, address, supportedProvider, txDefaults) || this;
+    function TestSignatureValidatorContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'TestSignatureValidator', TestSignatureValidatorContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.preSign = {
             sendTransactionAsync: function (hash, signerAddress, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -103,13 +107,9 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (hash, signerAddress, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.preSign.sendTransactionAsync(hash, signerAddress, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -129,12 +129,14 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (hash, signerAddress, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -151,14 +153,6 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
-                    signerAddress,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (hash, signerAddress, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -166,6 +160,17 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -186,6 +191,17 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
+                    signerAddress,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.transactions = {
             callAsync: function (index_0, callData, defaultBlock) {
@@ -195,6 +211,15 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transactions(bytes32)', [index_0
                                 ]);
@@ -213,15 +238,23 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('transactions(bytes32)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.setSignatureValidatorApproval = {
             sendTransactionAsync: function (validatorAddress, approval, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('validatorAddress', validatorAddress);
+                                assert_1.assert.isBoolean('approval', approval);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
                                     approval
@@ -239,13 +272,8 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (validatorAddress, approval, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('validatorAddress', validatorAddress);
+                assert_1.assert.isBoolean('approval', approval);
                 var self = this;
                 var txHashPromise = self.setSignatureValidatorApproval.sendTransactionAsync(validatorAddress, approval, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -265,12 +293,13 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (validatorAddress, approval, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('validatorAddress', validatorAddress);
+                                assert_1.assert.isBoolean('approval', approval);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
                                     approval
@@ -286,13 +315,6 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (validatorAddress, approval) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
-                    approval
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (validatorAddress, approval, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -300,6 +322,16 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('validatorAddress', validatorAddress);
+                                assert_1.assert.isBoolean('approval', approval);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
                                     approval
@@ -319,6 +351,15 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (validatorAddress, approval) {
+                assert_1.assert.isString('validatorAddress', validatorAddress);
+                assert_1.assert.isBoolean('approval', approval);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
+                    approval
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.allowedValidators = {
             callAsync: function (index_0, index_1, callData, defaultBlock) {
@@ -328,6 +369,16 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.isString('index_1', index_1);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('allowedValidators(address,address)', [index_0,
                                     index_1
@@ -347,6 +398,15 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0, index_1) {
+                assert_1.assert.isString('index_0', index_0);
+                assert_1.assert.isString('index_1', index_1);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('allowedValidators(address,address)', [index_0,
+                    index_1
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.preSigned = {
             callAsync: function (index_0, index_1, callData, defaultBlock) {
@@ -356,6 +416,16 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.isString('index_1', index_1);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSigned(bytes32,address)', [index_0,
                                     index_1
@@ -375,6 +445,15 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0, index_1) {
+                assert_1.assert.isString('index_0', index_0);
+                assert_1.assert.isString('index_1', index_1);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('preSigned(bytes32,address)', [index_0,
+                    index_1
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.isValidSignature = {
             callAsync: function (hash, signerAddress, signature, callData, defaultBlock) {
@@ -384,6 +463,17 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -404,6 +494,17 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
+                    signerAddress,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicIsValidSignature = {
             callAsync: function (hash, signer, signature, callData, defaultBlock) {
@@ -413,6 +514,17 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signer', signer);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicIsValidSignature(bytes32,address,bytes)', [hash,
                                     signer,
@@ -433,15 +545,29 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signer, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signer', signer);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicIsValidSignature(bytes32,address,bytes)', [hash,
+                    signer,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.executeTransaction = {
             sendTransactionAsync: function (salt, signerAddress, data, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('data', data);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
                                     signerAddress,
@@ -461,13 +587,10 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (salt, signerAddress, data, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('salt', salt);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('data', data);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.executeTransaction.sendTransactionAsync(salt, signerAddress, data, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -487,12 +610,15 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (salt, signerAddress, data, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('data', data);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
                                     signerAddress,
@@ -510,15 +636,6 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (salt, signerAddress, data, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
-                    signerAddress,
-                    data,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (salt, signerAddress, data, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -526,6 +643,18 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('data', data);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
                                     signerAddress,
@@ -547,6 +676,19 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (salt, signerAddress, data, signature) {
+                assert_1.assert.isBigNumber('salt', salt);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('data', data);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
+                    signerAddress,
+                    data,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.EIP712_DOMAIN_HASH = {
             callAsync: function (callData, defaultBlock) {
@@ -556,6 +698,14 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -573,6 +723,11 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.currentContextAddress = {
             callAsync: function (callData, defaultBlock) {
@@ -582,6 +737,14 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('currentContextAddress()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -599,14 +762,24 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('currentContextAddress()', []);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     TestSignatureValidatorContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -623,6 +796,12 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [], base_contract_1.BaseContract._bigNumberToString);
@@ -641,15 +820,261 @@ var TestSignatureValidatorContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _a.sent();
                         utils_1.logUtils.log("TestSignatureValidator successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new TestSignatureValidatorContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new TestSignatureValidatorContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [];
                         return [2 /*return*/, contractInstance];
                 }
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    TestSignatureValidatorContract.ABI = function () {
+        var abi = [
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'preSign',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes32',
+                    },
+                ],
+                name: 'transactions',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'validatorAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'approval',
+                        type: 'bool',
+                    },
+                ],
+                name: 'setSignatureValidatorApproval',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'address',
+                    },
+                    {
+                        name: 'index_1',
+                        type: 'address',
+                    },
+                ],
+                name: 'allowedValidators',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'index_1',
+                        type: 'address',
+                    },
+                ],
+                name: 'preSigned',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'isValidSignature',
+                outputs: [
+                    {
+                        name: 'isValid',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signer',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'publicIsValidSignature',
+                outputs: [
+                    {
+                        name: 'isValid',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'salt',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'data',
+                        type: 'bytes',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'executeTransaction',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'EIP712_DOMAIN_HASH',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes32',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'currentContextAddress',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'validatorAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'approved',
+                        type: 'bool',
+                        indexed: false,
+                    },
+                ],
+                name: 'SignatureValidatorApproval',
+                outputs: [],
+                type: 'event',
+            },
+        ];
+        return abi;
+    };
     return TestSignatureValidatorContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.TestSignatureValidatorContract = TestSignatureValidatorContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=test_signature_validator.js.map

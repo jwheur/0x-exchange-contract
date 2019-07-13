@@ -3,17 +3,20 @@
     "contractName": "LibAbiEncoder",
     "compilerOutput": {
         "abi": [],
+        "devdoc": {
+            "methods": {}
+        },
         "evm": {
             "bytecode": {
                 "linkReferences": {},
-                "object": "0x6080604052348015600f57600080fd5b50604380601d6000396000f3fe6080604052600080fdfea265627a7a723058208637abd895932edff0b738fd76c821c476b811ad2c7a8146e0964f77c81584976c6578706572696d656e74616cf50037",
-                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x43 DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 DUP7 CALLDATACOPY 0xab 0xd8 SWAP6 SWAP4 0x2e 0xdf CREATE 0xb7 CODESIZE REVERT PUSH23 0xC821C476B811AD2C7A8146E0964F77C81584976C657870 PUSH6 0x72696D656E74 PUSH2 0x6CF5 STOP CALLDATACOPY ",
+                "object": "0x6080604052348015600f57600080fd5b50604c80601d6000396000f3fe6080604052600080fdfea365627a7a72305820b6c63d74b1a6cfb1230ea260e8d68bca03b479c1e658b3d8207698d74c529fe56c6578706572696d656e74616cf564736f6c634300050a0040",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4C DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG3 PUSH6 0x627A7A723058 KECCAK256 0xb6 0xc6 RETURNDATASIZE PUSH21 0xB1A6CFB1230EA260E8D68BCA03B479C1E658B3D820 PUSH23 0x98D74C529FE56C6578706572696D656E74616CF564736F PUSH13 0x634300050A0040000000000000 ",
                 "sourceMap": "666:10446:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;666:10446:0;;;;;;;"
             },
             "deployedBytecode": {
                 "linkReferences": {},
-                "object": "0x6080604052600080fdfea265627a7a723058208637abd895932edff0b738fd76c821c476b811ad2c7a8146e0964f77c81584976c6578706572696d656e74616cf50037",
-                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 DUP7 CALLDATACOPY 0xab 0xd8 SWAP6 SWAP4 0x2e 0xdf CREATE 0xb7 CODESIZE REVERT PUSH23 0xC821C476B811AD2C7A8146E0964F77C81584976C657870 PUSH6 0x72696D656E74 PUSH2 0x6CF5 STOP CALLDATACOPY ",
+                "object": "0x6080604052600080fdfea365627a7a72305820b6c63d74b1a6cfb1230ea260e8d68bca03b479c1e658b3d8207698d74c529fe56c6578706572696d656e74616cf564736f6c634300050a0040",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG3 PUSH6 0x627A7A723058 KECCAK256 0xb6 0xc6 RETURNDATASIZE PUSH21 0xB1A6CFB1230EA260E8D68BCA03B479C1E658B3D820 PUSH23 0x98D74C529FE56C6578706572696D656E74616CF564736F PUSH13 0x634300050A0040000000000000 ",
                 "sourceMap": "666:10446:0:-;;;;;"
             }
         }
@@ -37,7 +40,7 @@
     "sourceTreeHashHex": "0x52b1d285f356ef5e59a61023ff233bd807fadae63016211357753953882a30cf",
     "compiler": {
         "name": "solc",
-        "version": "soljson-v0.5.8+commit.23d335f2.js",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
         "settings": {
             "optimizer": {
                 "enabled": true,
@@ -53,6 +56,7 @@
                 "*": {
                     "*": [
                         "abi",
+                        "devdoc",
                         "evm.bytecode.object",
                         "evm.bytecode.sourceMap",
                         "evm.deployedBytecode.object",
@@ -62,8 +66,7 @@
             },
             "evmVersion": "constantinople",
             "remappings": [
-                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils",
-                "@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/node_modules/@0x/contracts-exchange-libs"
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils"
             ]
         }
     },

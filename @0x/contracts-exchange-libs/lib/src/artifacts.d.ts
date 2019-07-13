@@ -7,7 +7,6 @@ export declare const artifacts: {
     LibFillResults: ContractArtifact;
     LibMath: ContractArtifact;
     LibOrder: ContractArtifact;
-    LibTransactionDecoder: ContractArtifact;
     TestLibs: ContractArtifact;
 };
 //# sourceMappingURL=artifacts.d.ts.map

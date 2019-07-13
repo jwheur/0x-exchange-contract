@@ -13,36 +13,43 @@ export interface TestAssetProxyDispatcherAssetProxyRegisteredEventArgs extends D
 export declare class TestAssetProxyDispatcherContract extends BaseContract {
     assetProxies: {
         callAsync(index_0: string, callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<string>;
+        getABIEncodedTransactionData(index_0: string): string;
     };
     getAssetProxy: {
         callAsync(assetProxyId: string, callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<string>;
+        getABIEncodedTransactionData(assetProxyId: string): string;
     };
     publicDispatchTransferFrom: {
-        sendTransactionAsync(assetData: string, from: string, to: string, amount: BigNumber, txData?: Partial<TxData>): Promise<string>;
-        awaitTransactionSuccessAsync(assetData: string, from: string, to: string, amount: BigNumber, txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
-        estimateGasAsync(assetData: string, from: string, to: string, amount: BigNumber, txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(assetData: string, from: string, to: string, amount: BigNumber): string;
+        sendTransactionAsync(assetData: string, from: string, to: string, amount: BigNumber, txData?: Partial<TxData> | undefined): Promise<string>;
+        awaitTransactionSuccessAsync(assetData: string, from: string, to: string, amount: BigNumber, txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        estimateGasAsync(assetData: string, from: string, to: string, amount: BigNumber, txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(assetData: string, from: string, to: string, amount: BigNumber, callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<void>;
+        getABIEncodedTransactionData(assetData: string, from: string, to: string, amount: BigNumber): string;
     };
     owner: {
         callAsync(callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<string>;
+        getABIEncodedTransactionData(): string;
     };
     registerAssetProxy: {
-        sendTransactionAsync(assetProxy: string, txData?: Partial<TxData>): Promise<string>;
-        awaitTransactionSuccessAsync(assetProxy: string, txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
-        estimateGasAsync(assetProxy: string, txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(assetProxy: string): string;
+        sendTransactionAsync(assetProxy: string, txData?: Partial<TxData> | undefined): Promise<string>;
+        awaitTransactionSuccessAsync(assetProxy: string, txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        estimateGasAsync(assetProxy: string, txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(assetProxy: string, callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<void>;
+        getABIEncodedTransactionData(assetProxy: string): string;
     };
     transferOwnership: {
-        sendTransactionAsync(newOwner: string, txData?: Partial<TxData>): Promise<string>;
-        awaitTransactionSuccessAsync(newOwner: string, txData?: number | Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
-        estimateGasAsync(newOwner: string, txData?: Partial<TxData>): Promise<number>;
-        getABIEncodedTransactionData(newOwner: string): string;
+        sendTransactionAsync(newOwner: string, txData?: Partial<TxData> | undefined): Promise<string>;
+        awaitTransactionSuccessAsync(newOwner: string, txData?: Partial<TxData> | undefined, pollingIntervalMs?: number | undefined, timeoutMs?: number | undefined): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>;
+        estimateGasAsync(newOwner: string, txData?: Partial<TxData> | undefined): Promise<number>;
         callAsync(newOwner: string, callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<void>;
+        getABIEncodedTransactionData(newOwner: string): string;
     };
     static deployFrom0xArtifactAsync(artifact: ContractArtifact | SimpleContractArtifact, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>): Promise<TestAssetProxyDispatcherContract>;
     static deployAsync(bytecode: string, abi: ContractAbi, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>): Promise<TestAssetProxyDispatcherContract>;
-    constructor(abi: ContractAbi, address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>);
+    /**
+     * @returns      The contract ABI
+     */
+    static ABI(): ContractAbi;
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>);
 }
 //# sourceMappingURL=test_asset_proxy_dispatcher.d.ts.map

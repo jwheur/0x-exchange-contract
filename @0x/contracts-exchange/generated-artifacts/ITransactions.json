@@ -30,6 +30,19 @@
 				"type": "function"
 			}
 		],
+		"devdoc": {
+			"methods": {
+				"executeTransaction(uint256,address,bytes,bytes)": {
+					"details": "Executes an exchange method call in the context of signer.",
+					"params": {
+						"data": "AbiV2 encoded calldata.",
+						"salt": "Arbitrary number to ensure uniqueness of transaction hash.",
+						"signature": "Proof of signer transaction by signer.",
+						"signerAddress": "Address of transaction signer."
+					}
+				}
+			}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
@@ -56,7 +69,7 @@
 	"sourceTreeHashHex": "0x4604da6f13306fbdd56d453ff47c04d9f2dd71d94af511bcf246306f238c7fbf",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -72,6 +85,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",

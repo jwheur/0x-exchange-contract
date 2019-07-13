@@ -75,12 +75,14 @@ var __read = (this && this.__read) || function (o, n) {
     return ar;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 // tslint:enable:no-unused-variable
 /* istanbul ignore next */
@@ -88,16 +90,18 @@ var ethers = require("ethers");
 // tslint:disable-next-line:class-name
 var WhitelistContract = /** @class */ (function (_super) {
     __extends(WhitelistContract, _super);
-    function WhitelistContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'Whitelist', abi, address, supportedProvider, txDefaults) || this;
+    function WhitelistContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'Whitelist', WhitelistContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.fillOrderIfWhitelisted = {
             sendTransactionAsync: function (order, takerAssetFillAmount, salt, orderSignature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('orderSignature', orderSignature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderIfWhitelisted((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -117,13 +121,9 @@ var WhitelistContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAssetFillAmount, salt, orderSignature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isBigNumber('salt', salt);
+                assert_1.assert.isString('orderSignature', orderSignature);
                 var self = this;
                 var txHashPromise = self.fillOrderIfWhitelisted.sendTransactionAsync(order, takerAssetFillAmount, salt, orderSignature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -143,12 +143,14 @@ var WhitelistContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAssetFillAmount, salt, orderSignature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('orderSignature', orderSignature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderIfWhitelisted((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -166,15 +168,6 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAssetFillAmount, salt, orderSignature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrderIfWhitelisted((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,uint256,bytes)', [order,
-                    takerAssetFillAmount,
-                    salt,
-                    orderSignature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAssetFillAmount, salt, orderSignature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -182,6 +175,17 @@ var WhitelistContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('orderSignature', orderSignature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderIfWhitelisted((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -203,6 +207,18 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, salt, orderSignature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isBigNumber('salt', salt);
+                assert_1.assert.isString('orderSignature', orderSignature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrderIfWhitelisted((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    salt,
+                    orderSignature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.isWhitelisted = {
             callAsync: function (index_0, callData, defaultBlock) {
@@ -212,6 +228,15 @@ var WhitelistContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('isWhitelisted(address)', [index_0
                                 ]);
@@ -230,6 +255,13 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('isWhitelisted(address)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.owner = {
             callAsync: function (callData, defaultBlock) {
@@ -239,6 +271,14 @@ var WhitelistContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('owner()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -256,6 +296,11 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('owner()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.isValidSignature = {
             callAsync: function (hash, signerAddress, signature, callData, defaultBlock) {
@@ -265,6 +310,17 @@ var WhitelistContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -285,15 +341,27 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
+                    signerAddress,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.updateWhitelistStatus = {
             sendTransactionAsync: function (target, isApproved, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('target', target);
+                                assert_1.assert.isBoolean('isApproved', isApproved);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('updateWhitelistStatus(address,bool)', [target,
                                     isApproved
@@ -311,13 +379,8 @@ var WhitelistContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (target, isApproved, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('target', target);
+                assert_1.assert.isBoolean('isApproved', isApproved);
                 var self = this;
                 var txHashPromise = self.updateWhitelistStatus.sendTransactionAsync(target, isApproved, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -337,12 +400,13 @@ var WhitelistContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (target, isApproved, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('target', target);
+                                assert_1.assert.isBoolean('isApproved', isApproved);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('updateWhitelistStatus(address,bool)', [target,
                                     isApproved
@@ -358,13 +422,6 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (target, isApproved) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('updateWhitelistStatus(address,bool)', [target,
-                    isApproved
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (target, isApproved, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -372,6 +429,16 @@ var WhitelistContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('target', target);
+                                assert_1.assert.isBoolean('isApproved', isApproved);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('updateWhitelistStatus(address,bool)', [target,
                                     isApproved
@@ -391,15 +458,24 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (target, isApproved) {
+                assert_1.assert.isString('target', target);
+                assert_1.assert.isBoolean('isApproved', isApproved);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('updateWhitelistStatus(address,bool)', [target,
+                    isApproved
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.transferOwnership = {
             sendTransactionAsync: function (newOwner, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -416,13 +492,7 @@ var WhitelistContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (newOwner, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('newOwner', newOwner);
                 var self = this;
                 var txHashPromise = self.transferOwnership.sendTransactionAsync(newOwner, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -442,12 +512,12 @@ var WhitelistContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (newOwner, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -462,12 +532,6 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (newOwner) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (newOwner, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -475,6 +539,15 @@ var WhitelistContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -493,14 +566,26 @@ var WhitelistContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (newOwner) {
+                assert_1.assert.isString('newOwner', newOwner);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     WhitelistContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults, _exchange) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -517,6 +602,12 @@ var WhitelistContract = /** @class */ (function (_super) {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         _a = __read(base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [_exchange
@@ -537,7 +628,7 @@ var WhitelistContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _b.sent();
                         utils_1.logUtils.log("Whitelist successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new WhitelistContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new WhitelistContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [_exchange
                         ];
                         return [2 /*return*/, contractInstance];
@@ -545,8 +636,198 @@ var WhitelistContract = /** @class */ (function (_super) {
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    WhitelistContract.ABI = function () {
+        var abi = [
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'salt',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'orderSignature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'fillOrderIfWhitelisted',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'address',
+                    },
+                ],
+                name: 'isWhitelisted',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'owner',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'isValidSignature',
+                outputs: [
+                    {
+                        name: 'isValid',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'target',
+                        type: 'address',
+                    },
+                    {
+                        name: 'isApproved',
+                        type: 'bool',
+                    },
+                ],
+                name: 'updateWhitelistStatus',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'newOwner',
+                        type: 'address',
+                    },
+                ],
+                name: 'transferOwnership',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                inputs: [
+                    {
+                        name: '_exchange',
+                        type: 'address',
+                    },
+                ],
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'constructor',
+            },
+        ];
+        return abi;
+    };
     return WhitelistContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.WhitelistContract = WhitelistContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=whitelist.js.map

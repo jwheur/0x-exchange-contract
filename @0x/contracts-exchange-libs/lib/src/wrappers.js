@@ -15,6 +15,5 @@ __export(require("../generated-wrappers/lib_e_i_p712"));
 __export(require("../generated-wrappers/lib_fill_results"));
 __export(require("../generated-wrappers/lib_math"));
 __export(require("../generated-wrappers/lib_order"));
-__export(require("../generated-wrappers/lib_transaction_decoder"));
 __export(require("../generated-wrappers/test_libs"));
 //# sourceMappingURL=wrappers.js.map

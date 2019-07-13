@@ -75,12 +75,14 @@ var __read = (this && this.__read) || function (o, n) {
     return ar;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 // tslint:enable:no-unused-variable
 /* istanbul ignore next */
@@ -88,8 +90,8 @@ var ethers = require("ethers");
 // tslint:disable-next-line:class-name
 var ValidatorContract = /** @class */ (function (_super) {
     __extends(ValidatorContract, _super);
-    function ValidatorContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'Validator', abi, address, supportedProvider, txDefaults) || this;
+    function ValidatorContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'Validator', ValidatorContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.isValidSignature = {
             callAsync: function (hash, signerAddress, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
@@ -98,6 +100,17 @@ var ValidatorContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -118,14 +131,30 @@ var ValidatorContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
+                    signerAddress,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     ValidatorContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults, validSigner) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -142,6 +171,12 @@ var ValidatorContract = /** @class */ (function (_super) {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         _a = __read(base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [validSigner
@@ -162,7 +197,7 @@ var ValidatorContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _b.sent();
                         utils_1.logUtils.log("Validator successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new ValidatorContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new ValidatorContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [validSigner
                         ];
                         return [2 /*return*/, contractInstance];
@@ -170,8 +205,57 @@ var ValidatorContract = /** @class */ (function (_super) {
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    ValidatorContract.ABI = function () {
+        var abi = [
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'isValidSignature',
+                outputs: [
+                    {
+                        name: 'isValid',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                inputs: [
+                    {
+                        name: 'validSigner',
+                        type: 'address',
+                    },
+                ],
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'constructor',
+            },
+        ];
+        return abi;
+    };
     return ValidatorContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.ValidatorContract = ValidatorContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=validator.js.map

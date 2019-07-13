@@ -1,7 +1,8 @@
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 import { BaseContract, PromiseWithTransactionHash } from '@0x/base-contract';
+import { schemas } from '@0x/json-schemas';
 import {
     BlockParam,
     BlockParamLiteral,
@@ -18,6 +19,7 @@ import {
 import { BigNumber, classUtils, logUtils, providerUtils } from '@0x/utils';
 import { SimpleContractArtifact } from '@0x/types';
 import { Web3Wrapper } from '@0x/web3-wrapper';
+import { assert } from '@0x/assert';
 import * as ethers from 'ethers';
 // tslint:enable:no-unused-variable
 
@@ -32,6 +34,14 @@ export class LibOrderContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<string
         > {
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as LibOrderContract;
             const encodedData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
             const callDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
@@ -51,12 +61,23 @@ export class LibOrderContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+            ): string {
+            const self = this as any as LibOrderContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
+            return abiEncodedTransactionData;
+        },
     };
     public static async deployFrom0xArtifactAsync(
         artifact: ContractArtifact | SimpleContractArtifact,
         supportedProvider: SupportedProvider,
         txDefaults: Partial<TxData>,
     ): Promise<LibOrderContract> {
+        assert.doesConformToSchema('txDefaults', txDefaults, schemas.txDataSchema, [
+            schemas.addressSchema,
+            schemas.numberSchema,
+            schemas.jsNumber,
+        ]);
         if (artifact.compilerOutput === undefined) {
             throw new Error('Compiler output not found in the artifact file');
         }
@@ -71,6 +92,12 @@ export class LibOrderContract extends BaseContract {
         supportedProvider: SupportedProvider,
         txDefaults: Partial<TxData>,
     ): Promise<LibOrderContract> {
+        assert.isHexString('bytecode', bytecode);
+        assert.doesConformToSchema('txDefaults', txDefaults, schemas.txDataSchema, [
+            schemas.addressSchema,
+            schemas.numberSchema,
+            schemas.jsNumber,
+        ]);
         const provider = providerUtils.standardizeOrThrow(supportedProvider);
         const constructorAbi = BaseContract._lookupConstructorAbi(abi);
         [] = BaseContract._formatABIDataItemList(
@@ -91,13 +118,42 @@ export class LibOrderContract extends BaseContract {
         logUtils.log(`transactionHash: ${txHash}`);
         const txReceipt = await web3Wrapper.awaitTransactionSuccessAsync(txHash);
         logUtils.log(`LibOrder successfully deployed at ${txReceipt.contractAddress}`);
-        const contractInstance = new LibOrderContract(abi, txReceipt.contractAddress as string, provider, txDefaults);
+        const contractInstance = new LibOrderContract(txReceipt.contractAddress as string, provider, txDefaults);
         contractInstance.constructorArgs = [];
         return contractInstance;
     }
-    constructor(abi: ContractAbi, address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>) {
-        super('LibOrder', abi, address, supportedProvider, txDefaults);
-        classUtils.bindAll(this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+
+
+    /**
+     * @returns      The contract ABI
+     */
+    public static ABI(): ContractAbi {
+        const abi = [
+            { 
+                constant: true,
+                inputs: [
+                ],
+                name: 'EIP712_DOMAIN_HASH',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes32',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+        ] as ContractAbi;
+        return abi;
     }
-} // tslint:disable:max-file-line-count
-// tslint:enable:no-unbound-method
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>) {
+        super('LibOrder', LibOrderContract.ABI(), address, supportedProvider, txDefaults);
+        classUtils.bindAll(this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
+    }
+} 
+
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace

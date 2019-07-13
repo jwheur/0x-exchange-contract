@@ -3,17 +3,20 @@
 	"contractName": "LibFillResults",
 	"compilerOutput": {
 		"abi": [],
+		"devdoc": {
+			"methods": {}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
-				"object": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820c087cfa1f437f19055045d0519c44f34b6d4e98f7be4321dfa9df48c5f46720d0029",
-				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x35 DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 0xc0 DUP8 0xcf LOG1 DELEGATECALL CALLDATACOPY CALL SWAP1 SSTORE DIV 0x5d SDIV NOT 0xc4 0x4f CALLVALUE 0xb6 0xd4 0xe9 DUP16 PUSH28 0xE4321DFA9DF48C5F46720D0029000000000000000000000000000000 ",
+				"object": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72305820adf53cad5a046bfb6fa9656a6f6a59252ba01742ecf26e1589c2143aa099c81564736f6c634300050a0032",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x3E DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 0xad CREATE2 EXTCODECOPY 0xad GAS DIV PUSH12 0xFB6FA9656A6F6A59252BA017 TIMESTAMP 0xec CALLCODE PUSH15 0x1589C2143AA099C81564736F6C6343 STOP SDIV EXP STOP ORIGIN ",
 				"sourceMap": "664:1767:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;664:1767:4;;;;;;;"
 			},
 			"deployedBytecode": {
 				"linkReferences": {},
-				"object": "0x6080604052600080fdfea165627a7a72305820c087cfa1f437f19055045d0519c44f34b6d4e98f7be4321dfa9df48c5f46720d0029",
-				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 0xc0 DUP8 0xcf LOG1 DELEGATECALL CALLDATACOPY CALL SWAP1 SSTORE DIV 0x5d SDIV NOT 0xc4 0x4f CALLVALUE 0xb6 0xd4 0xe9 DUP16 PUSH28 0xE4321DFA9DF48C5F46720D0029000000000000000000000000000000 ",
+				"object": "0x6080604052600080fdfea265627a7a72305820adf53cad5a046bfb6fa9656a6f6a59252ba01742ecf26e1589c2143aa099c81564736f6c634300050a0032",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 0xad CREATE2 EXTCODECOPY 0xad GAS DIV PUSH12 0xFB6FA9656A6F6A59252BA017 TIMESTAMP 0xec CALLCODE PUSH15 0x1589C2143AA099C81564736F6C6343 STOP SDIV EXP STOP ORIGIN ",
 				"sourceMap": "664:1767:4:-;;;;;"
 			}
 		}
@@ -23,7 +26,7 @@
 			"id": 4
 		},
 		"@0x/contracts-utils/contracts/src/SafeMath.sol": {
-			"id": 10
+			"id": 8
 		}
 	},
 	"sourceCodes": {
@@ -33,7 +36,7 @@
 	"sourceTreeHashHex": "0x0d2243ac03c9c7d6de3b39d7ea8e12e3a989442423e8010397a41d0ea18172bb",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -49,6 +52,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",
@@ -58,8 +62,7 @@
 			},
 			"evmVersion": "constantinople",
 			"remappings": [
-				"@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils",
-				"@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/node_modules/@0x/contracts-exchange-libs"
+				"@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils"
 			]
 		}
 	},
