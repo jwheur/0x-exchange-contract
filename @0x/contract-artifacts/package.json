@@ -1,0 +1,71 @@
+{
+  "_from": "@0x/contract-artifacts@^2.0.1",
+  "_id": "@0x/contract-artifacts@2.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-ogS5Xc1JvlZ/PD7Hi+AzjqmPoPCh22D4+8sWEVVrbpXBT6IRU9ngK2yPikB/Jszq7lxZHe6sutIRGGAIqvzsbQ==",
+  "_location": "/@0x/contract-artifacts",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@0x/contract-artifacts@^2.0.1",
+    "name": "@0x/contract-artifacts",
+    "escapedName": "@0x%2fcontract-artifacts",
+    "scope": "@0x",
+    "rawSpec": "^2.0.1",
+    "saveSpec": null,
+    "fetchSpec": "^2.0.1"
+  },
+  "_requiredBy": [
+    "/@0x/abi-gen-wrappers",
+    "/@0x/order-utils"
+  ],
+  "_resolved": "https://registry.npmjs.org/@0x/contract-artifacts/-/contract-artifacts-2.0.1.tgz",
+  "_shasum": "055c3f0d961ff923291cbf2ee29d9ad14a9b6a65",
+  "_spec": "@0x/contract-artifacts@^2.0.1",
+  "_where": "/Users/john/notes/switcheo/eth/node_modules/@0x/order-utils",
+  "bugs": {
+    "url": "https://github.com/0xProject/0x-monorepo/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "0x smart contract compilation artifacts",
+  "devDependencies": {
+    "@0x/utils": "^4.4.0",
+    "chai": "^4.0.1",
+    "lodash": "^4.17.11",
+    "mocha": "^4.1.0",
+    "shx": "^0.2.2",
+    "typescript": "3.0.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=6.12"
+  },
+  "gitHead": "e8535551650633b26eac8330b91b6a1b92ec43f3",
+  "homepage": "https://github.com/0xProject/0x-monorepo/packages/contract-artifacts/README.md",
+  "license": "Apache-2.0",
+  "main": "lib/src/index.js",
+  "name": "@0x/contract-artifacts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xProject/0x-monorepo.git"
+  },
+  "scripts": {
+    "artifacts_copy": "node lib/src/copy.js",
+    "artifacts_transform": "node lib/src/transform.js ./artifacts && prettier --write ./artifacts/*.json &&  cp -r ./artifacts/ ../../python-packages/contract_artifacts/src/zero_ex/contract_artifacts/artifacts/",
+    "artifacts_update": "yarn artifacts_copy && yarn artifacts_transform && yarn build",
+    "build": "yarn tsc -b",
+    "build:ci": "yarn build",
+    "clean": "shx rm -rf lib",
+    "run_mocha": "mocha --require source-map-support/register --require make-promises-safe lib/test/**/*_test.js --bail --exit",
+    "test": "yarn run_mocha",
+    "test:circleci": "yarn test"
+  },
+  "version": "2.0.1"
+}

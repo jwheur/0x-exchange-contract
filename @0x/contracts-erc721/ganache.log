@@ -1,0 +1,1960 @@
+Saved snapshot #1
+
+  Transaction: 0x1ecc2b854f8d94a2fe2fb7a15cbc6239f3c8a5de706b5ab63cd8300c0f8c5d00
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1561643
+  Block Number: 1
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+
+  Transaction: 0x9cd3bf173bb37605f8c26ce8075bde713c9dcf35aecd89dbd2fbf5fdbd544548
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 191073
+  Block Number: 2
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+
+  Transaction: 0xb1f93c43066121d58b4122de430f2d79bb39ed6c54c2c1a05f910bc06e9d9936
+  Gas usage: 66123
+  Block Number: 3
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+Saved snapshot #2
+
+  Transaction: 0x1e7e137a353e9825a685142bf653a97cdbde99f6fbe0ed01f3d1e1de74b1d8bc
+  Gas usage: 24958
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xe92de98d94df1dc61eee621c9b84518e2066f9aac43c74ad224e7207448beb58
+  Gas usage: 23362
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x5d8e3d1d899d38f4f5562b290bf87897408b121b4d8cf83ae4536307313923ae
+  Gas usage: 25020
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8d1bc9a7b67f998bd93ce523599844df47bb6ed3296bb6bc8e853c7b44f240be
+  Gas usage: 25837
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xcaa682dcdb0e556c4b8c44cb0f0e6157d78cd636e0cf2ccc1b7d943c7e3d7ddf
+  Gas usage: 43442
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd98a7b07a99c1ef19d4f4f767b67ffa26826d6739c3c27f08a476d42e0c939c0
+  Gas usage: 45485
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 43442
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x79c3cae822f239eb96f69daf67fa726e41964e0ad7025c7afdd7fa5249b8bc86
+  Gas usage: 45677
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 33723
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x38236a4d31a6146f720c4ef07c7013ef103ccc4880f37a2e5384b6ddc6a42185
+  Gas usage: 44269
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:43 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 61328
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 63832
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xbe007326b3c12db4c3a2e670cce71c466ac4d7fbb6daf87551b950b57abf8365
+  Gas usage: 48762
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x9534bd24601a1acba349e1c1042951746dc80bbfb90cb74c852accb641c3374a
+  Gas usage: 45941
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 63053
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 65683
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x98816f0da3fbab9488070bff020653ce7958d88fb5ca4cd0a6b4da2437c26c7e
+  Gas usage: 50617
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:11:44 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x1ecc2b854f8d94a2fe2fb7a15cbc6239f3c8a5de706b5ab63cd8300c0f8c5d00
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1561643
+  Block Number: 1
+  Block Time: Tue Feb 19 2019 11:32:59 GMT-0800 (PST)
+
+
+  Transaction: 0x9cd3bf173bb37605f8c26ce8075bde713c9dcf35aecd89dbd2fbf5fdbd544548
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 191073
+  Block Number: 2
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+
+  Transaction: 0xb1f93c43066121d58b4122de430f2d79bb39ed6c54c2c1a05f910bc06e9d9936
+  Gas usage: 66123
+  Block Number: 3
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+Saved snapshot #2
+
+  Transaction: 0x1e7e137a353e9825a685142bf653a97cdbde99f6fbe0ed01f3d1e1de74b1d8bc
+  Gas usage: 24958
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xe92de98d94df1dc61eee621c9b84518e2066f9aac43c74ad224e7207448beb58
+  Gas usage: 23362
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x5d8e3d1d899d38f4f5562b290bf87897408b121b4d8cf83ae4536307313923ae
+  Gas usage: 25020
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8d1bc9a7b67f998bd93ce523599844df47bb6ed3296bb6bc8e853c7b44f240be
+  Gas usage: 25837
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xcaa682dcdb0e556c4b8c44cb0f0e6157d78cd636e0cf2ccc1b7d943c7e3d7ddf
+  Gas usage: 43442
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd98a7b07a99c1ef19d4f4f767b67ffa26826d6739c3c27f08a476d42e0c939c0
+  Gas usage: 45485
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 43442
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x79c3cae822f239eb96f69daf67fa726e41964e0ad7025c7afdd7fa5249b8bc86
+  Gas usage: 45677
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 33723
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:33:00 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x38236a4d31a6146f720c4ef07c7013ef103ccc4880f37a2e5384b6ddc6a42185
+  Gas usage: 44269
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 61328
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 63832
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xbe007326b3c12db4c3a2e670cce71c466ac4d7fbb6daf87551b950b57abf8365
+  Gas usage: 48762
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x9534bd24601a1acba349e1c1042951746dc80bbfb90cb74c852accb641c3374a
+  Gas usage: 45941
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 63053
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:33:01 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:02 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 65683
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:33:02 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x98816f0da3fbab9488070bff020653ce7958d88fb5ca4cd0a6b4da2437c26c7e
+  Gas usage: 50617
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:33:02 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x1ecc2b854f8d94a2fe2fb7a15cbc6239f3c8a5de706b5ab63cd8300c0f8c5d00
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1561643
+  Block Number: 1
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+
+
+  Transaction: 0x9cd3bf173bb37605f8c26ce8075bde713c9dcf35aecd89dbd2fbf5fdbd544548
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 191073
+  Block Number: 2
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+
+
+  Transaction: 0xb1f93c43066121d58b4122de430f2d79bb39ed6c54c2c1a05f910bc06e9d9936
+  Gas usage: 66123
+  Block Number: 3
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+
+Saved snapshot #2
+
+  Transaction: 0x1e7e137a353e9825a685142bf653a97cdbde99f6fbe0ed01f3d1e1de74b1d8bc
+  Gas usage: 24958
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xe92de98d94df1dc61eee621c9b84518e2066f9aac43c74ad224e7207448beb58
+  Gas usage: 23362
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x5d8e3d1d899d38f4f5562b290bf87897408b121b4d8cf83ae4536307313923ae
+  Gas usage: 25020
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8d1bc9a7b67f998bd93ce523599844df47bb6ed3296bb6bc8e853c7b44f240be
+  Gas usage: 25837
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xcaa682dcdb0e556c4b8c44cb0f0e6157d78cd636e0cf2ccc1b7d943c7e3d7ddf
+  Gas usage: 43442
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:03 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd98a7b07a99c1ef19d4f4f767b67ffa26826d6739c3c27f08a476d42e0c939c0
+  Gas usage: 45485
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 43442
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x79c3cae822f239eb96f69daf67fa726e41964e0ad7025c7afdd7fa5249b8bc86
+  Gas usage: 45677
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 33723
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x38236a4d31a6146f720c4ef07c7013ef103ccc4880f37a2e5384b6ddc6a42185
+  Gas usage: 44269
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 61328
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 63832
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xbe007326b3c12db4c3a2e670cce71c466ac4d7fbb6daf87551b950b57abf8365
+  Gas usage: 48762
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x9534bd24601a1acba349e1c1042951746dc80bbfb90cb74c852accb641c3374a
+  Gas usage: 45941
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 63053
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 65683
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x98816f0da3fbab9488070bff020653ce7958d88fb5ca4cd0a6b4da2437c26c7e
+  Gas usage: 50617
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 11:50:04 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x1ecc2b854f8d94a2fe2fb7a15cbc6239f3c8a5de706b5ab63cd8300c0f8c5d00
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1561643
+  Block Number: 1
+  Block Time: Tue Feb 19 2019 15:16:05 GMT-0800 (PST)
+
+
+  Transaction: 0x9cd3bf173bb37605f8c26ce8075bde713c9dcf35aecd89dbd2fbf5fdbd544548
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 191073
+  Block Number: 2
+  Block Time: Tue Feb 19 2019 15:16:05 GMT-0800 (PST)
+
+
+  Transaction: 0xb1f93c43066121d58b4122de430f2d79bb39ed6c54c2c1a05f910bc06e9d9936
+  Gas usage: 66123
+  Block Number: 3
+  Block Time: Tue Feb 19 2019 15:16:05 GMT-0800 (PST)
+
+Saved snapshot #2
+
+  Transaction: 0x1e7e137a353e9825a685142bf653a97cdbde99f6fbe0ed01f3d1e1de74b1d8bc
+  Gas usage: 24958
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xe92de98d94df1dc61eee621c9b84518e2066f9aac43c74ad224e7207448beb58
+  Gas usage: 23362
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x5d8e3d1d899d38f4f5562b290bf87897408b121b4d8cf83ae4536307313923ae
+  Gas usage: 25020
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8d1bc9a7b67f998bd93ce523599844df47bb6ed3296bb6bc8e853c7b44f240be
+  Gas usage: 25837
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xcaa682dcdb0e556c4b8c44cb0f0e6157d78cd636e0cf2ccc1b7d943c7e3d7ddf
+  Gas usage: 43442
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd98a7b07a99c1ef19d4f4f767b67ffa26826d6739c3c27f08a476d42e0c939c0
+  Gas usage: 45485
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 43442
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x79c3cae822f239eb96f69daf67fa726e41964e0ad7025c7afdd7fa5249b8bc86
+  Gas usage: 45677
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 33723
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x38236a4d31a6146f720c4ef07c7013ef103ccc4880f37a2e5384b6ddc6a42185
+  Gas usage: 44269
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 61328
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 63832
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xbe007326b3c12db4c3a2e670cce71c466ac4d7fbb6daf87551b950b57abf8365
+  Gas usage: 48762
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x9534bd24601a1acba349e1c1042951746dc80bbfb90cb74c852accb641c3374a
+  Gas usage: 45941
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:06 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:07 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 63053
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 15:16:07 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:07 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 65683
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 15:16:07 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x98816f0da3fbab9488070bff020653ce7958d88fb5ca4cd0a6b4da2437c26c7e
+  Gas usage: 50617
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 15:16:07 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x1ecc2b854f8d94a2fe2fb7a15cbc6239f3c8a5de706b5ab63cd8300c0f8c5d00
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1561643
+  Block Number: 1
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+
+  Transaction: 0x9cd3bf173bb37605f8c26ce8075bde713c9dcf35aecd89dbd2fbf5fdbd544548
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 191073
+  Block Number: 2
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+
+  Transaction: 0xb1f93c43066121d58b4122de430f2d79bb39ed6c54c2c1a05f910bc06e9d9936
+  Gas usage: 66123
+  Block Number: 3
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+Saved snapshot #2
+
+  Transaction: 0x1e7e137a353e9825a685142bf653a97cdbde99f6fbe0ed01f3d1e1de74b1d8bc
+  Gas usage: 24958
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xe92de98d94df1dc61eee621c9b84518e2066f9aac43c74ad224e7207448beb58
+  Gas usage: 23362
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x5d8e3d1d899d38f4f5562b290bf87897408b121b4d8cf83ae4536307313923ae
+  Gas usage: 25020
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8d1bc9a7b67f998bd93ce523599844df47bb6ed3296bb6bc8e853c7b44f240be
+  Gas usage: 25837
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xcaa682dcdb0e556c4b8c44cb0f0e6157d78cd636e0cf2ccc1b7d943c7e3d7ddf
+  Gas usage: 43442
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd98a7b07a99c1ef19d4f4f767b67ffa26826d6739c3c27f08a476d42e0c939c0
+  Gas usage: 45485
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 43442
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x79c3cae822f239eb96f69daf67fa726e41964e0ad7025c7afdd7fa5249b8bc86
+  Gas usage: 45677
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+
+  Transaction: 0x7957b01fc9980edb4985814e6a0b7a5811b54ffe2dc538b6b532f39912ce526a
+  Gas usage: 33723
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x38236a4d31a6146f720c4ef07c7013ef103ccc4880f37a2e5384b6ddc6a42185
+  Gas usage: 44269
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 61328
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 22:30:53 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+
+
+  Transaction: 0x97048e5089a52a48cdece25954cd2f38a181f0cc9332cd411e33280c10201ff0
+  Gas usage: 63832
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xbe007326b3c12db4c3a2e670cce71c466ac4d7fbb6daf87551b950b57abf8365
+  Gas usage: 48762
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x9534bd24601a1acba349e1c1042951746dc80bbfb90cb74c852accb641c3374a
+  Gas usage: 45941
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x583ebfa687310db9c67a937c241341337e61f57b806f9e8d5b24d798396f0fab
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1561643
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 63053
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1474b5cfbc7db2a17fda8c0c2c31a24fee871308c01a4ecba47a76cd7dcda758
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 190561
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+
+
+  Transaction: 0x35877e13707f90fc5e01a71cec02323ab128e0fe6b63bf9cf20e16d58819afb8
+  Gas usage: 65683
+  Block Number: 5
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x98816f0da3fbab9488070bff020653ce7958d88fb5ca4cd0a6b4da2437c26c7e
+  Gas usage: 50617
+  Block Number: 4
+  Block Time: Tue Feb 19 2019 22:30:54 GMT-0800 (PST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0xb3c791dd0fb57506eb7de58af09012558f6eb7e50454b3951db6cd664a86107e
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1611972
+  Block Number: 1
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+
+  Transaction: 0x429784019751fbeef77fb3af94485f0de3d3f4c67dcc7e3f3c844b52e9ccfcee
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 218535
+  Block Number: 2
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+
+  Transaction: 0x73ac33ed698133f855edb9c4c2bae0b6e4a0966d8723a71a881888c7a390da0e
+  Gas usage: 66128
+  Block Number: 3
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0xe7e0d8aa669f3a99bbe817a9a636920dad64a673296d08b95c754765ca801265
+  Gas usage: 24968
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xafeb6df2924d95a19b97d337b7d01cf7f26b92134cc1d329d8dac550915be32c
+  Gas usage: 23375
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x452fc0ac29bd4832daf474854c5a11c0d6b5dc9f0c9379f9f8b2ec921133a54d
+  Gas usage: 25027
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0a01ac289f769bd9924513491515c79181decc2ef5d0411cad150d0889c59e46
+  Gas usage: 25836
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8b1a848e606ac22eac0810cddfaf2d6277188f6a1c52fbaa1d0f9a0fe77761fe
+  Gas usage: 43441
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0d1a40c4af031110f6f7604a287ba5f2b64ea924e770df4e7d80186cf1aae611
+  Gas usage: 45324
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 43441
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xa9e3afb9555d141cf9bfa3871639b691d4869b6e1320f0454c3f5947578e4fb9
+  Gas usage: 45748
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 33722
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x267573ca21523152186eda3ed4e8f1d6d9dddf0ecd678810f5453386ced50deb
+  Gas usage: 44249
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:22 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 61099
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 64032
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x848c88496f2877e8464ecfec429345ba337217f94707b84c77e2a2bf71fc6f81
+  Gas usage: 48963
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7441311f1ce376ef54c2b71099eb88ae6de93011192bacd62581c1476448b780
+  Gas usage: 45888
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 62852
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 66047
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7ae3c9a04f12e0abac7cd022821a1aeffac22d2c6397c63865027c1c50caef9c
+  Gas usage: 50982
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:23 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0xb3c791dd0fb57506eb7de58af09012558f6eb7e50454b3951db6cd664a86107e
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1611972
+  Block Number: 1
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+
+  Transaction: 0x429784019751fbeef77fb3af94485f0de3d3f4c67dcc7e3f3c844b52e9ccfcee
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 218535
+  Block Number: 2
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+
+  Transaction: 0x73ac33ed698133f855edb9c4c2bae0b6e4a0966d8723a71a881888c7a390da0e
+  Gas usage: 66128
+  Block Number: 3
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0xe7e0d8aa669f3a99bbe817a9a636920dad64a673296d08b95c754765ca801265
+  Gas usage: 24968
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xafeb6df2924d95a19b97d337b7d01cf7f26b92134cc1d329d8dac550915be32c
+  Gas usage: 23375
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x452fc0ac29bd4832daf474854c5a11c0d6b5dc9f0c9379f9f8b2ec921133a54d
+  Gas usage: 25027
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0a01ac289f769bd9924513491515c79181decc2ef5d0411cad150d0889c59e46
+  Gas usage: 25836
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8b1a848e606ac22eac0810cddfaf2d6277188f6a1c52fbaa1d0f9a0fe77761fe
+  Gas usage: 43441
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0d1a40c4af031110f6f7604a287ba5f2b64ea924e770df4e7d80186cf1aae611
+  Gas usage: 45324
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 43441
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xa9e3afb9555d141cf9bfa3871639b691d4869b6e1320f0454c3f5947578e4fb9
+  Gas usage: 45748
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 33722
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x267573ca21523152186eda3ed4e8f1d6d9dddf0ecd678810f5453386ced50deb
+  Gas usage: 44249
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 61099
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:03 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 64032
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x848c88496f2877e8464ecfec429345ba337217f94707b84c77e2a2bf71fc6f81
+  Gas usage: 48963
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7441311f1ce376ef54c2b71099eb88ae6de93011192bacd62581c1476448b780
+  Gas usage: 45888
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 62852
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 66047
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7ae3c9a04f12e0abac7cd022821a1aeffac22d2c6397c63865027c1c50caef9c
+  Gas usage: 50982
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:01:04 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0xb3c791dd0fb57506eb7de58af09012558f6eb7e50454b3951db6cd664a86107e
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1611972
+  Block Number: 1
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+
+
+  Transaction: 0x429784019751fbeef77fb3af94485f0de3d3f4c67dcc7e3f3c844b52e9ccfcee
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 218535
+  Block Number: 2
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+
+
+  Transaction: 0x73ac33ed698133f855edb9c4c2bae0b6e4a0966d8723a71a881888c7a390da0e
+  Gas usage: 66128
+  Block Number: 3
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0xe7e0d8aa669f3a99bbe817a9a636920dad64a673296d08b95c754765ca801265
+  Gas usage: 24968
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xafeb6df2924d95a19b97d337b7d01cf7f26b92134cc1d329d8dac550915be32c
+  Gas usage: 23375
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x452fc0ac29bd4832daf474854c5a11c0d6b5dc9f0c9379f9f8b2ec921133a54d
+  Gas usage: 25027
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0a01ac289f769bd9924513491515c79181decc2ef5d0411cad150d0889c59e46
+  Gas usage: 25836
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8b1a848e606ac22eac0810cddfaf2d6277188f6a1c52fbaa1d0f9a0fe77761fe
+  Gas usage: 43441
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0d1a40c4af031110f6f7604a287ba5f2b64ea924e770df4e7d80186cf1aae611
+  Gas usage: 45324
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 43441
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:55 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xa9e3afb9555d141cf9bfa3871639b691d4869b6e1320f0454c3f5947578e4fb9
+  Gas usage: 45748
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 33722
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x267573ca21523152186eda3ed4e8f1d6d9dddf0ecd678810f5453386ced50deb
+  Gas usage: 44249
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 61099
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 64032
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x848c88496f2877e8464ecfec429345ba337217f94707b84c77e2a2bf71fc6f81
+  Gas usage: 48963
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7441311f1ce376ef54c2b71099eb88ae6de93011192bacd62581c1476448b780
+  Gas usage: 45888
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 62852
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 66047
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7ae3c9a04f12e0abac7cd022821a1aeffac22d2c6397c63865027c1c50caef9c
+  Gas usage: 50982
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:56 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0xb3c791dd0fb57506eb7de58af09012558f6eb7e50454b3951db6cd664a86107e
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1611972
+  Block Number: 1
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+
+  Transaction: 0x429784019751fbeef77fb3af94485f0de3d3f4c67dcc7e3f3c844b52e9ccfcee
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 218535
+  Block Number: 2
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+
+  Transaction: 0x73ac33ed698133f855edb9c4c2bae0b6e4a0966d8723a71a881888c7a390da0e
+  Gas usage: 66128
+  Block Number: 3
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0xe7e0d8aa669f3a99bbe817a9a636920dad64a673296d08b95c754765ca801265
+  Gas usage: 24968
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xafeb6df2924d95a19b97d337b7d01cf7f26b92134cc1d329d8dac550915be32c
+  Gas usage: 23375
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x452fc0ac29bd4832daf474854c5a11c0d6b5dc9f0c9379f9f8b2ec921133a54d
+  Gas usage: 25027
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0a01ac289f769bd9924513491515c79181decc2ef5d0411cad150d0889c59e46
+  Gas usage: 25836
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8b1a848e606ac22eac0810cddfaf2d6277188f6a1c52fbaa1d0f9a0fe77761fe
+  Gas usage: 43441
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0d1a40c4af031110f6f7604a287ba5f2b64ea924e770df4e7d80186cf1aae611
+  Gas usage: 45324
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 43441
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xa9e3afb9555d141cf9bfa3871639b691d4869b6e1320f0454c3f5947578e4fb9
+  Gas usage: 45748
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 33722
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:12 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x267573ca21523152186eda3ed4e8f1d6d9dddf0ecd678810f5453386ced50deb
+  Gas usage: 44249
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 61099
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 64032
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x848c88496f2877e8464ecfec429345ba337217f94707b84c77e2a2bf71fc6f81
+  Gas usage: 48963
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7441311f1ce376ef54c2b71099eb88ae6de93011192bacd62581c1476448b780
+  Gas usage: 45888
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x47c5fd28582791ef8da77764a708e659721b2d1f7860c3c3f2cdb7f7278d0934
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1611972
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 62852
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x13d3bc7968665d3f6e8153014336a79ddad47416983ebb23af9047f26d536f9b
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 216391
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 66047
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7ae3c9a04f12e0abac7cd022821a1aeffac22d2c6397c63865027c1c50caef9c
+  Gas usage: 50982
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:13 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0xf6add4b4a6fd98da5a0c6523abadc4ccfc9e052381221655c719c9defd0c82f8
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 1614320
+  Block Number: 1
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+
+
+  Transaction: 0xb41681ac08aabc338e763f438e179500294b0d90036283e459765dbaccea56aa
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 220883
+  Block Number: 2
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+
+
+  Transaction: 0x73ac33ed698133f855edb9c4c2bae0b6e4a0966d8723a71a881888c7a390da0e
+  Gas usage: 66128
+  Block Number: 3
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0xe7e0d8aa669f3a99bbe817a9a636920dad64a673296d08b95c754765ca801265
+  Gas usage: 24968
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_OWNER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xafeb6df2924d95a19b97d337b7d01cf7f26b92134cc1d329d8dac550915be32c
+  Gas usage: 23375
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_ZERO_TO_ADDRESS
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x452fc0ac29bd4832daf474854c5a11c0d6b5dc9f0c9379f9f8b2ec921133a54d
+  Gas usage: 25027
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_OWNER_MISMATCH
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0a01ac289f769bd9924513491515c79181decc2ef5d0411cad150d0889c59e46
+  Gas usage: 25836
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SPENDER
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8b1a848e606ac22eac0810cddfaf2d6277188f6a1c52fbaa1d0f9a0fe77761fe
+  Gas usage: 43441
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:39 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x0d1a40c4af031110f6f7604a287ba5f2b64ea924e770df4e7d80186cf1aae611
+  Gas usage: 45324
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 43441
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xa9e3afb9555d141cf9bfa3871639b691d4869b6e1320f0454c3f5947578e4fb9
+  Gas usage: 45748
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+
+  Transaction: 0x7b7761d84b291a2e58f3f6b2aa4c7f45bbe1725c747b522cf63d31b5ccd645e4
+  Gas usage: 33722
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x267573ca21523152186eda3ed4e8f1d6d9dddf0ecd678810f5453386ced50deb
+  Gas usage: 44249
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd7c196ee82f1a31e87e436ae1f0dbf2973f719e5924de87c7cb650e65dd6b8f0
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1614320
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 61099
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7d052b7958384c3f6656b051f83e48efca689329bd63a7abb78fad4e9481e480
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 218739
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+
+  Transaction: 0x78d8e6dbcc6a4c16c4a86dc0230ff69545a569c95a133a1707f4e31cb2e1013b
+  Gas usage: 64032
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x848c88496f2877e8464ecfec429345ba337217f94707b84c77e2a2bf71fc6f81
+  Gas usage: 48963
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7441311f1ce376ef54c2b71099eb88ae6de93011192bacd62581c1476448b780
+  Gas usage: 45888
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xd7c196ee82f1a31e87e436ae1f0dbf2973f719e5924de87c7cb650e65dd6b8f0
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 1614320
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 62852
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+  Runtime Error: revert
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7d052b7958384c3f6656b051f83e48efca689329bd63a7abb78fad4e9481e480
+  Contract created: 0x0b1ba0af832d7c05fd64161e0db78e85978e8082
+  Gas usage: 218739
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+
+  Transaction: 0xe09a6b94e9892c7eab5b0f08c822a212247007db12105afe29d79f2da6340447
+  Gas usage: 66047
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: ERC721_INVALID_SELECTOR
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x7ae3c9a04f12e0abac7cd022821a1aeffac22d2c6397c63865027c1c50caef9c
+  Gas usage: 50982
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:40 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Reverting to snapshot #1

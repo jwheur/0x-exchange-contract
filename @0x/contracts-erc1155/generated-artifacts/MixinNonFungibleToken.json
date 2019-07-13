@@ -1,0 +1,220 @@
+{
+	"schemaVersion": "2.0.0",
+	"contractName": "MixinNonFungibleToken",
+	"compilerOutput": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "isNonFungibleItem",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerOf",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getNonFungibleBaseType",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "isNonFungibleBaseType",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getNonFungibleIndex",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "isFungible",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "isNonFungible",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {
+				"getNonFungibleBaseType(uint256)": {
+					"details": "Returns base type of non-fungible token"
+				},
+				"getNonFungibleIndex(uint256)": {
+					"details": "Returns index of non-fungible token"
+				},
+				"isFungible(uint256)": {
+					"details": "Returns true if token is fungible"
+				},
+				"isNonFungible(uint256)": {
+					"details": "Returns true if token is non-fungible"
+				},
+				"isNonFungibleBaseType(uint256)": {
+					"details": "Returns true if input is base-type of a non-fungible token"
+				},
+				"isNonFungibleItem(uint256)": {
+					"details": "Returns true if input is a non-fungible token"
+				},
+				"ownerOf(uint256)": {
+					"details": "returns owner of a non-fungible token"
+				}
+			}
+		},
+		"evm": {
+			"bytecode": {
+				"linkReferences": {},
+				"object": "0x608060405234801561001057600080fd5b50610310806100206000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80637269a3271161005b5780637269a327146101285780639cca1c6414610145578063adebf6f214610162578063e44591f01461017f5761007d565b80635e81b958146100825780636352211e146100b35780636f969c2d146100f9575b600080fd5b61009f6004803603602081101561009857600080fd5b503561019c565b604080519115158252519081900360200190f35b6100d0600480360360208110156100c957600080fd5b50356101e6565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6101166004803603602081101561010f57600080fd5b503561020e565b60408051918252519081900360200190f35b61009f6004803603602081101561013e57600080fd5b5035610233565b6101166004803603602081101561015b57600080fd5b5035610278565b61009f6004803603602081101561017857600080fd5b503561028d565b61009f6004803603602081101561019557600080fd5b50356102b3565b60007f80000000000000000000000000000000000000000000000000000000000000008083161480156101e057506fffffffffffffffffffffffffffffffff821615155b92915050565b60009081526020819052604090205473ffffffffffffffffffffffffffffffffffffffff1690565b7fffffffffffffffffffffffffffffffff000000000000000000000000000000001690565b60007f80000000000000000000000000000000000000000000000000000000000000008083161480156101e05750506fffffffffffffffffffffffffffffffff161590565b6fffffffffffffffffffffffffffffffff1690565b7f8000000000000000000000000000000000000000000000000000000000000000161590565b7f8000000000000000000000000000000000000000000000000000000000000000908116149056fea265627a7a723058207ac7727f9f45b9a0046c86f1be7c99817e4c9685285407447b5770fb29aa904364736f6c634300050a0032",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x310 DUP1 PUSH2 0x20 PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x7D JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x7269A327 GT PUSH2 0x5B JUMPI DUP1 PUSH4 0x7269A327 EQ PUSH2 0x128 JUMPI DUP1 PUSH4 0x9CCA1C64 EQ PUSH2 0x145 JUMPI DUP1 PUSH4 0xADEBF6F2 EQ PUSH2 0x162 JUMPI DUP1 PUSH4 0xE44591F0 EQ PUSH2 0x17F JUMPI PUSH2 0x7D JUMP JUMPDEST DUP1 PUSH4 0x5E81B958 EQ PUSH2 0x82 JUMPI DUP1 PUSH4 0x6352211E EQ PUSH2 0xB3 JUMPI DUP1 PUSH4 0x6F969C2D EQ PUSH2 0xF9 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x98 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x19C JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 ISZERO ISZERO DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH2 0xD0 PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0xC9 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x1E6 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF SWAP1 SWAP3 AND DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH2 0x116 PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x10F JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x20E JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x13E JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x233 JUMP JUMPDEST PUSH2 0x116 PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x15B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x278 JUMP JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x178 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x28D JUMP JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x195 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x2B3 JUMP JUMPDEST PUSH1 0x0 PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 DUP1 DUP4 AND EQ DUP1 ISZERO PUSH2 0x1E0 JUMPI POP PUSH16 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF DUP3 AND ISZERO ISZERO JUMPDEST SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND SWAP1 JUMP JUMPDEST PUSH32 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000 AND SWAP1 JUMP JUMPDEST PUSH1 0x0 PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 DUP1 DUP4 AND EQ DUP1 ISZERO PUSH2 0x1E0 JUMPI POP POP PUSH16 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND ISZERO SWAP1 JUMP JUMPDEST PUSH16 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND SWAP1 JUMP JUMPDEST PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 AND ISZERO SWAP1 JUMP JUMPDEST PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 SWAP1 DUP2 AND EQ SWAP1 JUMP INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 PUSH27 0xC7727F9F45B9A0046C86F1BE7C99817E4C9685285407447B5770FB 0x29 0xaa SWAP1 NUMBER PUSH5 0x736F6C6343 STOP SDIV EXP STOP ORIGIN ",
+				"sourceMap": "648:1925:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;648:1925:2;;;;;;;"
+			},
+			"deployedBytecode": {
+				"linkReferences": {},
+				"object": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c80637269a3271161005b5780637269a327146101285780639cca1c6414610145578063adebf6f214610162578063e44591f01461017f5761007d565b80635e81b958146100825780636352211e146100b35780636f969c2d146100f9575b600080fd5b61009f6004803603602081101561009857600080fd5b503561019c565b604080519115158252519081900360200190f35b6100d0600480360360208110156100c957600080fd5b50356101e6565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6101166004803603602081101561010f57600080fd5b503561020e565b60408051918252519081900360200190f35b61009f6004803603602081101561013e57600080fd5b5035610233565b6101166004803603602081101561015b57600080fd5b5035610278565b61009f6004803603602081101561017857600080fd5b503561028d565b61009f6004803603602081101561019557600080fd5b50356102b3565b60007f80000000000000000000000000000000000000000000000000000000000000008083161480156101e057506fffffffffffffffffffffffffffffffff821615155b92915050565b60009081526020819052604090205473ffffffffffffffffffffffffffffffffffffffff1690565b7fffffffffffffffffffffffffffffffff000000000000000000000000000000001690565b60007f80000000000000000000000000000000000000000000000000000000000000008083161480156101e05750506fffffffffffffffffffffffffffffffff161590565b6fffffffffffffffffffffffffffffffff1690565b7f8000000000000000000000000000000000000000000000000000000000000000161590565b7f8000000000000000000000000000000000000000000000000000000000000000908116149056fea265627a7a723058207ac7727f9f45b9a0046c86f1be7c99817e4c9685285407447b5770fb29aa904364736f6c634300050a0032",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x7D JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x7269A327 GT PUSH2 0x5B JUMPI DUP1 PUSH4 0x7269A327 EQ PUSH2 0x128 JUMPI DUP1 PUSH4 0x9CCA1C64 EQ PUSH2 0x145 JUMPI DUP1 PUSH4 0xADEBF6F2 EQ PUSH2 0x162 JUMPI DUP1 PUSH4 0xE44591F0 EQ PUSH2 0x17F JUMPI PUSH2 0x7D JUMP JUMPDEST DUP1 PUSH4 0x5E81B958 EQ PUSH2 0x82 JUMPI DUP1 PUSH4 0x6352211E EQ PUSH2 0xB3 JUMPI DUP1 PUSH4 0x6F969C2D EQ PUSH2 0xF9 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x98 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x19C JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 ISZERO ISZERO DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH2 0xD0 PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0xC9 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x1E6 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF SWAP1 SWAP3 AND DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH2 0x116 PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x10F JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x20E JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x13E JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x233 JUMP JUMPDEST PUSH2 0x116 PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x15B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x278 JUMP JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x178 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x28D JUMP JUMPDEST PUSH2 0x9F PUSH1 0x4 DUP1 CALLDATASIZE SUB PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x195 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD PUSH2 0x2B3 JUMP JUMPDEST PUSH1 0x0 PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 DUP1 DUP4 AND EQ DUP1 ISZERO PUSH2 0x1E0 JUMPI POP PUSH16 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF DUP3 AND ISZERO ISZERO JUMPDEST SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND SWAP1 JUMP JUMPDEST PUSH32 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000 AND SWAP1 JUMP JUMPDEST PUSH1 0x0 PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 DUP1 DUP4 AND EQ DUP1 ISZERO PUSH2 0x1E0 JUMPI POP POP PUSH16 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND ISZERO SWAP1 JUMP JUMPDEST PUSH16 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND SWAP1 JUMP JUMPDEST PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 AND ISZERO SWAP1 JUMP JUMPDEST PUSH32 0x8000000000000000000000000000000000000000000000000000000000000000 SWAP1 DUP2 AND EQ SWAP1 JUMP INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 PUSH27 0xC7727F9F45B9A0046C86F1BE7C99817E4C9685285407447B5770FB 0x29 0xaa SWAP1 NUMBER PUSH5 0x736F6C6343 STOP SDIV EXP STOP ORIGIN ",
+				"sourceMap": "648:1925:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;648:1925:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2203:212;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2203:212:2;;:::i;:::-;;;;;;;;;;;;;;;;;;2476:95;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2476:95:2;;:::i;:::-;;;;;;;;;;;;;;;;;;;1728:111;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1728:111:2;;:::i;:::-;;;;;;;;;;;;;;;;1917:221;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1917:221:2;;:::i;1557:112::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1557:112:2;;:::i;1399:103::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1399:103:2;;:::i;1230:116::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1230:116:2;;:::i;2203:212::-;2262:4;1079:8;;2347:2;:16;:31;2346:62;;;;-1:-1:-1;2389:13:2;2384:18;;:23;;2346:62;2339:69;2203:212;-1:-1:-1;;2203:212:2:o;2476:95::-;2526:7;2552:12;;;;;;;;;;;;;;2476:95::o;1728:111::-;835:27;1818:14;;1728:111::o;1917:221::-;1980:4;1079:8;;2070:2;:16;:31;2069:62;;;;-1:-1:-1;;2112:13:2;2107:18;:23;;1917:221::o;1557:112::-;1649:13;1644:18;;1557:112::o;1399:103::-;1079:8;1474:16;:21;;1399:103::o;1230:116::-;1079:8;1308:16;;;:31;;1230:116::o"
+			}
+		}
+	},
+	"sources": {
+		"src/MixinNonFungibleToken.sol": {
+			"id": 2
+		},
+		"src/mixins/MNonFungibleToken.sol": {
+			"id": 6
+		}
+	},
+	"sourceCodes": {
+		"src/MixinNonFungibleToken.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\nimport \"./mixins/MNonFungibleToken.sol\";\n\n\ncontract MixinNonFungibleToken is\n    MNonFungibleToken\n{\n    /// Use a split bit implementation.\n    /// Store the type in the upper 128 bits..\n    uint256 constant internal TYPE_MASK = uint256(uint128(~0)) << 128;\n\n    /// ..and the non-fungible index in the lower 128\n    uint256 constant internal NF_INDEX_MASK = uint128(~0);\n\n    /// The top bit is a flag to tell if this is a NFI.\n    uint256 constant internal TYPE_NF_BIT = 1 << 255;\n\n    /// mapping of nft to owner\n    mapping (uint256 => address) internal nfOwners;\n\n    /// @dev Returns true if token is non-fungible\n    function isNonFungible(uint256 id) public pure returns(bool) {\n        return id & TYPE_NF_BIT == TYPE_NF_BIT;\n    }\n\n    /// @dev Returns true if token is fungible\n    function isFungible(uint256 id) public pure returns(bool) {\n        return id & TYPE_NF_BIT == 0;\n    }\n\n    /// @dev Returns index of non-fungible token\n    function getNonFungibleIndex(uint256 id) public pure returns(uint256) {\n        return id & NF_INDEX_MASK;\n    }\n\n    /// @dev Returns base type of non-fungible token\n    function getNonFungibleBaseType(uint256 id) public pure returns(uint256) {\n        return id & TYPE_MASK;\n    }\n\n    /// @dev Returns true if input is base-type of a non-fungible token\n    function isNonFungibleBaseType(uint256 id) public pure returns(bool) {\n        // A base type has the NF bit but does not have an index.\n        return (id & TYPE_NF_BIT == TYPE_NF_BIT) && (id & NF_INDEX_MASK == 0);\n    }\n\n    /// @dev Returns true if input is a non-fungible token\n    function isNonFungibleItem(uint256 id) public pure returns(bool) {\n        // A base type has the NF bit but does has an index.\n        return (id & TYPE_NF_BIT == TYPE_NF_BIT) && (id & NF_INDEX_MASK != 0);\n    }\n    \n    /// @dev returns owner of a non-fungible token\n    function ownerOf(uint256 id) public view returns (address) {\n        return nfOwners[id];\n    }\n}\n",
+		"src/mixins/MNonFungibleToken.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\n\ncontract MNonFungibleToken {\n\n    /// @dev Returns true if token is non-fungible\n    function isNonFungible(uint256 id) public pure returns(bool);\n\n    /// @dev Returns true if token is fungible\n    function isFungible(uint256 _d) public pure returns(bool);\n\n    /// @dev Returns index of non-fungible token\n    function getNonFungibleIndex(uint256 id) public pure returns(uint256);\n\n    /// @dev Returns base type of non-fungible token\n    function getNonFungibleBaseType(uint256 id) public pure returns(uint256);\n\n    /// @dev Returns true if input is base-type of a non-fungible token\n    function isNonFungibleBaseType(uint256 id) public pure returns(bool);\n\n    /// @dev Returns true if input is a non-fungible token\n    function isNonFungibleItem(uint256 id) public pure returns(bool);\n\n    /// @dev returns owner of a non-fungible token\n    function ownerOf(uint256 id) public view returns (address);\n}\n"
+	},
+	"sourceTreeHashHex": "0xf49de2d29a26b5fe7f7d4374114f5cbc4e102acec5b35df569293311689a1c53",
+	"compiler": {
+		"name": "solc",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 1000000
+			},
+			"outputSelection": {
+				"*": {
+					"*": [
+						"abi",
+						"devdoc",
+						"evm.bytecode.object",
+						"evm.bytecode.sourceMap",
+						"evm.deployedBytecode.object",
+						"evm.deployedBytecode.sourceMap"
+					]
+				}
+			},
+			"evmVersion": "constantinople",
+			"remappings": [
+				"@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/erc1155/node_modules/@0x/contracts-utils"
+			]
+		}
+	},
+	"networks": {}
+}

@@ -1,0 +1,165 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "IAssetData",
+    "compilerOutput": {
+        "abi": [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "tokenId",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "ERC721Token",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "amounts",
+                        "type": "uint256[]"
+                    },
+                    {
+                        "name": "nestedAssetData",
+                        "type": "bytes[]"
+                    }
+                ],
+                "name": "MultiAsset",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "tokenIds",
+                        "type": "uint256[]"
+                    },
+                    {
+                        "name": "tokenValues",
+                        "type": "uint256[]"
+                    },
+                    {
+                        "name": "callbackData",
+                        "type": "bytes"
+                    }
+                ],
+                "name": "ERC1155Assets",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "callTarget",
+                        "type": "address"
+                    },
+                    {
+                        "name": "staticCallData",
+                        "type": "bytes"
+                    },
+                    {
+                        "name": "callResultHash",
+                        "type": "bytes32"
+                    }
+                ],
+                "name": "StaticCall",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "tokenAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "ERC20Token",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ],
+        "devdoc": {
+            "methods": {}
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            }
+        }
+    },
+    "sources": {
+        "src/interfaces/IAssetData.sol": {
+            "id": 7
+        }
+    },
+    "sourceCodes": {
+        "src/interfaces/IAssetData.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\n// solhint-disable\npragma solidity ^0.5.5;\npragma experimental ABIEncoderV2;\n\n\n// @dev Interface of the asset proxy's assetData.\n// The asset proxies take an ABI encoded `bytes assetData` as argument.\n// This argument is ABI encoded as one of the methods of this interface.\ninterface IAssetData {\n\n    function ERC20Token(address tokenAddress)\n        external;\n    \n    function ERC721Token(\n        address tokenAddress,\n        uint256 tokenId\n    )\n        external;\n\n    function ERC1155Assets(\n        address tokenAddress,\n        uint256[] calldata tokenIds,\n        uint256[] calldata tokenValues,\n        bytes calldata callbackData\n    )\n        external;\n\n    function MultiAsset(\n        uint256[] calldata amounts,\n        bytes[] calldata nestedAssetData\n    )\n        external;\n\n    function StaticCall(\n        address callTarget,\n        bytes calldata staticCallData,\n        bytes32 callResultHash\n    )\n        external;\n}\n"
+    },
+    "sourceTreeHashHex": "0x3649d3cb17492fa7704573fbcae5b62a07b358e659712cfff069bf0c7779780c",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "constantinople",
+            "remappings": [
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/asset-proxy/node_modules/@0x/contracts-utils"
+            ]
+        }
+    },
+    "networks": {}
+}

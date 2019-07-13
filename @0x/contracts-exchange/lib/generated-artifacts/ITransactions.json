@@ -1,0 +1,91 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "ITransactions",
+    "compilerOutput": {
+        "abi": [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "salt",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "signerAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "data",
+                        "type": "bytes"
+                    },
+                    {
+                        "name": "signature",
+                        "type": "bytes"
+                    }
+                ],
+                "name": "executeTransaction",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ],
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            }
+        }
+    },
+    "sources": {
+        "src/interfaces/ITransactions.sol": {
+            "id": 17
+        }
+    },
+    "sourceCodes": {
+        "src/interfaces/ITransactions.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\n\ncontract ITransactions {\n\n    /// @dev Executes an exchange method call in the context of signer.\n    /// @param salt Arbitrary number to ensure uniqueness of transaction hash.\n    /// @param signerAddress Address of transaction signer.\n    /// @param data AbiV2 encoded calldata.\n    /// @param signature Proof of signer transaction by signer.\n    function executeTransaction(\n        uint256 salt,\n        address signerAddress,\n        bytes calldata data,\n        bytes calldata signature\n    )\n        external;\n}\n"
+    },
+    "sourceTreeHashHex": "0x4604da6f13306fbdd56d453ff47c04d9f2dd71d94af511bcf246306f238c7fbf",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.8+commit.23d335f2.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "constantinople",
+            "remappings": [
+                "@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange/node_modules/@0x/contracts-exchange-libs",
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange/node_modules/@0x/contracts-utils",
+                "@0x/contracts-erc20=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange/node_modules/@0x/contracts-erc20"
+            ]
+        }
+    },
+    "networks": {}
+}

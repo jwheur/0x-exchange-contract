@@ -1,0 +1,64 @@
+{
+	"schemaVersion": "2.0.0",
+	"contractName": "SafeMath",
+	"compilerOutput": {
+		"abi": [],
+		"devdoc": {
+			"methods": {}
+		},
+		"evm": {
+			"bytecode": {
+				"linkReferences": {},
+				"object": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723058201efcf4da5e5f1e3960f5a19a5515910dc9bcc0904e8d857842c3979a0fb912c264736f6c634300050a0032",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x3E DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 0x1e 0xfc DELEGATECALL 0xda 0x5e 0x5f 0x1e CODECOPY PUSH1 0xF5 LOG1 SWAP11 SSTORE ISZERO SWAP2 0xd 0xc9 0xbc 0xc0 SWAP1 0x4e DUP14 DUP6 PUSH25 0x42C3979A0FB912C264736F6C634300050A0032000000000000 ",
+				"sourceMap": "26:1482:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:1482:5;;;;;;;"
+			},
+			"deployedBytecode": {
+				"linkReferences": {},
+				"object": "0x6080604052600080fdfea265627a7a723058201efcf4da5e5f1e3960f5a19a5515910dc9bcc0904e8d857842c3979a0fb912c264736f6c634300050a0032",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 0x1e 0xfc DELEGATECALL 0xda 0x5e 0x5f 0x1e CODECOPY PUSH1 0xF5 LOG1 SWAP11 SSTORE ISZERO SWAP2 0xd 0xc9 0xbc 0xc0 SWAP1 0x4e DUP14 DUP6 PUSH25 0x42C3979A0FB912C264736F6C634300050A0032000000000000 ",
+				"sourceMap": "26:1482:5:-;;;;;"
+			}
+		}
+	},
+	"sources": {
+		"src/SafeMath.sol": {
+			"id": 5
+		}
+	},
+	"sourceCodes": {
+		"src/SafeMath.sol": "pragma solidity ^0.5.5;\n\n\ncontract SafeMath {\n\n    function safeMul(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        if (a == 0) {\n            return 0;\n        }\n        uint256 c = a * b;\n        require(\n            c / a == b,\n            \"UINT256_OVERFLOW\"\n        );\n        return c;\n    }\n\n    function safeDiv(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        uint256 c = a / b;\n        return c;\n    }\n\n    function safeSub(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        require(\n            b <= a,\n            \"UINT256_UNDERFLOW\"\n        );\n        return a - b;\n    }\n\n    function safeAdd(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        uint256 c = a + b;\n        require(\n            c >= a,\n            \"UINT256_OVERFLOW\"\n        );\n        return c;\n    }\n\n    function max64(uint64 a, uint64 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a >= b ? a : b;\n    }\n\n    function min64(uint64 a, uint64 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a < b ? a : b;\n    }\n\n    function max256(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a >= b ? a : b;\n    }\n\n    function min256(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a < b ? a : b;\n    }\n}\n"
+	},
+	"sourceTreeHashHex": "0x27027b268113e424039e67bbab9bfcfd76d0e5707c4b3068af68382c8f35bd34",
+	"compiler": {
+		"name": "solc",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 1000000,
+				"details": {
+					"yul": true,
+					"deduplicate": true,
+					"cse": true,
+					"constantOptimizer": true
+				}
+			},
+			"outputSelection": {
+				"*": {
+					"*": [
+						"abi",
+						"devdoc",
+						"evm.bytecode.object",
+						"evm.bytecode.sourceMap",
+						"evm.deployedBytecode.object",
+						"evm.deployedBytecode.sourceMap"
+					]
+				}
+			},
+			"evmVersion": "constantinople",
+			"remappings": []
+		}
+	},
+	"networks": {}
+}

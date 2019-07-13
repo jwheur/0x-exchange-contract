@@ -1,0 +1,216 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "MNonFungibleToken",
+    "compilerOutput": {
+        "abi": [
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "isNonFungibleItem",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "pure",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "ownerOf",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "getNonFungibleBaseType",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "pure",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "isNonFungibleBaseType",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "pure",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "getNonFungibleIndex",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "pure",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "_d",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "isFungible",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "pure",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "isNonFungible",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "pure",
+                "type": "function"
+            }
+        ],
+        "devdoc": {
+            "methods": {
+                "getNonFungibleBaseType(uint256)": {
+                    "details": "Returns base type of non-fungible token"
+                },
+                "getNonFungibleIndex(uint256)": {
+                    "details": "Returns index of non-fungible token"
+                },
+                "isFungible(uint256)": {
+                    "details": "Returns true if token is fungible"
+                },
+                "isNonFungible(uint256)": {
+                    "details": "Returns true if token is non-fungible"
+                },
+                "isNonFungibleBaseType(uint256)": {
+                    "details": "Returns true if input is base-type of a non-fungible token"
+                },
+                "isNonFungibleItem(uint256)": {
+                    "details": "Returns true if input is a non-fungible token"
+                },
+                "ownerOf(uint256)": {
+                    "details": "returns owner of a non-fungible token"
+                }
+            }
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            }
+        }
+    },
+    "sources": {
+        "src/mixins/MNonFungibleToken.sol": {
+            "id": 6
+        }
+    },
+    "sourceCodes": {
+        "src/mixins/MNonFungibleToken.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\n\ncontract MNonFungibleToken {\n\n    /// @dev Returns true if token is non-fungible\n    function isNonFungible(uint256 id) public pure returns(bool);\n\n    /// @dev Returns true if token is fungible\n    function isFungible(uint256 _d) public pure returns(bool);\n\n    /// @dev Returns index of non-fungible token\n    function getNonFungibleIndex(uint256 id) public pure returns(uint256);\n\n    /// @dev Returns base type of non-fungible token\n    function getNonFungibleBaseType(uint256 id) public pure returns(uint256);\n\n    /// @dev Returns true if input is base-type of a non-fungible token\n    function isNonFungibleBaseType(uint256 id) public pure returns(bool);\n\n    /// @dev Returns true if input is a non-fungible token\n    function isNonFungibleItem(uint256 id) public pure returns(bool);\n\n    /// @dev returns owner of a non-fungible token\n    function ownerOf(uint256 id) public view returns (address);\n}\n"
+    },
+    "sourceTreeHashHex": "0x80eb074a02dda5ad04d7e823b609b1c441ab93059bd7b8a4e6c258947bcfaac0",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "constantinople",
+            "remappings": [
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/erc1155/node_modules/@0x/contracts-utils"
+            ]
+        }
+    },
+    "networks": {}
+}

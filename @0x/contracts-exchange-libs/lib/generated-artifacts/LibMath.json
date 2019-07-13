@@ -1,0 +1,67 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "LibMath",
+    "compilerOutput": {
+        "abi": [],
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058204543a1d0ed1a3d3660be4433e5a61e91f39061894001192b57973488e73c671c0029",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x35 DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 GASLIMIT NUMBER LOG1 0xd0 0xed BYTE RETURNDATASIZE CALLDATASIZE PUSH1 0xBE DIFFICULTY CALLER 0xe5 0xa6 0x1e SWAP2 RETURN SWAP1 PUSH2 0x8940 ADD NOT 0x2b JUMPI SWAP8 CALLVALUE DUP9 0xe7 EXTCODECOPY PUSH8 0x1C00290000000000 ",
+                "sourceMap": "664:7175:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;664:7175:5;;;;;;;"
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x6080604052600080fdfea165627a7a723058204543a1d0ed1a3d3660be4433e5a61e91f39061894001192b57973488e73c671c0029",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 GASLIMIT NUMBER LOG1 0xd0 0xed BYTE RETURNDATASIZE CALLDATASIZE PUSH1 0xBE DIFFICULTY CALLER 0xe5 0xa6 0x1e SWAP2 RETURN SWAP1 PUSH2 0x8940 ADD NOT 0x2b JUMPI SWAP8 CALLVALUE DUP9 0xe7 EXTCODECOPY PUSH8 0x1C00290000000000 ",
+                "sourceMap": "664:7175:5:-;;;;;"
+            }
+        }
+    },
+    "sources": {
+        "src/LibMath.sol": {
+            "id": 5
+        },
+        "@0x/contracts-utils/contracts/src/SafeMath.sol": {
+            "id": 10
+        }
+    },
+    "sourceCodes": {
+        "src/LibMath.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\nimport \"@0x/contracts-utils/contracts/src/SafeMath.sol\";\n\n\ncontract LibMath is\n    SafeMath\n{\n    /// @dev Calculates partial value given a numerator and denominator rounded down.\n    ///      Reverts if rounding error is >= 0.1%\n    /// @param numerator Numerator.\n    /// @param denominator Denominator.\n    /// @param target Value to calculate partial of.\n    /// @return Partial value of target rounded down.\n    function safeGetPartialAmountFloor(\n        uint256 numerator,\n        uint256 denominator,\n        uint256 target\n    )\n        internal\n        pure\n        returns (uint256 partialAmount)\n    {\n        require(\n            denominator > 0,\n            \"DIVISION_BY_ZERO\"\n        );\n\n        require(\n            !isRoundingErrorFloor(\n                numerator,\n                denominator,\n                target\n            ),\n            \"ROUNDING_ERROR\"\n        );\n        \n        partialAmount = safeDiv(\n            safeMul(numerator, target),\n            denominator\n        );\n        return partialAmount;\n    }\n\n    /// @dev Calculates partial value given a numerator and denominator rounded down.\n    ///      Reverts if rounding error is >= 0.1%\n    /// @param numerator Numerator.\n    /// @param denominator Denominator.\n    /// @param target Value to calculate partial of.\n    /// @return Partial value of target rounded up.\n    function safeGetPartialAmountCeil(\n        uint256 numerator,\n        uint256 denominator,\n        uint256 target\n    )\n        internal\n        pure\n        returns (uint256 partialAmount)\n    {\n        require(\n            denominator > 0,\n            \"DIVISION_BY_ZERO\"\n        );\n\n        require(\n            !isRoundingErrorCeil(\n                numerator,\n                denominator,\n                target\n            ),\n            \"ROUNDING_ERROR\"\n        );\n        \n        // safeDiv computes `floor(a / b)`. We use the identity (a, b integer):\n        //       ceil(a / b) = floor((a + b - 1) / b)\n        // To implement `ceil(a / b)` using safeDiv.\n        partialAmount = safeDiv(\n            safeAdd(\n                safeMul(numerator, target),\n                safeSub(denominator, 1)\n            ),\n            denominator\n        );\n        return partialAmount;\n    }\n\n    /// @dev Calculates partial value given a numerator and denominator rounded down.\n    /// @param numerator Numerator.\n    /// @param denominator Denominator.\n    /// @param target Value to calculate partial of.\n    /// @return Partial value of target rounded down.\n    function getPartialAmountFloor(\n        uint256 numerator,\n        uint256 denominator,\n        uint256 target\n    )\n        internal\n        pure\n        returns (uint256 partialAmount)\n    {\n        require(\n            denominator > 0,\n            \"DIVISION_BY_ZERO\"\n        );\n\n        partialAmount = safeDiv(\n            safeMul(numerator, target),\n            denominator\n        );\n        return partialAmount;\n    }\n    \n    /// @dev Calculates partial value given a numerator and denominator rounded down.\n    /// @param numerator Numerator.\n    /// @param denominator Denominator.\n    /// @param target Value to calculate partial of.\n    /// @return Partial value of target rounded up.\n    function getPartialAmountCeil(\n        uint256 numerator,\n        uint256 denominator,\n        uint256 target\n    )\n        internal\n        pure\n        returns (uint256 partialAmount)\n    {\n        require(\n            denominator > 0,\n            \"DIVISION_BY_ZERO\"\n        );\n\n        // safeDiv computes `floor(a / b)`. We use the identity (a, b integer):\n        //       ceil(a / b) = floor((a + b - 1) / b)\n        // To implement `ceil(a / b)` using safeDiv.\n        partialAmount = safeDiv(\n            safeAdd(\n                safeMul(numerator, target),\n                safeSub(denominator, 1)\n            ),\n            denominator\n        );\n        return partialAmount;\n    }\n    \n    /// @dev Checks if rounding error >= 0.1% when rounding down.\n    /// @param numerator Numerator.\n    /// @param denominator Denominator.\n    /// @param target Value to multiply with numerator/denominator.\n    /// @return Rounding error is present.\n    function isRoundingErrorFloor(\n        uint256 numerator,\n        uint256 denominator,\n        uint256 target\n    )\n        internal\n        pure\n        returns (bool isError)\n    {\n        require(\n            denominator > 0,\n            \"DIVISION_BY_ZERO\"\n        );\n        \n        // The absolute rounding error is the difference between the rounded\n        // value and the ideal value. The relative rounding error is the\n        // absolute rounding error divided by the absolute value of the\n        // ideal value. This is undefined when the ideal value is zero.\n        //\n        // The ideal value is `numerator * target / denominator`.\n        // Let's call `numerator * target % denominator` the remainder.\n        // The absolute error is `remainder / denominator`.\n        //\n        // When the ideal value is zero, we require the absolute error to\n        // be zero. Fortunately, this is always the case. The ideal value is\n        // zero iff `numerator == 0` and/or `target == 0`. In this case the\n        // remainder and absolute error are also zero. \n        if (target == 0 || numerator == 0) {\n            return false;\n        }\n        \n        // Otherwise, we want the relative rounding error to be strictly\n        // less than 0.1%.\n        // The relative error is `remainder / (numerator * target)`.\n        // We want the relative error less than 1 / 1000:\n        //        remainder / (numerator * denominator)  <  1 / 1000\n        // or equivalently:\n        //        1000 * remainder  <  numerator * target\n        // so we have a rounding error iff:\n        //        1000 * remainder  >=  numerator * target\n        uint256 remainder = mulmod(\n            target,\n            numerator,\n            denominator\n        );\n        isError = safeMul(1000, remainder) >= safeMul(numerator, target);\n        return isError;\n    }\n    \n    /// @dev Checks if rounding error >= 0.1% when rounding up.\n    /// @param numerator Numerator.\n    /// @param denominator Denominator.\n    /// @param target Value to multiply with numerator/denominator.\n    /// @return Rounding error is present.\n    function isRoundingErrorCeil(\n        uint256 numerator,\n        uint256 denominator,\n        uint256 target\n    )\n        internal\n        pure\n        returns (bool isError)\n    {\n        require(\n            denominator > 0,\n            \"DIVISION_BY_ZERO\"\n        );\n        \n        // See the comments in `isRoundingError`.\n        if (target == 0 || numerator == 0) {\n            // When either is zero, the ideal value and rounded value are zero\n            // and there is no rounding error. (Although the relative error\n            // is undefined.)\n            return false;\n        }\n        // Compute remainder as before\n        uint256 remainder = mulmod(\n            target,\n            numerator,\n            denominator\n        );\n        remainder = safeSub(denominator, remainder) % denominator;\n        isError = safeMul(1000, remainder) >= safeMul(numerator, target);\n        return isError;\n    }\n}\n",
+        "@0x/contracts-utils/contracts/src/SafeMath.sol": "pragma solidity ^0.5.5;\n\n\ncontract SafeMath {\n\n    function safeMul(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        if (a == 0) {\n            return 0;\n        }\n        uint256 c = a * b;\n        require(\n            c / a == b,\n            \"UINT256_OVERFLOW\"\n        );\n        return c;\n    }\n\n    function safeDiv(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        uint256 c = a / b;\n        return c;\n    }\n\n    function safeSub(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        require(\n            b <= a,\n            \"UINT256_UNDERFLOW\"\n        );\n        return a - b;\n    }\n\n    function safeAdd(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        uint256 c = a + b;\n        require(\n            c >= a,\n            \"UINT256_OVERFLOW\"\n        );\n        return c;\n    }\n\n    function max64(uint64 a, uint64 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a >= b ? a : b;\n    }\n\n    function min64(uint64 a, uint64 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a < b ? a : b;\n    }\n\n    function max256(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a >= b ? a : b;\n    }\n\n    function min256(uint256 a, uint256 b)\n        internal\n        pure\n        returns (uint256)\n    {\n        return a < b ? a : b;\n    }\n}\n"
+    },
+    "sourceTreeHashHex": "0x3d266e733cbef3e498b3ee48bbee125a7a4836f9f213ab0183ea01f59830e37e",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.8+commit.23d335f2.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "constantinople",
+            "remappings": [
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils",
+                "@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/node_modules/@0x/contracts-exchange-libs"
+            ]
+        }
+    },
+    "networks": {}
+}

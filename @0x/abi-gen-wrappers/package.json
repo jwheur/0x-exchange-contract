@@ -1,0 +1,84 @@
+{
+  "_from": "@0x/abi-gen-wrappers@^5.0.0",
+  "_id": "@0x/abi-gen-wrappers@5.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-NGNuHmFFWeZZK1zRpRfFmkiMGYqBR4FOOW8xv/bz50y8xSXJF8/YRKWUFEpEqPwfSLXApiCkBlvF6+0YXjCGfQ==",
+  "_location": "/@0x/abi-gen-wrappers",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@0x/abi-gen-wrappers@^5.0.0",
+    "name": "@0x/abi-gen-wrappers",
+    "escapedName": "@0x%2fabi-gen-wrappers",
+    "scope": "@0x",
+    "rawSpec": "^5.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^5.0.0"
+  },
+  "_requiredBy": [
+    "/@0x/order-utils"
+  ],
+  "_resolved": "https://registry.npmjs.org/@0x/abi-gen-wrappers/-/abi-gen-wrappers-5.0.0.tgz",
+  "_shasum": "8b18d999442c5df4922b66a601867d69a020d750",
+  "_spec": "@0x/abi-gen-wrappers@^5.0.0",
+  "_where": "/Users/john/notes/switcheo/eth/node_modules/@0x/order-utils",
+  "bugs": {
+    "url": "https://github.com/0xProject/0x-monorepo/issues"
+  },
+  "bundleDependencies": false,
+  "config": {
+    "abis": "../contract-artifacts/artifacts/@(AssetProxyOwner|DutchAuction|DummyERC20Token|DummyERC721Token|ERC20Proxy|ERC20Token|ERC721Proxy|ERC721Token|Exchange|Forwarder|IAssetProxy|IValidator|IWallet|MultiAssetProxy|OrderValidator|WETH9|ZRXToken|Coordinator|CoordinatorRegistry|EthBalanceChecker).json"
+  },
+  "dependencies": {
+    "@0x/base-contract": "^5.1.1",
+    "@0x/contract-addresses": "^3.0.0",
+    "@0x/contract-artifacts": "^2.0.1"
+  },
+  "deprecated": false,
+  "description": "Low-level 0x smart contract wrappers generated using @0x/abi-gen",
+  "devDependencies": {
+    "@0x/abi-gen": "^2.1.0",
+    "@0x/abi-gen-templates": "^2.2.1",
+    "@0x/assert": "^2.1.0",
+    "@0x/json-schemas": "^3.0.11",
+    "@0x/tslint-config": "^3.0.1",
+    "@0x/types": "^2.4.0",
+    "@0x/utils": "^4.4.0",
+    "@0x/web3-wrapper": "^6.0.7",
+    "ethereum-types": "^2.1.3",
+    "ethers": "~4.0.4",
+    "lodash": "^4.17.11",
+    "shx": "^0.2.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=6.12"
+  },
+  "gitHead": "e8535551650633b26eac8330b91b6a1b92ec43f3",
+  "homepage": "https://github.com/0xProject/0x-monorepo/packages/abi-gen-wrappers/README.md",
+  "license": "Apache-2.0",
+  "main": "lib/src/index.js",
+  "name": "@0x/abi-gen-wrappers",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xProject/0x-monorepo.git"
+  },
+  "scripts": {
+    "build": "yarn pre_build && tsc -b",
+    "build:ci": "yarn build",
+    "clean": "shx rm -rf lib src/generated-wrappers",
+    "fix": "tslint --fix --format stylish --project .",
+    "generate_contract_wrappers": "abi-gen --abis  ${npm_package_config_abis} --template ../../node_modules/@0x/abi-gen-templates/contract.handlebars --partials '../../node_modules/@0x/abi-gen-templates/partials/**/*.handlebars' --output src/generated-wrappers --backend ethers",
+    "lint": "tslint --format stylish --project .",
+    "pre_build": "yarn generate_contract_wrappers && yarn prettier_contract_wrappers",
+    "prettier": "prettier --write src/**/* --config ../../.prettierrc",
+    "prettier_contract_wrappers": "prettier --write src/generated-wrappers/* --config ../../.prettierrc"
+  },
+  "version": "5.0.0"
+}

@@ -1,0 +1,980 @@
+Saved snapshot #1
+
+  Transaction: 0x2074599fc8e3609bdce0d35e1d17c88d09b9164f9a37abfed020efa71468f795
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 2462425
+  Block Number: 1
+  Block Time: Mon May 20 2019 11:31:16 GMT+0100 (BST)
+
+
+  Transaction: 0x7e10747f44ef0e5a09e3dcfa0e55bbd474f42e58bc3d762f00e42af3e25fbdce
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 525145
+  Block Number: 2
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+
+  Transaction: 0x4c4d2fbd751dbd7f7c046c32fcc0e7a6196e34126ac1b99b35aafc2cfd9943bb
+  Gas usage: 68627
+  Block Number: 3
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+
+  Transaction: 0x1bf93c1651aee7d103315ea12d985037971dfebcb2e190095975f48b402f8475
+  Gas usage: 48891
+  Block Number: 4
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+
+  Transaction: 0x85f7c4f636446d4792cbc6ce6da4b6474babd7f23aeaa47f3b853ce998585f4e
+  Gas usage: 53889
+  Block Number: 5
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+
+  Transaction: 0xf5dd957e5f7c11d4af6227a28d031e46a02ea6c82412fa7f11cc00a07c6c5b4e
+  Gas usage: 68553
+  Block Number: 6
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x80553a4011d4beee70323148818bc04f91141e5ccb05e7c768cf7a3ffe5c7f49
+  Gas usage: 40346
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x2d3c3d6bb43b7ad1c112e4d21fb2ea7ea70eea83287b65e6344ecd9b8221b0ca
+  Gas usage: 26402
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 57748
+  Block Number: 8
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 65133
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc064cdd474bf9b4bf1577dc2f34f75c2542aa3cf969b6b5a91b28f200a898e82
+  Gas usage: 44706
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:17 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xf7c37df8e6a90df62300bfe0f5f8d91bf50c16d24569c51853e6ba801b9b5e04
+  Gas usage: 27710
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 60989
+  Block Number: 8
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 61008
+  Block Number: 8
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 26248
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 65502
+  Block Number: 8
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 27409
+  Block Number: 7
+  Block Time: Mon May 20 2019 11:31:18 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x2074599fc8e3609bdce0d35e1d17c88d09b9164f9a37abfed020efa71468f795
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 2462425
+  Block Number: 1
+  Block Time: Mon May 20 2019 12:00:57 GMT+0100 (BST)
+
+
+  Transaction: 0x7e10747f44ef0e5a09e3dcfa0e55bbd474f42e58bc3d762f00e42af3e25fbdce
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 525145
+  Block Number: 2
+  Block Time: Mon May 20 2019 12:00:57 GMT+0100 (BST)
+
+
+  Transaction: 0x4c4d2fbd751dbd7f7c046c32fcc0e7a6196e34126ac1b99b35aafc2cfd9943bb
+  Gas usage: 68627
+  Block Number: 3
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+
+  Transaction: 0x1bf93c1651aee7d103315ea12d985037971dfebcb2e190095975f48b402f8475
+  Gas usage: 48891
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+
+  Transaction: 0x85f7c4f636446d4792cbc6ce6da4b6474babd7f23aeaa47f3b853ce998585f4e
+  Gas usage: 53889
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+
+  Transaction: 0xf5dd957e5f7c11d4af6227a28d031e46a02ea6c82412fa7f11cc00a07c6c5b4e
+  Gas usage: 68553
+  Block Number: 6
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x80553a4011d4beee70323148818bc04f91141e5ccb05e7c768cf7a3ffe5c7f49
+  Gas usage: 40346
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x2d3c3d6bb43b7ad1c112e4d21fb2ea7ea70eea83287b65e6344ecd9b8221b0ca
+  Gas usage: 26402
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 57748
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 65133
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc064cdd474bf9b4bf1577dc2f34f75c2542aa3cf969b6b5a91b28f200a898e82
+  Gas usage: 44706
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xf7c37df8e6a90df62300bfe0f5f8d91bf50c16d24569c51853e6ba801b9b5e04
+  Gas usage: 27710
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:58 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 60989
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 61008
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 26248
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 65502
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 27409
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:00:59 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x2074599fc8e3609bdce0d35e1d17c88d09b9164f9a37abfed020efa71468f795
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 2462425
+  Block Number: 1
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+
+  Transaction: 0x7e10747f44ef0e5a09e3dcfa0e55bbd474f42e58bc3d762f00e42af3e25fbdce
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 525145
+  Block Number: 2
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+
+  Transaction: 0x4c4d2fbd751dbd7f7c046c32fcc0e7a6196e34126ac1b99b35aafc2cfd9943bb
+  Gas usage: 68627
+  Block Number: 3
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+
+  Transaction: 0x1bf93c1651aee7d103315ea12d985037971dfebcb2e190095975f48b402f8475
+  Gas usage: 48891
+  Block Number: 4
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+
+  Transaction: 0x85f7c4f636446d4792cbc6ce6da4b6474babd7f23aeaa47f3b853ce998585f4e
+  Gas usage: 53889
+  Block Number: 5
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+
+  Transaction: 0xf5dd957e5f7c11d4af6227a28d031e46a02ea6c82412fa7f11cc00a07c6c5b4e
+  Gas usage: 68553
+  Block Number: 6
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x80553a4011d4beee70323148818bc04f91141e5ccb05e7c768cf7a3ffe5c7f49
+  Gas usage: 40346
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:49 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x2d3c3d6bb43b7ad1c112e4d21fb2ea7ea70eea83287b65e6344ecd9b8221b0ca
+  Gas usage: 26402
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 57748
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 65133
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc064cdd474bf9b4bf1577dc2f34f75c2542aa3cf969b6b5a91b28f200a898e82
+  Gas usage: 44706
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xf7c37df8e6a90df62300bfe0f5f8d91bf50c16d24569c51853e6ba801b9b5e04
+  Gas usage: 27710
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 60989
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:50 GMT+0100 (BST)
+
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 61008
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:17:51 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 26248
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:51 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:51 GMT+0100 (BST)
+
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 65502
+  Block Number: 8
+  Block Time: Mon May 20 2019 12:17:51 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 27409
+  Block Number: 7
+  Block Time: Mon May 20 2019 12:17:51 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x2074599fc8e3609bdce0d35e1d17c88d09b9164f9a37abfed020efa71468f795
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 2462425
+  Block Number: 1
+  Block Time: Mon May 20 2019 13:03:04 GMT+0100 (BST)
+
+
+  Transaction: 0x7e10747f44ef0e5a09e3dcfa0e55bbd474f42e58bc3d762f00e42af3e25fbdce
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 525145
+  Block Number: 2
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+
+  Transaction: 0x4c4d2fbd751dbd7f7c046c32fcc0e7a6196e34126ac1b99b35aafc2cfd9943bb
+  Gas usage: 68627
+  Block Number: 3
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+
+  Transaction: 0x1bf93c1651aee7d103315ea12d985037971dfebcb2e190095975f48b402f8475
+  Gas usage: 48891
+  Block Number: 4
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+
+  Transaction: 0x85f7c4f636446d4792cbc6ce6da4b6474babd7f23aeaa47f3b853ce998585f4e
+  Gas usage: 53889
+  Block Number: 5
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+
+  Transaction: 0xf5dd957e5f7c11d4af6227a28d031e46a02ea6c82412fa7f11cc00a07c6c5b4e
+  Gas usage: 68553
+  Block Number: 6
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x80553a4011d4beee70323148818bc04f91141e5ccb05e7c768cf7a3ffe5c7f49
+  Gas usage: 40346
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x2d3c3d6bb43b7ad1c112e4d21fb2ea7ea70eea83287b65e6344ecd9b8221b0ca
+  Gas usage: 26402
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 57748
+  Block Number: 8
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 65133
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc064cdd474bf9b4bf1577dc2f34f75c2542aa3cf969b6b5a91b28f200a898e82
+  Gas usage: 44706
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:05 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xf7c37df8e6a90df62300bfe0f5f8d91bf50c16d24569c51853e6ba801b9b5e04
+  Gas usage: 27710
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 60989
+  Block Number: 8
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 61008
+  Block Number: 8
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 26248
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 65502
+  Block Number: 8
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 27409
+  Block Number: 7
+  Block Time: Mon May 20 2019 13:03:06 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Reverting to snapshot #1
+Saved snapshot #1
+
+  Transaction: 0x47632dc8daf555d9760d814fd53e06699269f4b128efd115cf7df8bed4b80576
+  Contract created: 0x1dc4c1cefef38a777b15aa20260a54e584b16c48
+  Gas usage: 2464773
+  Block Number: 1
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+
+  Transaction: 0xb7f1a84d10d433205ba400e403268a52e562a3ba5a07af85a8c0afa9397ff322
+  Contract created: 0x1d7022f5b17d2f8b695918fb48fa1089c9f85401
+  Gas usage: 527493
+  Block Number: 2
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+
+  Transaction: 0x4c4d2fbd751dbd7f7c046c32fcc0e7a6196e34126ac1b99b35aafc2cfd9943bb
+  Gas usage: 68627
+  Block Number: 3
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+
+  Transaction: 0x1bf93c1651aee7d103315ea12d985037971dfebcb2e190095975f48b402f8475
+  Gas usage: 48891
+  Block Number: 4
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+
+  Transaction: 0x85f7c4f636446d4792cbc6ce6da4b6474babd7f23aeaa47f3b853ce998585f4e
+  Gas usage: 53889
+  Block Number: 5
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+
+  Transaction: 0xf5dd957e5f7c11d4af6227a28d031e46a02ea6c82412fa7f11cc00a07c6c5b4e
+  Gas usage: 68553
+  Block Number: 6
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x80553a4011d4beee70323148818bc04f91141e5ccb05e7c768cf7a3ffe5c7f49
+  Gas usage: 40346
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:27 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 60639
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x2d3c3d6bb43b7ad1c112e4d21fb2ea7ea70eea83287b65e6344ecd9b8221b0ca
+  Gas usage: 26402
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+
+  Transaction: 0x6c9c6360ea2494af7a215d3b2549902481e42fa5fc3f1d15968ce772b317f5d6
+  Gas usage: 57748
+  Block Number: 8
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 65133
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc064cdd474bf9b4bf1577dc2f34f75c2542aa3cf969b6b5a91b28f200a898e82
+  Gas usage: 44706
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x1bde69b1f860c2e58aa0ccef692f5c31578b59f3f3cb9a38ffb504a1cd44c361
+  Gas usage: 72563
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xf7c37df8e6a90df62300bfe0f5f8d91bf50c16d24569c51853e6ba801b9b5e04
+  Gas usage: 27710
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: UINT256_UNDERFLOW
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x44ab49603353ffed292e63e65307afcb7a58f5f470fcd902a61b5dff136ca6ff
+  Gas usage: 41915
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+
+  Transaction: 0x1e198abc82b8cae09c97d2b6da5a274949881d5edea7a47392eb1d10651ad215
+  Gas usage: 60989
+  Block Number: 8
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: TRANSFER_REJECTED
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 61008
+  Block Number: 8
+  Block Time: Tue Jun 04 2019 13:50:28 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0xc53a456b37114454812e052be51b86379558e93bc2372d5f83cbd58066ffd44c
+  Gas usage: 26248
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:29 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x8f98a8d1e2f9600ef99a58a26c95c0ace3d38ff40398d6537209505fd4222bed
+  Gas usage: 45348
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:29 GMT+0100 (BST)
+
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 65502
+  Block Number: 8
+  Block Time: Tue Jun 04 2019 13:50:29 GMT+0100 (BST)
+
+Reverting to snapshot #2
+Saved snapshot #2
+
+  Transaction: 0x57943478b1820732ffad93ea2d445b61c7b2d17439fe41103f90b2742375a011
+  Gas usage: 27409
+  Block Number: 7
+  Block Time: Tue Jun 04 2019 13:50:29 GMT+0100 (BST)
+  Runtime Error: revert
+  Revert reason: INSUFFICIENT_ALLOWANCE
+
+Reverting to snapshot #2
+Reverting to snapshot #1

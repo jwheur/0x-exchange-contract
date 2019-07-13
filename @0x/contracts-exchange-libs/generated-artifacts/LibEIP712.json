@@ -1,0 +1,84 @@
+{
+	"schemaVersion": "2.0.0",
+	"contractName": "LibEIP712",
+	"compilerOutput": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "EIP712_DOMAIN_HASH",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		],
+		"evm": {
+			"bytecode": {
+				"linkReferences": {},
+				"object": "0x608060405234801561001057600080fd5b50604080517f454950373132446f6d61696e28000000000000000000000000000000000000006020808301919091527f737472696e67206e616d652c0000000000000000000000000000000000000000602d8301527f737472696e672076657273696f6e2c000000000000000000000000000000000060398301527f6164647265737320766572696679696e67436f6e74726163740000000000000060488301527f29000000000000000000000000000000000000000000000000000000000000006061830152825160428184030181526062830180855281519183019190912060a284018552600b9091527f30782050726f746f636f6c00000000000000000000000000000000000000000060829093019290925282518084018452600181527f3200000000000000000000000000000000000000000000000000000000000000908201528251808201929092527ff0f24618f4c4be1e62e026fb039a20ef96f4495294817d1027ffaa6d1f70e61e828401527fad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a56060830152306080808401919091528351808403909101815260a090920190925280519101206000556077806101dc6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063e306f77914602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000548156fea165627a7a72305820e12be779f50b1d8f43cedeecdf43974fb9a7376a425599528fb2f99d0b1b5a970029",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x40 DUP1 MLOAD PUSH32 0x454950373132446F6D61696E2800000000000000000000000000000000000000 PUSH1 0x20 DUP1 DUP4 ADD SWAP2 SWAP1 SWAP2 MSTORE PUSH32 0x737472696E67206E616D652C0000000000000000000000000000000000000000 PUSH1 0x2D DUP4 ADD MSTORE PUSH32 0x737472696E672076657273696F6E2C0000000000000000000000000000000000 PUSH1 0x39 DUP4 ADD MSTORE PUSH32 0x6164647265737320766572696679696E67436F6E747261637400000000000000 PUSH1 0x48 DUP4 ADD MSTORE PUSH32 0x2900000000000000000000000000000000000000000000000000000000000000 PUSH1 0x61 DUP4 ADD MSTORE DUP3 MLOAD PUSH1 0x42 DUP2 DUP5 SUB ADD DUP2 MSTORE PUSH1 0x62 DUP4 ADD DUP1 DUP6 MSTORE DUP2 MLOAD SWAP2 DUP4 ADD SWAP2 SWAP1 SWAP2 KECCAK256 PUSH1 0xA2 DUP5 ADD DUP6 MSTORE PUSH1 0xB SWAP1 SWAP2 MSTORE PUSH32 0x30782050726F746F636F6C000000000000000000000000000000000000000000 PUSH1 0x82 SWAP1 SWAP4 ADD SWAP3 SWAP1 SWAP3 MSTORE DUP3 MLOAD DUP1 DUP5 ADD DUP5 MSTORE PUSH1 0x1 DUP2 MSTORE PUSH32 0x3200000000000000000000000000000000000000000000000000000000000000 SWAP1 DUP3 ADD MSTORE DUP3 MLOAD DUP1 DUP3 ADD SWAP3 SWAP1 SWAP3 MSTORE PUSH32 0xF0F24618F4C4BE1E62E026FB039A20EF96F4495294817D1027FFAA6D1F70E61E DUP3 DUP5 ADD MSTORE PUSH32 0xAD7C5BEF027816A800DA1736444FB58A807EF4C9603B7848673F7E3A68EB14A5 PUSH1 0x60 DUP4 ADD MSTORE ADDRESS PUSH1 0x80 DUP1 DUP5 ADD SWAP2 SWAP1 SWAP2 MSTORE DUP4 MLOAD DUP1 DUP5 SUB SWAP1 SWAP2 ADD DUP2 MSTORE PUSH1 0xA0 SWAP1 SWAP3 ADD SWAP1 SWAP3 MSTORE DUP1 MLOAD SWAP2 ADD KECCAK256 PUSH1 0x0 SSTORE PUSH1 0x77 DUP1 PUSH2 0x1DC PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x28 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0xE306F779 EQ PUSH1 0x2D JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x33 PUSH1 0x45 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH1 0x0 SLOAD DUP2 JUMP INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 0xe1 0x2b 0xe7 PUSH26 0xF50B1D8F43CEDEECDF43974FB9A7376A425599528FB2F99D0B1B GAS SWAP8 STOP 0x29 ",
+				"sourceMap": "606:2154:3:-;;;1341:297;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1045:148:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;22:32:-1;26:21;;;22:32;6:49;;1045:148:3;;;;;;1035:159;;;;;;;;;1511:18;;;;;;;;;;;;;;;;;;1561:21;;;;;;;1045:148;1561:21;;;;;;;1416:214;;;;;;;;;1495:36;1416:214;;;;1545:39;1416:214;;;;1614:4;1416:214;;;;;;;;;;26:21:-1;;;22:32;;;6:49;;1416:214:3;;;;;;;1406:225;;;;;-1:-1:-1;1385:246:3;606:2154;;;;;;"
+			},
+			"deployedBytecode": {
+				"linkReferences": {},
+				"object": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063e306f77914602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000548156fea165627a7a72305820e12be779f50b1d8f43cedeecdf43974fb9a7376a425599528fb2f99d0b1b5a970029",
+				"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x28 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0xE306F779 EQ PUSH1 0x2D JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x33 PUSH1 0x45 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH1 0x0 SLOAD DUP2 JUMP INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 0xe1 0x2b 0xe7 PUSH26 0xF50B1D8F43CEDEECDF43974FB9A7376A425599528FB2F99D0B1B GAS SWAP8 STOP 0x29 ",
+				"sourceMap": "606:2154:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;606:2154:3;;;;;;;;;;;;;;;;;;;1301:33;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;:::o"
+			}
+		}
+	},
+	"sources": {
+		"src/LibEIP712.sol": {
+			"id": 3
+		}
+	},
+	"sourceCodes": {
+		"src/LibEIP712.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\n\ncontract LibEIP712 {\n\n    // EIP191 header for EIP712 prefix\n    string constant internal EIP191_HEADER = \"\\x19\\x01\";\n\n    // EIP712 Domain Name value\n    string constant internal EIP712_DOMAIN_NAME = \"0x Protocol\";\n\n    // EIP712 Domain Version value\n    string constant internal EIP712_DOMAIN_VERSION = \"2\";\n\n    // Hash of the EIP712 Domain Separator Schema\n    bytes32 constant internal EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH = keccak256(abi.encodePacked(\n        \"EIP712Domain(\",\n        \"string name,\",\n        \"string version,\",\n        \"address verifyingContract\",\n        \")\"\n    ));\n\n    // Hash of the EIP712 Domain Separator data\n    // solhint-disable-next-line var-name-mixedcase\n    bytes32 public EIP712_DOMAIN_HASH;\n\n    constructor ()\n        public\n    {\n        EIP712_DOMAIN_HASH = keccak256(abi.encodePacked(\n            EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH,\n            keccak256(bytes(EIP712_DOMAIN_NAME)),\n            keccak256(bytes(EIP712_DOMAIN_VERSION)),\n            uint256(address(this))\n        ));\n    }\n\n    /// @dev Calculates EIP712 encoding for a hash struct in this EIP712 Domain.\n    /// @param hashStruct The EIP712 hash struct.\n    /// @return EIP712 hash applied to this EIP712 Domain.\n    function hashEIP712Message(bytes32 hashStruct)\n        internal\n        view\n        returns (bytes32 result)\n    {\n        bytes32 eip712DomainHash = EIP712_DOMAIN_HASH;\n\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     EIP191_HEADER,\n        //     EIP712_DOMAIN_HASH,\n        //     hashStruct    \n        // ));\n\n        assembly {\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            mstore(memPtr, 0x1901000000000000000000000000000000000000000000000000000000000000)  // EIP191 header\n            mstore(add(memPtr, 2), eip712DomainHash)                                            // EIP712 domain hash\n            mstore(add(memPtr, 34), hashStruct)                                                 // Hash of struct\n\n            // Compute hash\n            result := keccak256(memPtr, 66)\n        }\n        return result;\n    }\n}\n"
+	},
+	"sourceTreeHashHex": "0x9e3c7630c8389a8a13294a4224e7051ed5c64268864f53fc359377bdc8115c28",
+	"compiler": {
+		"name": "solc",
+		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 1000000,
+				"details": {
+					"yul": true,
+					"deduplicate": true,
+					"cse": true,
+					"constantOptimizer": true
+				}
+			},
+			"outputSelection": {
+				"*": {
+					"*": [
+						"abi",
+						"evm.bytecode.object",
+						"evm.bytecode.sourceMap",
+						"evm.deployedBytecode.object",
+						"evm.deployedBytecode.sourceMap"
+					]
+				}
+			},
+			"evmVersion": "constantinople",
+			"remappings": [
+				"@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils",
+				"@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/node_modules/@0x/contracts-exchange-libs"
+			]
+		}
+	},
+	"networks": {}
+}

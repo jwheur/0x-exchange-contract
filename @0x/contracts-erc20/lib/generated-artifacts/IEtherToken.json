@@ -1,0 +1,311 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "IEtherToken",
+    "compilerOutput": {
+        "abi": [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_spender",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "approve",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "totalSupply",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_from",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_to",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transferFrom",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "withdraw",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "_owner",
+                        "type": "address"
+                    }
+                ],
+                "name": "balanceOf",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_to",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transfer",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [],
+                "name": "deposit",
+                "outputs": [],
+                "payable": true,
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "_owner",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_spender",
+                        "type": "address"
+                    }
+                ],
+                "name": "allowance",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "name": "_from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "name": "_to",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Transfer",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "name": "_owner",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": true,
+                        "name": "_spender",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Approval",
+                "type": "event"
+            }
+        ],
+        "devdoc": {
+            "methods": {
+                "allowance(address,address)": {
+                    "params": {
+                        "_owner": "The address of the account owning tokens",
+                        "_spender": "The address of the account able to transfer the tokens"
+                    },
+                    "return": "Amount of remaining tokens allowed to spent"
+                },
+                "approve(address,uint256)": {
+                    "details": "`msg.sender` approves `_spender` to spend `_value` tokens",
+                    "params": {
+                        "_spender": "The address of the account able to transfer the tokens",
+                        "_value": "The amount of wei to be approved for transfer"
+                    },
+                    "return": "Always true if the call has enough gas to complete execution"
+                },
+                "balanceOf(address)": {
+                    "params": {
+                        "_owner": "The address from which the balance will be retrieved"
+                    },
+                    "return": "Balance of owner"
+                },
+                "totalSupply()": {
+                    "details": "Query total supply of token",
+                    "return": "Total supply of token"
+                },
+                "transfer(address,uint256)": {
+                    "details": "send `value` token to `to` from `msg.sender`",
+                    "params": {
+                        "_to": "The address of the recipient",
+                        "_value": "The amount of token to be transferred"
+                    },
+                    "return": "True if transfer was successful"
+                },
+                "transferFrom(address,address,uint256)": {
+                    "details": "send `value` token to `to` from `from` on the condition it is approved by `from`",
+                    "params": {
+                        "_from": "The address of the sender",
+                        "_to": "The address of the recipient",
+                        "_value": "The amount of token to be transferred"
+                    },
+                    "return": "True if transfer was successful"
+                }
+            }
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            }
+        }
+    },
+    "sources": {
+        "src/interfaces/IEtherToken.sol": {
+            "id": 4
+        },
+        "src/interfaces/IERC20Token.sol": {
+            "id": 3
+        }
+    },
+    "sourceCodes": {
+        "src/interfaces/IEtherToken.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\nimport \"./IERC20Token.sol\";\n\n\ncontract IEtherToken is\n    IERC20Token\n{\n    function deposit()\n        public\n        payable;\n    \n    function withdraw(uint256 amount)\n        public;\n}\n",
+        "src/interfaces/IERC20Token.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\n\ncontract IERC20Token {\n\n    // solhint-disable no-simple-event-func-name\n    event Transfer(\n        address indexed _from,\n        address indexed _to,\n        uint256 _value\n    );\n\n    event Approval(\n        address indexed _owner,\n        address indexed _spender,\n        uint256 _value\n    );\n\n    /// @dev send `value` token to `to` from `msg.sender`\n    /// @param _to The address of the recipient\n    /// @param _value The amount of token to be transferred\n    /// @return True if transfer was successful\n    function transfer(address _to, uint256 _value)\n        external\n        returns (bool);\n\n    /// @dev send `value` token to `to` from `from` on the condition it is approved by `from`\n    /// @param _from The address of the sender\n    /// @param _to The address of the recipient\n    /// @param _value The amount of token to be transferred\n    /// @return True if transfer was successful\n    function transferFrom(\n        address _from,\n        address _to,\n        uint256 _value\n    )\n        external\n        returns (bool);\n    \n    /// @dev `msg.sender` approves `_spender` to spend `_value` tokens\n    /// @param _spender The address of the account able to transfer the tokens\n    /// @param _value The amount of wei to be approved for transfer\n    /// @return Always true if the call has enough gas to complete execution\n    function approve(address _spender, uint256 _value)\n        external\n        returns (bool);\n\n    /// @dev Query total supply of token\n    /// @return Total supply of token\n    function totalSupply()\n        external\n        view\n        returns (uint256);\n    \n    /// @param _owner The address from which the balance will be retrieved\n    /// @return Balance of owner\n    function balanceOf(address _owner)\n        external\n        view\n        returns (uint256);\n\n    /// @param _owner The address of the account owning tokens\n    /// @param _spender The address of the account able to transfer the tokens\n    /// @return Amount of remaining tokens allowed to spent\n    function allowance(address _owner, address _spender)\n        external\n        view\n        returns (uint256);\n}\n"
+    },
+    "sourceTreeHashHex": "0x405ef07ad61dd69d8291582ae916bef14203aec7037f300d0c397a2910b1ad5e",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap",
+                        "devdoc"
+                    ]
+                }
+            },
+            "evmVersion": "constantinople",
+            "remappings": [
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/erc20/node_modules/@0x/contracts-utils"
+            ]
+        }
+    },
+    "networks": {}
+}

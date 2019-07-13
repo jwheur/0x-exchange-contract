@@ -1,0 +1,10 @@
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./wrappers"));
+__export(require("./artifacts"));
+var erc1155_wrapper_1 = require("../test/utils/erc1155_wrapper");
+exports.Erc1155Wrapper = erc1155_wrapper_1.Erc1155Wrapper;
+//# sourceMappingURL=index.js.map

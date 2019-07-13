@@ -1,0 +1,79 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "IOwnable",
+    "compilerOutput": {
+        "abi": [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "newOwner",
+                        "type": "address"
+                    }
+                ],
+                "name": "transferOwnership",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ],
+        "devdoc": {
+            "methods": {}
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            }
+        }
+    },
+    "sources": {
+        "src/interfaces/IOwnable.sol": {
+            "id": 6
+        }
+    },
+    "sourceCodes": {
+        "src/interfaces/IOwnable.sol": "pragma solidity ^0.5.5;\n\n\ncontract IOwnable {\n\n    function transferOwnership(address newOwner)\n        public;\n}\n"
+    },
+    "sourceTreeHashHex": "0xb48efd8c0afe60386dda1b01329b5ee8a65cae57b930bd6a010ae9af72b177cc",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "constantinople",
+            "remappings": []
+        }
+    },
+    "networks": {}
+}

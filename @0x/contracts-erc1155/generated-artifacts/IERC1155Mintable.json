@@ -1,0 +1,451 @@
+{
+	"schemaVersion": "2.0.0",
+	"contractName": "IERC1155Mintable",
+	"compilerOutput": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "safeBatchTransferFrom",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "owners",
+						"type": "address[]"
+					},
+					{
+						"name": "ids",
+						"type": "uint256[]"
+					}
+				],
+				"name": "balanceOfBatch",
+				"outputs": [
+					{
+						"name": "balances_",
+						"type": "uint256[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "to",
+						"type": "address[]"
+					},
+					{
+						"name": "quantities",
+						"type": "uint256[]"
+					}
+				],
+				"name": "mintFungible",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "setApprovalForAll",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"name": "isNF",
+						"type": "bool"
+					}
+				],
+				"name": "create",
+				"outputs": [
+					{
+						"name": "type_",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "isApprovedForAll",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "safeTransferFrom",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "type_",
+						"type": "uint256"
+					},
+					{
+						"name": "to",
+						"type": "address[]"
+					}
+				],
+				"name": "mintNonFungible",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "TransferSingle",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": false,
+						"name": "values",
+						"type": "uint256[]"
+					}
+				],
+				"name": "TransferBatch",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "ApprovalForAll",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"name": "value",
+						"type": "string"
+					},
+					{
+						"indexed": true,
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "URI",
+				"type": "event"
+			}
+		],
+		"devdoc": {
+			"details": "Mintable form of ERC1155 Shows how easy it is to mint new items",
+			"methods": {
+				"balanceOf(address,uint256)": {
+					"params": {
+						"id": "ID of the Token",
+						"owner": "The address of the token holder"
+					},
+					"return": "The _owner's balance of the Token type requested"
+				},
+				"balanceOfBatch(address[],uint256[])": {
+					"params": {
+						"ids": "ID of the Tokens",
+						"owners": "The addresses of the token holders"
+					},
+					"return": "The _owner's balance of the Token types requested"
+				},
+				"create(string,bool)": {
+					"details": "creates a new token",
+					"params": {
+						"isNF": "is non-fungible token",
+						"uri": "URI of token"
+					},
+					"return": "_type of token (a unique identifier)"
+				},
+				"isApprovedForAll(address,address)": {
+					"params": {
+						"operator": "Address of authorized operator",
+						"owner": "The owner of the Tokens"
+					},
+					"return": "True if the operator is approved, false if not"
+				},
+				"mintFungible(uint256,address[],uint256[])": {
+					"details": "mints fungible tokens",
+					"params": {
+						"id": "token type",
+						"quantities": "amounts of minted tokens",
+						"to": "beneficiaries of minted tokens"
+					}
+				},
+				"mintNonFungible(uint256,address[])": {
+					"details": "mints a non-fungible token",
+					"params": {
+						"to": "beneficiaries of minted tokens",
+						"type_": "token type"
+					}
+				},
+				"safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": {
+					"details": "MUST emit TransferBatch event on success. Caller must be approved to manage the _from account's tokens (see isApprovedForAll). MUST throw if `_to` is the zero address. MUST throw if length of `_ids` is not the same as length of `_values`.  MUST throw if any of the balance of sender for token `_ids` is lower than the respective `_values` sent. MUST throw on any other error. When transfer is complete, this function MUST check if `_to` is a smart contract (code size > 0). If so, it MUST call `onERC1155BatchReceived` on `_to` and revert if the return value is not `bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))`.",
+					"params": {
+						"data": "Additional data with no specified format, sent in call to `_to`",
+						"from": "Source addresses",
+						"ids": "IDs of each token type",
+						"to": "Target addresses",
+						"values": "Transfer amounts per token type"
+					}
+				},
+				"safeTransferFrom(address,address,uint256,uint256,bytes)": {
+					"details": "MUST emit TransferSingle event on success. Caller must be approved to manage the _from account's tokens (see isApprovedForAll). MUST throw if `_to` is the zero address. MUST throw if balance of sender for token `_id` is lower than the `_value` sent. MUST throw on any other error. When transfer is complete, this function MUST check if `_to` is a smart contract (code size > 0). If so, it MUST call `onERC1155Received` on `_to` and revert if the return value is not `bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))`.",
+					"params": {
+						"data": "Additional data with no specified format, sent in call to `_to`",
+						"from": "Source address",
+						"id": "ID of the token type",
+						"to": "Target address",
+						"value": "Transfer amount"
+					}
+				},
+				"setApprovalForAll(address,bool)": {
+					"details": "MUST emit the ApprovalForAll event on success.",
+					"params": {
+						"approved": "True if the operator is approved, false to revoke approval",
+						"operator": "Address to add to the set of authorized operators"
+					}
+				}
+			}
+		},
+		"evm": {
+			"bytecode": {
+				"linkReferences": {},
+				"object": "0x",
+				"opcodes": "",
+				"sourceMap": ""
+			},
+			"deployedBytecode": {
+				"linkReferences": {},
+				"object": "0x",
+				"opcodes": "",
+				"sourceMap": ""
+			}
+		}
+	},
+	"sources": {
+		"src/interfaces/IERC1155Mintable.sol": {
+			"id": 4
+		},
+		"src/interfaces/IERC1155.sol": {
+			"id": 3
+		}
+	},
+	"sourceCodes": {
+		"src/interfaces/IERC1155Mintable.sol": "pragma solidity ^0.5.5;\n\nimport \"./IERC1155.sol\";\n\n\n/// @dev Mintable form of ERC1155\n/// Shows how easy it is to mint new items\ncontract IERC1155Mintable is\n    IERC1155\n{\n\n    /// @dev creates a new token\n    /// @param uri URI of token\n    /// @param isNF is non-fungible token\n    /// @return _type of token (a unique identifier)\n    function create(\n        string calldata uri,\n        bool isNF\n    )\n        external\n        returns (uint256 type_);\n\n    /// @dev mints fungible tokens\n    /// @param id token type\n    /// @param to beneficiaries of minted tokens\n    /// @param quantities amounts of minted tokens\n    function mintFungible(\n        uint256 id,\n        address[] calldata to,\n        uint256[] calldata quantities\n    )\n        external;\n\n    /// @dev mints a non-fungible token\n    /// @param type_ token type\n    /// @param to beneficiaries of minted tokens\n    function mintNonFungible(\n        uint256 type_,\n        address[] calldata to\n    )\n        external;\n}\n",
+		"src/interfaces/IERC1155.sol": "/*\n\n  Copyright 2018 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.5;\n\n\n/// @title ERC-1155 Multi Token Standard\n/// @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1155.md\n/// Note: The ERC-165 identifier for this interface is 0xd9b67a26.\ninterface IERC1155 {\n    \n    /// @dev Either TransferSingle or TransferBatch MUST emit when tokens are transferred,\n    ///      including zero value transfers as well as minting or burning.\n    /// Operator will always be msg.sender.\n    /// Either event from address `0x0` signifies a minting operation.\n    /// An event to address `0x0` signifies a burning or melting operation.\n    /// The total value transferred from address 0x0 minus the total value transferred to 0x0 may\n    /// be used by clients and exchanges to be added to the \"circulating supply\" for a given token ID.\n    /// To define a token ID with no initial balance, the contract SHOULD emit the TransferSingle event\n    /// from `0x0` to `0x0`, with the token creator as `_operator`.\n    event TransferSingle(\n        address indexed operator,\n        address indexed from,\n        address indexed to,\n        uint256 id,\n        uint256 value\n    );\n\n    /// @dev Either TransferSingle or TransferBatch MUST emit when tokens are transferred,\n    ///      including zero value transfers as well as minting or burning.\n    ///Operator will always be msg.sender.\n    /// Either event from address `0x0` signifies a minting operation.\n    /// An event to address `0x0` signifies a burning or melting operation.\n    /// The total value transferred from address 0x0 minus the total value transferred to 0x0 may\n    /// be used by clients and exchanges to be added to the \"circulating supply\" for a given token ID.\n    /// To define multiple token IDs with no initial balance, this SHOULD emit the TransferBatch event\n    /// from `0x0` to `0x0`, with the token creator as `_operator`.\n    event TransferBatch(\n        address indexed operator,\n        address indexed from,\n        address indexed to,\n        uint256[] ids,\n        uint256[] values\n    );\n\n    /// @dev MUST emit when an approval is updated.\n    event ApprovalForAll(\n        address indexed owner,\n        address indexed operator,\n        bool approved\n    );\n\n    /// @dev MUST emit when the URI is updated for a token ID.\n    /// URIs are defined in RFC 3986.\n    /// The URI MUST point a JSON file that conforms to the \"ERC-1155 Metadata JSON Schema\".\n    event URI(\n        string value,\n        uint256 indexed id\n    );\n\n    /// @notice Transfers value amount of an _id from the _from address to the _to address specified.\n    /// @dev MUST emit TransferSingle event on success.\n    /// Caller must be approved to manage the _from account's tokens (see isApprovedForAll).\n    /// MUST throw if `_to` is the zero address.\n    /// MUST throw if balance of sender for token `_id` is lower than the `_value` sent.\n    /// MUST throw on any other error.\n    /// When transfer is complete, this function MUST check if `_to` is a smart contract (code size > 0).\n    /// If so, it MUST call `onERC1155Received` on `_to` and revert if the return value\n    /// is not `bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))`.\n    /// @param from    Source address\n    /// @param to      Target address\n    /// @param id      ID of the token type\n    /// @param value   Transfer amount\n    /// @param data    Additional data with no specified format, sent in call to `_to`\n    function safeTransferFrom(\n        address from,\n        address to,\n        uint256 id,\n        uint256 value,\n        bytes calldata data\n    )\n        external;\n\n    /// @notice Send multiple types of Tokens from a 3rd party in one transfer (with safety call).\n    /// @dev MUST emit TransferBatch event on success.\n    /// Caller must be approved to manage the _from account's tokens (see isApprovedForAll).\n    /// MUST throw if `_to` is the zero address.\n    /// MUST throw if length of `_ids` is not the same as length of `_values`.\n    ///  MUST throw if any of the balance of sender for token `_ids` is lower than the respective `_values` sent.\n    /// MUST throw on any other error.\n    /// When transfer is complete, this function MUST check if `_to` is a smart contract (code size > 0).\n    /// If so, it MUST call `onERC1155BatchReceived` on `_to` and revert if the return value\n    /// is not `bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))`.\n    /// @param from    Source addresses\n    /// @param to      Target addresses\n    /// @param ids     IDs of each token type\n    /// @param values  Transfer amounts per token type\n    /// @param data    Additional data with no specified format, sent in call to `_to`\n    function safeBatchTransferFrom(\n        address from,\n        address to,\n        uint256[] calldata ids,\n        uint256[] calldata values,\n        bytes calldata data\n    )\n        external;\n\n    /// @notice Enable or disable approval for a third party (\"operator\") to manage all of the caller's tokens.\n    /// @dev MUST emit the ApprovalForAll event on success.\n    /// @param operator  Address to add to the set of authorized operators\n    /// @param approved  True if the operator is approved, false to revoke approval\n    function setApprovalForAll(address operator, bool approved) external;\n\n    /// @notice Queries the approval status of an operator for a given owner.\n    /// @param owner     The owner of the Tokens\n    /// @param operator  Address of authorized operator\n    /// @return           True if the operator is approved, false if not\n    function isApprovedForAll(address owner, address operator) external view returns (bool);\n\n    /// @notice Get the balance of an account's Tokens.\n    /// @param owner  The address of the token holder\n    /// @param id     ID of the Token\n    /// @return        The _owner's balance of the Token type requested\n    function balanceOf(address owner, uint256 id) external view returns (uint256);\n\n    /// @notice Get the balance of multiple account/token pairs\n    /// @param owners The addresses of the token holders\n    /// @param ids    ID of the Tokens\n    /// @return        The _owner's balance of the Token types requested\n    function balanceOfBatch(\n        address[] calldata owners,\n        uint256[] calldata ids\n    )\n        external\n        view\n        returns (uint256[] memory balances_);\n}\n"
+	},
+	"sourceTreeHashHex": "0x2e376337e51a33c366d49fe18678a13b4725617e2dabb455cbb0290c77e6195a",
+	"compiler": {
+		"name": "solc",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 1000000
+			},
+			"outputSelection": {
+				"*": {
+					"*": [
+						"abi",
+						"devdoc",
+						"evm.bytecode.object",
+						"evm.bytecode.sourceMap",
+						"evm.deployedBytecode.object",
+						"evm.deployedBytecode.sourceMap"
+					]
+				}
+			},
+			"evmVersion": "constantinople",
+			"remappings": [
+				"@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/erc1155/node_modules/@0x/contracts-utils"
+			]
+		}
+	},
+	"networks": {}
+}

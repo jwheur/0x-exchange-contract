@@ -1,0 +1,79 @@
+{
+  "_from": "@0x/tslint-config@^3.0.1",
+  "_id": "@0x/tslint-config@3.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-EMp23FmyLylveQ6fezaywGwYvSTucbqz1hXVld5tUvpSPvtiAUQ89q4zOihSjiZ8cOug6oLL8294Ej0PpBcnzg==",
+  "_location": "/@0x/tslint-config",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@0x/tslint-config@^3.0.1",
+    "name": "@0x/tslint-config",
+    "escapedName": "@0x%2ftslint-config",
+    "scope": "@0x",
+    "rawSpec": "^3.0.1",
+    "saveSpec": null,
+    "fetchSpec": "^3.0.1"
+  },
+  "_requiredBy": [
+    "/@0x/contracts-test-utils"
+  ],
+  "_resolved": "https://registry.npmjs.org/@0x/tslint-config/-/tslint-config-3.0.1.tgz",
+  "_shasum": "396038f617371ff6bc2dc36c2b5162b13835576f",
+  "_spec": "@0x/tslint-config@^3.0.1",
+  "_where": "/Users/john/notes/switcheo/eth/node_modules/@0x/contracts-test-utils",
+  "author": {
+    "name": "Fabio Berger",
+    "email": "fabio@0xproject.com"
+  },
+  "bugs": {
+    "url": "https://github.com/0xProject/0x-monorepo/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "tslint": "5.11.0",
+    "tslint-eslint-rules": "5.4.0",
+    "tslint-react": "^3.2.0",
+    "tsutils": "3.0.0"
+  },
+  "deprecated": false,
+  "description": "Lint rules related to 0xProject for TSLint",
+  "devDependencies": {
+    "@types/lodash": "4.14.104",
+    "make-promises-safe": "^1.1.0",
+    "shx": "^0.2.2",
+    "typescript": "3.0.1"
+  },
+  "engines": {
+    "node": ">=6.12"
+  },
+  "gitHead": "c78a60299053f0ec825bf34dd3ea0cea7bb9365b",
+  "homepage": "https://github.com/0xProject/0x-monorepo/packages/tslint-config/README.md",
+  "keywords": [
+    "tslint",
+    "config",
+    "0xProject",
+    "typescript",
+    "ts"
+  ],
+  "license": "Apache-2.0",
+  "main": "tslint.json",
+  "name": "@0x/tslint-config",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/0xProject/0x-monorepo.git"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "build:ci": "yarn build",
+    "clean": "shx rm -rf lib",
+    "lint": "tslint --format stylish --project .",
+    "test": "mocha ./lib/test/*.spec.js"
+  },
+  "version": "3.0.1"
+}
