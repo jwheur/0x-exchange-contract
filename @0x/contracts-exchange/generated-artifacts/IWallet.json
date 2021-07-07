@@ -27,6 +27,18 @@
 				"type": "function"
 			}
 		],
+		"devdoc": {
+			"methods": {
+				"isValidSignature(bytes32,bytes)": {
+					"details": "Verifies that a signature is valid.",
+					"params": {
+						"hash": "Message hash that is signed.",
+						"signature": "Proof of signing."
+					},
+					"return": "Validity of order signature."
+				}
+			}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
@@ -53,7 +65,7 @@
 	"sourceTreeHashHex": "0x7225125e67f1c5832dd0781a5d2d4ccc9f7a27c3cb0705d0555c448ec6a4cec4",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -69,6 +81,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",

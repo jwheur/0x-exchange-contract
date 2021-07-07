@@ -59,12 +59,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 // tslint:enable:no-unused-variable
 /* istanbul ignore next */
@@ -72,16 +74,18 @@ var ethers = require("ethers");
 // tslint:disable-next-line:class-name
 var IWrapperFunctionsContract = /** @class */ (function (_super) {
     __extends(IWrapperFunctionsContract, _super);
-    function IWrapperFunctionsContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'IWrapperFunctions', abi, address, supportedProvider, txDefaults) || this;
+    function IWrapperFunctionsContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'IWrapperFunctions', IWrapperFunctionsContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.batchFillOrders = {
             sendTransactionAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -100,13 +104,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmounts, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.batchFillOrders.sendTransactionAsync(orders, takerAssetFillAmounts, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -126,12 +126,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -148,14 +150,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
-                    takerAssetFillAmounts,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmounts, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -163,6 +157,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -183,15 +188,27 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
+                    takerAssetFillAmounts,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.fillOrderNoThrow = {
             sendTransactionAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -210,13 +227,8 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAssetFillAmount, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.fillOrderNoThrow.sendTransactionAsync(order, takerAssetFillAmount, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -236,12 +248,13 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -258,14 +271,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
-                    takerAssetFillAmount,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAssetFillAmount, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -273,6 +278,16 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -293,15 +308,25 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchCancelOrders = {
             sendTransactionAsync: function (orders, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -318,13 +343,7 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
                 var self = this;
                 var txHashPromise = self.batchCancelOrders.sendTransactionAsync(orders, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -344,12 +363,12 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -364,12 +383,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -377,6 +390,15 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -395,15 +417,24 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders) {
+                assert_1.assert.isArray('orders', orders);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchFillOrKillOrders = {
             sendTransactionAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -422,13 +453,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmounts, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.batchFillOrKillOrders.sendTransactionAsync(orders, takerAssetFillAmounts, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -448,12 +475,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -470,14 +499,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
-                    takerAssetFillAmounts,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmounts, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -485,6 +506,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -505,15 +537,28 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
+                    takerAssetFillAmounts,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchFillOrdersNoThrow = {
             sendTransactionAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -532,13 +577,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmounts, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.batchFillOrdersNoThrow.sendTransactionAsync(orders, takerAssetFillAmounts, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -558,12 +599,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -580,14 +623,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
-                    takerAssetFillAmounts,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmounts, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -595,6 +630,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -615,15 +661,27 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
+                    takerAssetFillAmounts,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.fillOrKillOrder = {
             sendTransactionAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -642,13 +700,8 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAssetFillAmount, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.fillOrKillOrder.sendTransactionAsync(order, takerAssetFillAmount, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -668,12 +721,13 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -690,14 +744,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
-                    takerAssetFillAmount,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAssetFillAmount, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -705,6 +751,16 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -725,15 +781,27 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketSellOrders = {
             sendTransactionAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -752,13 +820,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketSellOrders.sendTransactionAsync(orders, takerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -778,12 +842,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -800,14 +866,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    takerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -815,6 +873,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -835,6 +904,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    takerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getOrdersInfo = {
             callAsync: function (orders, callData, defaultBlock) {
@@ -844,6 +924,15 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getOrdersInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -862,15 +951,24 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders) {
+                assert_1.assert.isArray('orders', orders);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getOrdersInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketBuyOrdersNoThrow = {
             sendTransactionAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -889,13 +987,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, makerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketBuyOrdersNoThrow.sendTransactionAsync(orders, makerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -915,12 +1009,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -937,14 +1033,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    makerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, makerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -952,6 +1040,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -972,15 +1071,28 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    makerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketSellOrdersNoThrow = {
             sendTransactionAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -999,13 +1111,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketSellOrdersNoThrow.sendTransactionAsync(orders, takerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1025,12 +1133,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -1047,14 +1157,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    takerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1062,6 +1164,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -1082,15 +1195,28 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    takerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketBuyOrders = {
             sendTransactionAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -1109,13 +1235,9 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, makerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketBuyOrders.sendTransactionAsync(orders, makerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1135,12 +1257,14 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -1157,14 +1281,6 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    makerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, makerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1172,6 +1288,17 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -1192,14 +1319,30 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    makerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     IWrapperFunctionsContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -1216,6 +1359,12 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [], base_contract_1.BaseContract._bigNumberToString);
@@ -1234,15 +1383,1027 @@ var IWrapperFunctionsContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _a.sent();
                         utils_1.logUtils.log("IWrapperFunctions successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new IWrapperFunctionsContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new IWrapperFunctionsContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [];
                         return [2 /*return*/, contractInstance];
                 }
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    IWrapperFunctionsContract.ABI = function () {
+        var abi = [
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmounts',
+                        type: 'uint256[]',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'batchFillOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'fillOrderNoThrow',
+                outputs: [
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'batchCancelOrders',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmounts',
+                        type: 'uint256[]',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'batchFillOrKillOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmounts',
+                        type: 'uint256[]',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'batchFillOrdersNoThrow',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'fillOrKillOrder',
+                outputs: [
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketSellOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'getOrdersInfo',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'orderStatus',
+                                type: 'uint8',
+                            },
+                            {
+                                name: 'orderHash',
+                                type: 'bytes32',
+                            },
+                            {
+                                name: 'orderTakerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'makerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketBuyOrdersNoThrow',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketSellOrdersNoThrow',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'makerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketBuyOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+        ];
+        return abi;
+    };
     return IWrapperFunctionsContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.IWrapperFunctionsContract = IWrapperFunctionsContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=i_wrapper_functions.js.map

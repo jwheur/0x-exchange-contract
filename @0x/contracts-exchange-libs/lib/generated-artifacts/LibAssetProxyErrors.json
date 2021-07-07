@@ -3,17 +3,21 @@
     "contractName": "LibAssetProxyErrors",
     "compilerOutput": {
         "abi": [],
+        "devdoc": {
+            "details": "This contract documents the revert reasons used in the AssetProxy contracts. This contract is intended to serve as a reference, but is not actually used for efficiency reasons.",
+            "methods": {}
+        },
         "evm": {
             "bytecode": {
                 "linkReferences": {},
-                "object": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058206d61225830c87d3c8f9439e8ab4d9b289a4f72c50af4d5eb935dadc00d2481160029",
-                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x35 DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 PUSH14 0x61225830C87D3C8F9439E8AB4D9B 0x28 SWAP11 0x4f PUSH19 0xC50AF4D5EB935DADC00D248116002900000000 ",
+                "object": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723058209dfb9a9676283f6eac9b3072d2a88ab12a876fca7b67403189f1c1a4c21a797764736f6c634300050a0032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x3E DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 SWAP14 0xfb SWAP11 SWAP7 PUSH23 0x283F6EAC9B3072D2A88AB12A876FCA7B67403189F1C1A4 0xc2 BYTE PUSH26 0x7764736F6C634300050A00320000000000000000000000000000 ",
                 "sourceMap": "815:1254:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;815:1254:1;;;;;;;"
             },
             "deployedBytecode": {
                 "linkReferences": {},
-                "object": "0x6080604052600080fdfea165627a7a723058206d61225830c87d3c8f9439e8ab4d9b289a4f72c50af4d5eb935dadc00d2481160029",
-                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 PUSH14 0x61225830C87D3C8F9439E8AB4D9B 0x28 SWAP11 0x4f PUSH19 0xC50AF4D5EB935DADC00D248116002900000000 ",
+                "object": "0x6080604052600080fdfea265627a7a723058209dfb9a9676283f6eac9b3072d2a88ab12a876fca7b67403189f1c1a4c21a797764736f6c634300050a0032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 SWAP14 0xfb SWAP11 SWAP7 PUSH23 0x283F6EAC9B3072D2A88AB12A876FCA7B67403189F1C1A4 0xc2 BYTE PUSH26 0x7764736F6C634300050A00320000000000000000000000000000 ",
                 "sourceMap": "815:1254:1:-;;;;;"
             }
         }
@@ -29,7 +33,7 @@
     "sourceTreeHashHex": "0xd484e551f18435a4ec123987e501821cd101a33c98941277764c6823e2cce22d",
     "compiler": {
         "name": "solc",
-        "version": "soljson-v0.5.8+commit.23d335f2.js",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
         "settings": {
             "optimizer": {
                 "enabled": true,
@@ -45,6 +49,7 @@
                 "*": {
                     "*": [
                         "abi",
+                        "devdoc",
                         "evm.bytecode.object",
                         "evm.bytecode.sourceMap",
                         "evm.deployedBytecode.object",
@@ -54,8 +59,7 @@
             },
             "evmVersion": "constantinople",
             "remappings": [
-                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils",
-                "@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/node_modules/@0x/contracts-exchange-libs"
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils"
             ]
         }
     },

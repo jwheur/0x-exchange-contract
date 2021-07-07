@@ -260,6 +260,38 @@
 				"type": "function"
 			}
 		],
+		"devdoc": {
+			"methods": {
+				"cancelOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))": {
+					"details": "After calling, the order can not be filled anymore.",
+					"params": {
+						"order": "Order struct containing order specifications."
+					}
+				},
+				"cancelOrdersUpTo(uint256)": {
+					"details": "Cancels all orders created by makerAddress with a salt less than or equal to the targetOrderEpoch      and senderAddress equal to msg.sender (or null address if msg.sender == makerAddress).",
+					"params": {
+						"targetOrderEpoch": "Orders created with a salt less or equal to this value will be cancelled."
+					}
+				},
+				"fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)": {
+					"details": "Fills the input order.",
+					"params": {
+						"order": "Order struct containing order specifications.",
+						"signature": "Proof that order has been created by maker.",
+						"takerAssetFillAmount": "Desired amount of takerAsset to sell."
+					},
+					"return": "Amounts filled and fees paid by maker and taker."
+				},
+				"getOrderInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))": {
+					"details": "Gets information about an order: status, hash, and amount filled.",
+					"params": {
+						"order": "Order to gather information on."
+					},
+					"return": "OrderInfo Information about the order and its state.                   See LibOrder.OrderInfo for a complete description."
+				}
+			}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
@@ -302,7 +334,7 @@
 	"sourceTreeHashHex": "0x21c8cf8f3af06d7c74122cb3b959ad57dd413305df47764410cb3dfc7f0db08d",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -318,6 +350,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",

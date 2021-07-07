@@ -1,7 +1,8 @@
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 import { BaseContract, PromiseWithTransactionHash } from '@0x/base-contract';
+import { schemas } from '@0x/json-schemas';
 import {
     BlockParam,
     BlockParamLiteral,
@@ -18,6 +19,7 @@ import {
 import { BigNumber, classUtils, logUtils, providerUtils } from '@0x/utils';
 import { SimpleContractArtifact } from '@0x/types';
 import { Web3Wrapper } from '@0x/web3-wrapper';
+import { assert } from '@0x/assert';
 import * as ethers from 'ethers';
 // tslint:enable:no-unused-variable
 
@@ -32,103 +34,94 @@ export class ITransactionsContract extends BaseContract {
             signerAddress: string,
             data: string,
             signature: string,
-            txData: Partial<TxData> = {},
+        txData?: Partial<TxData> | undefined,
         ): Promise<string> {
-            const self = this as any as ITransactionsContract;
-            const encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
+        assert.isBigNumber('salt', salt);
+        assert.isString('signerAddress', signerAddress);
+        assert.isString('data', data);
+        assert.isString('signature', signature);
+        const self = this as any as ITransactionsContract;
+        const encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
     signerAddress,
     data,
     signature
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-                self.executeTransaction.estimateGasAsync.bind(
-                    self,
-                    salt,
-                    signerAddress,
-                    data,
-                    signature
-                ),
-            );
-            const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
-            return txHash;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+            self.executeTransaction.estimateGasAsync.bind(
+                self,
+                salt,
+                signerAddress,
+                data,
+                signature
+            ),
+        );
+        const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
+        return txHash;
         },
         awaitTransactionSuccessAsync(
             salt: BigNumber,
             signerAddress: string,
             data: string,
             signature: string,
-            txData?: Partial<TxData> | number,
+            txData?: Partial<TxData>,
             pollingIntervalMs?: number,
             timeoutMs?: number,
         ): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs> {
-            // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-            if (typeof(txData) === 'number') {
-                pollingIntervalMs = txData;
-                timeoutMs = pollingIntervalMs;
-                txData = {};
-            }
-            //
-            const self = this as any as ITransactionsContract;
-            const txHashPromise = self.executeTransaction.sendTransactionAsync(salt,
+        assert.isBigNumber('salt', salt);
+        assert.isString('signerAddress', signerAddress);
+        assert.isString('data', data);
+        assert.isString('signature', signature);
+        const self = this as any as ITransactionsContract;
+        const txHashPromise = self.executeTransaction.sendTransactionAsync(salt,
     signerAddress,
     data,
     signature
     , txData);
-            return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
-                txHashPromise,
-                (async (): Promise<TransactionReceiptWithDecodedLogs> => {
-                    // When the transaction hash resolves, wait for it to be mined.
-                    return self._web3Wrapper.awaitTransactionSuccessAsync(
-                        await txHashPromise,
-                        pollingIntervalMs,
-                        timeoutMs,
-                    );
-                })(),
-            );
+        return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
+            txHashPromise,
+            (async (): Promise<TransactionReceiptWithDecodedLogs> => {
+                // When the transaction hash resolves, wait for it to be mined.
+                return self._web3Wrapper.awaitTransactionSuccessAsync(
+                    await txHashPromise,
+                    pollingIntervalMs,
+                    timeoutMs,
+                );
+            })(),
+        );
         },
         async estimateGasAsync(
             salt: BigNumber,
             signerAddress: string,
             data: string,
             signature: string,
-            txData: Partial<TxData> = {},
+            txData?: Partial<TxData> | undefined,
         ): Promise<number> {
-            const self = this as any as ITransactionsContract;
-            const encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
+        assert.isBigNumber('salt', salt);
+        assert.isString('signerAddress', signerAddress);
+        assert.isString('data', data);
+        assert.isString('signature', signature);
+        const self = this as any as ITransactionsContract;
+        const encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
     signerAddress,
     data,
     signature
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-            );
-            const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
-            return gas;
-        },
-        getABIEncodedTransactionData(
-            salt: BigNumber,
-            signerAddress: string,
-            data: string,
-            signature: string,
-        ): string {
-            const self = this as any as ITransactionsContract;
-            const abiEncodedTransactionData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
-    signerAddress,
-    data,
-    signature
-    ]);
-            return abiEncodedTransactionData;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+        );
+        const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
+        return gas;
         },
         async callAsync(
             salt: BigNumber,
@@ -139,6 +132,18 @@ export class ITransactionsContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<void
         > {
+            assert.isBigNumber('salt', salt);
+            assert.isString('signerAddress', signerAddress);
+            assert.isString('data', data);
+            assert.isString('signature', signature);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ITransactionsContract;
             const encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
         signerAddress,
@@ -162,12 +167,35 @@ export class ITransactionsContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                salt: BigNumber,
+                signerAddress: string,
+                data: string,
+                signature: string,
+            ): string {
+            assert.isBigNumber('salt', salt);
+            assert.isString('signerAddress', signerAddress);
+            assert.isString('data', data);
+            assert.isString('signature', signature);
+            const self = this as any as ITransactionsContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
+        signerAddress,
+        data,
+        signature
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public static async deployFrom0xArtifactAsync(
         artifact: ContractArtifact | SimpleContractArtifact,
         supportedProvider: SupportedProvider,
         txDefaults: Partial<TxData>,
     ): Promise<ITransactionsContract> {
+        assert.doesConformToSchema('txDefaults', txDefaults, schemas.txDataSchema, [
+            schemas.addressSchema,
+            schemas.numberSchema,
+            schemas.jsNumber,
+        ]);
         if (artifact.compilerOutput === undefined) {
             throw new Error('Compiler output not found in the artifact file');
         }
@@ -182,6 +210,12 @@ export class ITransactionsContract extends BaseContract {
         supportedProvider: SupportedProvider,
         txDefaults: Partial<TxData>,
     ): Promise<ITransactionsContract> {
+        assert.isHexString('bytecode', bytecode);
+        assert.doesConformToSchema('txDefaults', txDefaults, schemas.txDataSchema, [
+            schemas.addressSchema,
+            schemas.numberSchema,
+            schemas.jsNumber,
+        ]);
         const provider = providerUtils.standardizeOrThrow(supportedProvider);
         const constructorAbi = BaseContract._lookupConstructorAbi(abi);
         [] = BaseContract._formatABIDataItemList(
@@ -202,13 +236,57 @@ export class ITransactionsContract extends BaseContract {
         logUtils.log(`transactionHash: ${txHash}`);
         const txReceipt = await web3Wrapper.awaitTransactionSuccessAsync(txHash);
         logUtils.log(`ITransactions successfully deployed at ${txReceipt.contractAddress}`);
-        const contractInstance = new ITransactionsContract(abi, txReceipt.contractAddress as string, provider, txDefaults);
+        const contractInstance = new ITransactionsContract(txReceipt.contractAddress as string, provider, txDefaults);
         contractInstance.constructorArgs = [];
         return contractInstance;
     }
-    constructor(abi: ContractAbi, address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>) {
-        super('ITransactions', abi, address, supportedProvider, txDefaults);
-        classUtils.bindAll(this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+
+
+    /**
+     * @returns      The contract ABI
+     */
+    public static ABI(): ContractAbi {
+        const abi = [
+            { 
+                constant: false,
+                inputs: [
+                    {
+                        name: 'salt',
+                        type: 'uint256',
+                        
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                        
+                    },
+                    {
+                        name: 'data',
+                        type: 'bytes',
+                        
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                        
+                    },
+                ],
+                name: 'executeTransaction',
+                outputs: [
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+        ] as ContractAbi;
+        return abi;
     }
-} // tslint:disable:max-file-line-count
-// tslint:enable:no-unbound-method
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>) {
+        super('ITransactions', ITransactionsContract.ABI(), address, supportedProvider, txDefaults);
+        classUtils.bindAll(this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
+    }
+} 
+
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace

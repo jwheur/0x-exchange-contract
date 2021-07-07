@@ -59,12 +59,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 // tslint:enable:no-unused-variable
 /* istanbul ignore next */
@@ -72,8 +74,8 @@ var ethers = require("ethers");
 // tslint:disable-next-line:class-name
 var TestLibsContract = /** @class */ (function (_super) {
     __extends(TestLibsContract, _super);
-    function TestLibsContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'TestLibs', abi, address, supportedProvider, txDefaults) || this;
+    function TestLibsContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'TestLibs', TestLibsContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.publicIsRoundingErrorFloor = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
@@ -82,6 +84,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicIsRoundingErrorFloor(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -102,6 +115,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicIsRoundingErrorFloor(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicGetPartialAmountCeil = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -111,6 +135,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicGetPartialAmountCeil(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -131,6 +166,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicGetPartialAmountCeil(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getDomainSeparatorSchemaHash = {
             callAsync: function (callData, defaultBlock) {
@@ -140,6 +186,14 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getDomainSeparatorSchemaHash()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -157,6 +211,11 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getDomainSeparatorSchemaHash()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicAddFillResults = {
             callAsync: function (totalFillResults, singleFillResults, callData, defaultBlock) {
@@ -166,6 +225,14 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicAddFillResults((uint256,uint256,uint256,uint256),(uint256,uint256,uint256,uint256))', [totalFillResults,
                                     singleFillResults
@@ -185,6 +252,13 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (totalFillResults, singleFillResults) {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicAddFillResults((uint256,uint256,uint256,uint256),(uint256,uint256,uint256,uint256))', [totalFillResults,
+                    singleFillResults
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicIsRoundingErrorCeil = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -194,6 +268,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicIsRoundingErrorCeil(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -214,6 +299,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicIsRoundingErrorCeil(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getOrderSchemaHash = {
             callAsync: function (callData, defaultBlock) {
@@ -223,6 +319,14 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getOrderSchemaHash()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -240,6 +344,11 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getOrderSchemaHash()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicGetPartialAmountFloor = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -249,6 +358,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicGetPartialAmountFloor(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -269,6 +389,17 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicGetPartialAmountFloor(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicGetOrderHash = {
             callAsync: function (order, callData, defaultBlock) {
@@ -278,6 +409,14 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicGetOrderHash((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
                                 ]);
@@ -296,6 +435,12 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order) {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicGetOrderHash((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.EIP712_DOMAIN_HASH = {
             callAsync: function (callData, defaultBlock) {
@@ -305,6 +450,14 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -322,6 +475,11 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicAbiEncodeFillOrder = {
             callAsync: function (order, takerAssetFillAmount, signature, callData, defaultBlock) {
@@ -331,6 +489,16 @@ var TestLibsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicAbiEncodeFillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -351,14 +519,29 @@ var TestLibsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicAbiEncodeFillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     TestLibsContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -375,6 +558,12 @@ var TestLibsContract = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [], base_contract_1.BaseContract._bigNumberToString);
@@ -393,15 +582,398 @@ var TestLibsContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _a.sent();
                         utils_1.logUtils.log("TestLibs successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new TestLibsContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new TestLibsContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [];
                         return [2 /*return*/, contractInstance];
                 }
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    TestLibsContract.ABI = function () {
+        var abi = [
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicIsRoundingErrorFloor',
+                outputs: [
+                    {
+                        name: 'isError',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicGetPartialAmountCeil',
+                outputs: [
+                    {
+                        name: 'partialAmount',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'getDomainSeparatorSchemaHash',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes32',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'singleFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                name: 'publicAddFillResults',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicIsRoundingErrorCeil',
+                outputs: [
+                    {
+                        name: 'isError',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'getOrderSchemaHash',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes32',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicGetPartialAmountFloor',
+                outputs: [
+                    {
+                        name: 'partialAmount',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'publicGetOrderHash',
+                outputs: [
+                    {
+                        name: 'orderHash',
+                        type: 'bytes32',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'EIP712_DOMAIN_HASH',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes32',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'publicAbiEncodeFillOrder',
+                outputs: [
+                    {
+                        name: 'fillOrderCalldata',
+                        type: 'bytes',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+        ];
+        return abi;
+    };
     return TestLibsContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.TestLibsContract = TestLibsContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=test_libs.js.map

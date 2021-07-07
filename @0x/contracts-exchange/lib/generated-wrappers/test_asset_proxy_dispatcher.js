@@ -59,12 +59,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 var TestAssetProxyDispatcherEvents;
 (function (TestAssetProxyDispatcherEvents) {
@@ -75,8 +77,8 @@ var TestAssetProxyDispatcherEvents;
 // tslint:disable-next-line:class-name
 var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
     __extends(TestAssetProxyDispatcherContract, _super);
-    function TestAssetProxyDispatcherContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'TestAssetProxyDispatcher', abi, address, supportedProvider, txDefaults) || this;
+    function TestAssetProxyDispatcherContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'TestAssetProxyDispatcher', TestAssetProxyDispatcherContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.assetProxies = {
             callAsync: function (index_0, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
@@ -85,6 +87,15 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('assetProxies(bytes4)', [index_0
                                 ]);
@@ -103,6 +114,13 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('assetProxies(bytes4)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getAssetProxy = {
             callAsync: function (assetProxyId, callData, defaultBlock) {
@@ -112,6 +130,15 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxyId', assetProxyId);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getAssetProxy(bytes4)', [assetProxyId
                                 ]);
@@ -130,15 +157,25 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetProxyId) {
+                assert_1.assert.isString('assetProxyId', assetProxyId);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getAssetProxy(bytes4)', [assetProxyId
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicDispatchTransferFrom = {
             sendTransactionAsync: function (assetData, from, to, amount, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetData', assetData);
+                                assert_1.assert.isString('from', from);
+                                assert_1.assert.isString('to', to);
+                                assert_1.assert.isBigNumber('amount', amount);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicDispatchTransferFrom(bytes,address,address,uint256)', [assetData,
                                     from,
@@ -158,13 +195,10 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (assetData, from, to, amount, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('assetData', assetData);
+                assert_1.assert.isString('from', from);
+                assert_1.assert.isString('to', to);
+                assert_1.assert.isBigNumber('amount', amount);
                 var self = this;
                 var txHashPromise = self.publicDispatchTransferFrom.sendTransactionAsync(assetData, from, to, amount, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -184,12 +218,15 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (assetData, from, to, amount, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetData', assetData);
+                                assert_1.assert.isString('from', from);
+                                assert_1.assert.isString('to', to);
+                                assert_1.assert.isBigNumber('amount', amount);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicDispatchTransferFrom(bytes,address,address,uint256)', [assetData,
                                     from,
@@ -207,15 +244,6 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (assetData, from, to, amount) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('publicDispatchTransferFrom(bytes,address,address,uint256)', [assetData,
-                    from,
-                    to,
-                    amount
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (assetData, from, to, amount, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -223,6 +251,18 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetData', assetData);
+                                assert_1.assert.isString('from', from);
+                                assert_1.assert.isString('to', to);
+                                assert_1.assert.isBigNumber('amount', amount);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicDispatchTransferFrom(bytes,address,address,uint256)', [assetData,
                                     from,
@@ -244,6 +284,19 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetData, from, to, amount) {
+                assert_1.assert.isString('assetData', assetData);
+                assert_1.assert.isString('from', from);
+                assert_1.assert.isString('to', to);
+                assert_1.assert.isBigNumber('amount', amount);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicDispatchTransferFrom(bytes,address,address,uint256)', [assetData,
+                    from,
+                    to,
+                    amount
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.owner = {
             callAsync: function (callData, defaultBlock) {
@@ -253,6 +306,14 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('owner()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -270,15 +331,20 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('owner()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.registerAssetProxy = {
             sendTransactionAsync: function (assetProxy, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -295,13 +361,7 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (assetProxy, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('assetProxy', assetProxy);
                 var self = this;
                 var txHashPromise = self.registerAssetProxy.sendTransactionAsync(assetProxy, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -321,12 +381,12 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (assetProxy, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -341,12 +401,6 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (assetProxy) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (assetProxy, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -354,6 +408,15 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -372,15 +435,22 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetProxy) {
+                assert_1.assert.isString('assetProxy', assetProxy);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.transferOwnership = {
             sendTransactionAsync: function (newOwner, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -397,13 +467,7 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (newOwner, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('newOwner', newOwner);
                 var self = this;
                 var txHashPromise = self.transferOwnership.sendTransactionAsync(newOwner, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -423,12 +487,12 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (newOwner, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -443,12 +507,6 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (newOwner) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (newOwner, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -456,6 +514,15 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -474,14 +541,26 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (newOwner) {
+                assert_1.assert.isString('newOwner', newOwner);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     TestAssetProxyDispatcherContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -498,6 +577,12 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [], base_contract_1.BaseContract._bigNumberToString);
@@ -516,15 +601,149 @@ var TestAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _a.sent();
                         utils_1.logUtils.log("TestAssetProxyDispatcher successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new TestAssetProxyDispatcherContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new TestAssetProxyDispatcherContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [];
                         return [2 /*return*/, contractInstance];
                 }
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    TestAssetProxyDispatcherContract.ABI = function () {
+        var abi = [
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes4',
+                    },
+                ],
+                name: 'assetProxies',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'assetProxyId',
+                        type: 'bytes4',
+                    },
+                ],
+                name: 'getAssetProxy',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'assetData',
+                        type: 'bytes',
+                    },
+                    {
+                        name: 'from',
+                        type: 'address',
+                    },
+                    {
+                        name: 'to',
+                        type: 'address',
+                    },
+                    {
+                        name: 'amount',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicDispatchTransferFrom',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'owner',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'assetProxy',
+                        type: 'address',
+                    },
+                ],
+                name: 'registerAssetProxy',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'newOwner',
+                        type: 'address',
+                    },
+                ],
+                name: 'transferOwnership',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'id',
+                        type: 'bytes4',
+                        indexed: false,
+                    },
+                    {
+                        name: 'assetProxy',
+                        type: 'address',
+                        indexed: false,
+                    },
+                ],
+                name: 'AssetProxyRegistered',
+                outputs: [],
+                type: 'event',
+            },
+        ];
+        return abi;
+    };
     return TestAssetProxyDispatcherContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.TestAssetProxyDispatcherContract = TestAssetProxyDispatcherContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=test_asset_proxy_dispatcher.js.map

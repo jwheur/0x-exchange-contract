@@ -59,12 +59,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 // tslint:enable:no-unused-variable
 /* istanbul ignore next */
@@ -72,8 +74,8 @@ var ethers = require("ethers");
 // tslint:disable-next-line:class-name
 var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
     __extends(IAssetProxyDispatcherContract, _super);
-    function IAssetProxyDispatcherContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'IAssetProxyDispatcher', abi, address, supportedProvider, txDefaults) || this;
+    function IAssetProxyDispatcherContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'IAssetProxyDispatcher', IAssetProxyDispatcherContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.getAssetProxy = {
             callAsync: function (assetProxyId, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
@@ -82,6 +84,15 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxyId', assetProxyId);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getAssetProxy(bytes4)', [assetProxyId
                                 ]);
@@ -100,15 +111,22 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetProxyId) {
+                assert_1.assert.isString('assetProxyId', assetProxyId);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getAssetProxy(bytes4)', [assetProxyId
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.registerAssetProxy = {
             sendTransactionAsync: function (assetProxy, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -125,13 +143,7 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (assetProxy, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('assetProxy', assetProxy);
                 var self = this;
                 var txHashPromise = self.registerAssetProxy.sendTransactionAsync(assetProxy, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -151,12 +163,12 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (assetProxy, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -171,12 +183,6 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (assetProxy) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (assetProxy, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -184,6 +190,15 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -202,14 +217,26 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetProxy) {
+                assert_1.assert.isString('assetProxy', assetProxy);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     IAssetProxyDispatcherContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -226,6 +253,12 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [], base_contract_1.BaseContract._bigNumberToString);
@@ -244,15 +277,58 @@ var IAssetProxyDispatcherContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _a.sent();
                         utils_1.logUtils.log("IAssetProxyDispatcher successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new IAssetProxyDispatcherContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new IAssetProxyDispatcherContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [];
                         return [2 /*return*/, contractInstance];
                 }
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    IAssetProxyDispatcherContract.ABI = function () {
+        var abi = [
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'assetProxyId',
+                        type: 'bytes4',
+                    },
+                ],
+                name: 'getAssetProxy',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'assetProxy',
+                        type: 'address',
+                    },
+                ],
+                name: 'registerAssetProxy',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+        ];
+        return abi;
+    };
     return IAssetProxyDispatcherContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.IAssetProxyDispatcherContract = IAssetProxyDispatcherContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=i_asset_proxy_dispatcher.js.map

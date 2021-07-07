@@ -3,17 +3,20 @@
     "contractName": "LibMath",
     "compilerOutput": {
         "abi": [],
+        "devdoc": {
+            "methods": {}
+        },
         "evm": {
             "bytecode": {
                 "linkReferences": {},
-                "object": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058204543a1d0ed1a3d3660be4433e5a61e91f39061894001192b57973488e73c671c0029",
-                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x35 DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 GASLIMIT NUMBER LOG1 0xd0 0xed BYTE RETURNDATASIZE CALLDATASIZE PUSH1 0xBE DIFFICULTY CALLER 0xe5 0xa6 0x1e SWAP2 RETURN SWAP1 PUSH2 0x8940 ADD NOT 0x2b JUMPI SWAP8 CALLVALUE DUP9 0xe7 EXTCODECOPY PUSH8 0x1C00290000000000 ",
+                "object": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72305820f92fe1fcc727612b4138d18319e2d1ade2087d815d2f5ccfb3d07046a2cccbd664736f6c634300050a0032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x3E DUP1 PUSH1 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 0xf9 0x2f 0xe1 0xfc 0xc7 0x27 PUSH2 0x2B41 CODESIZE 0xd1 DUP4 NOT 0xe2 0xd1 0xad 0xe2 ADDMOD PUSH30 0x815D2F5CCFB3D07046A2CCCBD664736F6C634300050A0032000000000000 ",
                 "sourceMap": "664:7175:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;664:7175:5;;;;;;;"
             },
             "deployedBytecode": {
                 "linkReferences": {},
-                "object": "0x6080604052600080fdfea165627a7a723058204543a1d0ed1a3d3660be4433e5a61e91f39061894001192b57973488e73c671c0029",
-                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG1 PUSH6 0x627A7A723058 KECCAK256 GASLIMIT NUMBER LOG1 0xd0 0xed BYTE RETURNDATASIZE CALLDATASIZE PUSH1 0xBE DIFFICULTY CALLER 0xe5 0xa6 0x1e SWAP2 RETURN SWAP1 PUSH2 0x8940 ADD NOT 0x2b JUMPI SWAP8 CALLVALUE DUP9 0xe7 EXTCODECOPY PUSH8 0x1C00290000000000 ",
+                "object": "0x6080604052600080fdfea265627a7a72305820f92fe1fcc727612b4138d18319e2d1ade2087d815d2f5ccfb3d07046a2cccbd664736f6c634300050a0032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723058 KECCAK256 0xf9 0x2f 0xe1 0xfc 0xc7 0x27 PUSH2 0x2B41 CODESIZE 0xd1 DUP4 NOT 0xe2 0xd1 0xad 0xe2 ADDMOD PUSH30 0x815D2F5CCFB3D07046A2CCCBD664736F6C634300050A0032000000000000 ",
                 "sourceMap": "664:7175:5:-;;;;;"
             }
         }
@@ -23,7 +26,7 @@
             "id": 5
         },
         "@0x/contracts-utils/contracts/src/SafeMath.sol": {
-            "id": 10
+            "id": 8
         }
     },
     "sourceCodes": {
@@ -33,7 +36,7 @@
     "sourceTreeHashHex": "0x3d266e733cbef3e498b3ee48bbee125a7a4836f9f213ab0183ea01f59830e37e",
     "compiler": {
         "name": "solc",
-        "version": "soljson-v0.5.8+commit.23d335f2.js",
+        "version": "soljson-v0.5.10+commit.5a6ea5b1.js",
         "settings": {
             "optimizer": {
                 "enabled": true,
@@ -49,6 +52,7 @@
                 "*": {
                     "*": [
                         "abi",
+                        "devdoc",
                         "evm.bytecode.object",
                         "evm.bytecode.sourceMap",
                         "evm.deployedBytecode.object",
@@ -58,8 +62,7 @@
             },
             "evmVersion": "constantinople",
             "remappings": [
-                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils",
-                "@0x/contracts-exchange-libs=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/node_modules/@0x/contracts-exchange-libs"
+                "@0x/contracts-utils=/Users/fabioberger/Documents/projects/0x_project/0x-monorepo-one/contracts/exchange-libs/node_modules/@0x/contracts-utils"
             ]
         }
     },

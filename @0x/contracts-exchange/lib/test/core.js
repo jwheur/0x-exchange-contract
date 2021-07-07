@@ -95,6 +95,8 @@ describe('Exchange core', function () {
     var erc721Proxy;
     var erc1155Proxy;
     var multiAssetProxy;
+    var staticCallProxy;
+    var staticCallTarget;
     var maliciousWallet;
     var maliciousValidator;
     var erc1155Contract;
@@ -134,12 +136,12 @@ describe('Exchange core', function () {
         });
     }); });
     before(function () { return __awaiter(_this, void 0, void 0, function () {
-        var _a, _b, _c, _d, _e, accounts, usedAddresses, numDummyErc20ToDeploy, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, erc721Balances, nonFungibleTokens, tokenBalances, defaultOrderParams, privateKey;
-        return __generator(this, function (_z) {
-            switch (_z.label) {
+        var _a, _b, _c, _d, _e, accounts, usedAddresses, numDummyErc20ToDeploy, erc721Balances, nonFungibleTokens, tokenBalances, defaultOrderParams, privateKey;
+        return __generator(this, function (_f) {
+            switch (_f.label) {
                 case 0: return [4 /*yield*/, contracts_test_utils_1.web3Wrapper.getAvailableAddressesAsync()];
                 case 1:
-                    accounts = _z.sent();
+                    accounts = _f.sent();
                     usedAddresses = (_a = _.slice(accounts, 0, 4), _b = __read(_a, 4), owner = _b[0], makerAddress = _b[1], takerAddress = _b[2], feeRecipientAddress = _b[3], _a);
                     erc20Wrapper = new contracts_asset_proxy_1.ERC20Wrapper(contracts_test_utils_1.provider, usedAddresses, owner);
                     erc721Wrapper = new contracts_asset_proxy_1.ERC721Wrapper(contracts_test_utils_1.provider, usedAddresses, owner);
@@ -147,159 +149,119 @@ describe('Exchange core', function () {
                     return [4 /*yield*/, erc20Wrapper.deployProxyAsync()];
                 case 2:
                     // Deploy AssetProxies, Exchange, tokens, and malicious contracts
-                    erc20Proxy = _z.sent();
+                    erc20Proxy = _f.sent();
                     return [4 /*yield*/, erc721Wrapper.deployProxyAsync()];
                 case 3:
-                    erc721Proxy = _z.sent();
+                    erc721Proxy = _f.sent();
                     return [4 /*yield*/, contracts_asset_proxy_1.MultiAssetProxyContract.deployFrom0xArtifactAsync(contracts_asset_proxy_1.artifacts.MultiAssetProxy, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults)];
                 case 4:
-                    multiAssetProxy = _z.sent();
+                    multiAssetProxy = _f.sent();
+                    return [4 /*yield*/, contracts_asset_proxy_1.StaticCallProxyContract.deployFrom0xArtifactAsync(contracts_asset_proxy_1.artifacts.StaticCallProxy, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults)];
+                case 5:
+                    staticCallProxy = _f.sent();
                     numDummyErc20ToDeploy = 3;
                     return [4 /*yield*/, erc20Wrapper.deployDummyTokensAsync(numDummyErc20ToDeploy, contracts_test_utils_1.constants.DUMMY_TOKEN_DECIMALS)];
-                case 5:
-                    _c = __read.apply(void 0, [_z.sent(), 3]), erc20TokenA = _c[0], erc20TokenB = _c[1], zrxToken = _c[2];
-                    return [4 /*yield*/, erc721Wrapper.deployDummyTokensAsync()];
                 case 6:
-                    _d = __read.apply(void 0, [_z.sent(), 1]), erc721Token = _d[0];
-                    return [4 /*yield*/, erc1155ProxyWrapper.deployProxyAsync()];
+                    _c = __read.apply(void 0, [_f.sent(), 3]), erc20TokenA = _c[0], erc20TokenB = _c[1], zrxToken = _c[2];
+                    return [4 /*yield*/, erc721Wrapper.deployDummyTokensAsync()];
                 case 7:
-                    erc1155Proxy = _z.sent();
-                    return [4 /*yield*/, erc1155ProxyWrapper.deployDummyContractsAsync()];
+                    _d = __read.apply(void 0, [_f.sent(), 1]), erc721Token = _d[0];
+                    return [4 /*yield*/, erc1155ProxyWrapper.deployProxyAsync()];
                 case 8:
-                    _e = __read.apply(void 0, [_z.sent(), 1]), erc1155Wrapper = _e[0];
+                    erc1155Proxy = _f.sent();
+                    return [4 /*yield*/, erc1155ProxyWrapper.deployDummyContractsAsync()];
+                case 9:
+                    _e = __read.apply(void 0, [_f.sent(), 1]), erc1155Wrapper = _e[0];
                     erc1155Contract = erc1155Wrapper.getContract();
                     return [4 /*yield*/, src_1.ExchangeContract.deployFrom0xArtifactAsync(src_1.artifacts.Exchange, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults, order_utils_1.assetDataUtils.encodeERC20AssetData(zrxToken.address))];
-                case 9:
-                    exchange = _z.sent();
-                    return [4 /*yield*/, src_1.TestStaticCallReceiverContract.deployFrom0xArtifactAsync(src_1.artifacts.TestStaticCallReceiver, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults)];
                 case 10:
-                    maliciousWallet = maliciousValidator = _z.sent();
-                    return [4 /*yield*/, src_1.ReentrantERC20TokenContract.deployFrom0xArtifactAsync(src_1.artifacts.ReentrantERC20Token, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults, exchange.address)];
+                    exchange = _f.sent();
+                    return [4 /*yield*/, src_1.TestStaticCallReceiverContract.deployFrom0xArtifactAsync(src_1.artifacts.TestStaticCallReceiver, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults)];
                 case 11:
-                    reentrantErc20Token = _z.sent();
-                    _g = (_f = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, erc20Proxy.addAuthorizedAddress.sendTransactionAsync(exchange.address, {
-                            from: owner,
-                        })];
-                case 12: 
-                // Configure ERC20Proxy
-                return [4 /*yield*/, _g.apply(_f, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
+                    maliciousWallet = maliciousValidator = _f.sent();
+                    return [4 /*yield*/, src_1.ReentrantERC20TokenContract.deployFrom0xArtifactAsync(src_1.artifacts.ReentrantERC20Token, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults, exchange.address)];
+                case 12:
+                    reentrantErc20Token = _f.sent();
+                    // Configure ERC20Proxy
+                    return [4 /*yield*/, erc20Proxy.addAuthorizedAddress.awaitTransactionSuccessAsync(exchange.address, { from: owner })];
                 case 13:
                     // Configure ERC20Proxy
-                    _z.sent();
-                    _j = (_h = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, erc20Proxy.addAuthorizedAddress.sendTransactionAsync(multiAssetProxy.address, {
-                            from: owner,
-                        })];
-                case 14: return [4 /*yield*/, _j.apply(_h, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 15:
-                    _z.sent();
-                    _l = (_k = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, erc721Proxy.addAuthorizedAddress.sendTransactionAsync(exchange.address, {
-                            from: owner,
-                        })];
-                case 16: 
-                // Configure ERC721Proxy
-                return [4 /*yield*/, _l.apply(_k, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 17:
+                    _f.sent();
+                    return [4 /*yield*/, erc20Proxy.addAuthorizedAddress.awaitTransactionSuccessAsync(multiAssetProxy.address, { from: owner })];
+                case 14:
+                    _f.sent();
                     // Configure ERC721Proxy
-                    _z.sent();
-                    _o = (_m = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, erc721Proxy.addAuthorizedAddress.sendTransactionAsync(multiAssetProxy.address, {
-                            from: owner,
-                        })];
-                case 18: return [4 /*yield*/, _o.apply(_m, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 19:
-                    _z.sent();
-                    _q = (_p = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, erc1155Proxy.addAuthorizedAddress.sendTransactionAsync(exchange.address, {
-                            from: owner,
-                        })];
-                case 20: 
-                // Configure ERC1155Proxy
-                return [4 /*yield*/, _q.apply(_p, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 21:
+                    return [4 /*yield*/, erc721Proxy.addAuthorizedAddress.awaitTransactionSuccessAsync(exchange.address, { from: owner })];
+                case 15:
+                    // Configure ERC721Proxy
+                    _f.sent();
+                    return [4 /*yield*/, erc721Proxy.addAuthorizedAddress.awaitTransactionSuccessAsync(multiAssetProxy.address, { from: owner })];
+                case 16:
+                    _f.sent();
                     // Configure ERC1155Proxy
-                    _z.sent();
-                    _s = (_r = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, erc1155Proxy.addAuthorizedAddress.sendTransactionAsync(multiAssetProxy.address, {
-                            from: owner,
-                        })];
-                case 22: return [4 /*yield*/, _s.apply(_r, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 23:
-                    _z.sent();
-                    _u = (_t = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, multiAssetProxy.addAuthorizedAddress.sendTransactionAsync(exchange.address, {
-                            from: owner,
-                        })];
-                case 24: 
-                // Configure MultiAssetProxy
-                return [4 /*yield*/, _u.apply(_t, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 25:
+                    return [4 /*yield*/, erc1155Proxy.addAuthorizedAddress.awaitTransactionSuccessAsync(exchange.address, { from: owner })];
+                case 17:
+                    // Configure ERC1155Proxy
+                    _f.sent();
+                    return [4 /*yield*/, erc1155Proxy.addAuthorizedAddress.awaitTransactionSuccessAsync(multiAssetProxy.address, { from: owner })];
+                case 18:
+                    _f.sent();
                     // Configure MultiAssetProxy
-                    _z.sent();
-                    _w = (_v = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, multiAssetProxy.registerAssetProxy.sendTransactionAsync(erc20Proxy.address, {
-                            from: owner,
-                        })];
-                case 26: return [4 /*yield*/, _w.apply(_v, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 27:
-                    _z.sent();
-                    _y = (_x = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                    return [4 /*yield*/, multiAssetProxy.registerAssetProxy.sendTransactionAsync(erc721Proxy.address, {
-                            from: owner,
-                        })];
-                case 28: return [4 /*yield*/, _y.apply(_x, [_z.sent(),
-                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                case 29:
-                    _z.sent();
+                    return [4 /*yield*/, multiAssetProxy.addAuthorizedAddress.awaitTransactionSuccessAsync(exchange.address, { from: owner })];
+                case 19:
+                    // Configure MultiAssetProxy
+                    _f.sent();
+                    return [4 /*yield*/, multiAssetProxy.registerAssetProxy.awaitTransactionSuccessAsync(erc20Proxy.address, { from: owner })];
+                case 20:
+                    _f.sent();
+                    return [4 /*yield*/, multiAssetProxy.registerAssetProxy.awaitTransactionSuccessAsync(erc721Proxy.address, { from: owner })];
+                case 21:
+                    _f.sent();
+                    return [4 /*yield*/, multiAssetProxy.registerAssetProxy.awaitTransactionSuccessAsync(staticCallProxy.address, { from: owner })];
+                case 22:
+                    _f.sent();
                     // Configure Exchange
                     exchangeWrapper = new src_1.ExchangeWrapper(exchange, contracts_test_utils_1.provider);
                     return [4 /*yield*/, exchangeWrapper.registerAssetProxyAsync(erc20Proxy.address, owner)];
-                case 30:
-                    _z.sent();
+                case 23:
+                    _f.sent();
                     return [4 /*yield*/, exchangeWrapper.registerAssetProxyAsync(erc721Proxy.address, owner)];
-                case 31:
-                    _z.sent();
+                case 24:
+                    _f.sent();
                     return [4 /*yield*/, exchangeWrapper.registerAssetProxyAsync(erc1155Proxy.address, owner)];
-                case 32:
-                    _z.sent();
+                case 25:
+                    _f.sent();
                     return [4 /*yield*/, exchangeWrapper.registerAssetProxyAsync(multiAssetProxy.address, owner)];
-                case 33:
-                    _z.sent();
+                case 26:
+                    _f.sent();
+                    return [4 /*yield*/, exchangeWrapper.registerAssetProxyAsync(staticCallProxy.address, owner)];
+                case 27:
+                    _f.sent();
                     // Configure ERC20 tokens
                     return [4 /*yield*/, erc20Wrapper.setBalancesAndAllowancesAsync()];
-                case 34:
+                case 28:
                     // Configure ERC20 tokens
-                    _z.sent();
+                    _f.sent();
                     // Configure ERC721 tokens
                     return [4 /*yield*/, erc721Wrapper.setBalancesAndAllowancesAsync()];
-                case 35:
+                case 29:
                     // Configure ERC721 tokens
-                    _z.sent();
+                    _f.sent();
                     return [4 /*yield*/, erc721Wrapper.getBalancesAsync()];
-                case 36:
-                    erc721Balances = _z.sent();
+                case 30:
+                    erc721Balances = _f.sent();
                     erc721MakerAssetIds = erc721Balances[makerAddress][erc721Token.address];
                     erc721TakerAssetIds = erc721Balances[takerAddress][erc721Token.address];
                     // Configure ERC1155 tokens
                     return [4 /*yield*/, erc1155ProxyWrapper.setBalancesAndAllowancesAsync()];
-                case 37:
+                case 31:
                     // Configure ERC1155 tokens
-                    _z.sent();
+                    _f.sent();
                     erc1155FungibleTokens = erc1155ProxyWrapper.getFungibleTokenIds();
                     nonFungibleTokens = erc1155ProxyWrapper.getNonFungibleTokenIds();
                     return [4 /*yield*/, erc1155ProxyWrapper.getBalancesAsync()];
-                case 38:
-                    tokenBalances = _z.sent();
+                case 32:
+                    tokenBalances = _f.sent();
                     erc1155NonFungibleTokensOwnedByMaker = [];
                     erc1155NonFungibleTokensOwnedByTaker = [];
                     _.each(nonFungibleTokens, function (nonFungibleToken) {
@@ -361,23 +323,19 @@ describe('Exchange core', function () {
                 return __generator(this, function (_a) {
                     description = "should not allow fillOrder to reenter the Exchange contract via " + functionName;
                     it(description, function () { return __awaiter(_this, void 0, void 0, function () {
-                        var _a, _b;
-                        return __generator(this, function (_c) {
-                            switch (_c.label) {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
                                 case 0: return [4 /*yield*/, orderFactory.newSignedOrderAsync({
                                         makerAssetData: order_utils_1.assetDataUtils.encodeERC20AssetData(reentrantErc20Token.address),
                                     })];
                                 case 1:
-                                    signedOrder = _c.sent();
-                                    _b = (_a = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                                    return [4 /*yield*/, reentrantErc20Token.setCurrentFunction.sendTransactionAsync(functionId)];
-                                case 2: return [4 /*yield*/, _b.apply(_a, [_c.sent(),
-                                        contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                                case 3:
-                                    _c.sent();
+                                    signedOrder = _a.sent();
+                                    return [4 /*yield*/, reentrantErc20Token.setCurrentFunction.awaitTransactionSuccessAsync(functionId)];
+                                case 2:
+                                    _a.sent();
                                     return [4 /*yield*/, contracts_test_utils_1.expectTransactionFailedAsync(exchangeWrapper.fillOrderAsync(signedOrder, takerAddress), types_1.RevertReason.TransferFailed)];
-                                case 4:
-                                    _c.sent();
+                                case 3:
+                                    _a.sent();
                                     return [2 /*return*/];
                             }
                         });
@@ -421,53 +379,44 @@ describe('Exchange core', function () {
             });
         }); });
         it('should revert if `isValidSignature` tries to update state when SignatureType=Wallet', function () { return __awaiter(_this, void 0, void 0, function () {
-            var maliciousMakerAddress, _a, _b, _c, _d;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
+            var maliciousMakerAddress;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         maliciousMakerAddress = maliciousWallet.address;
-                        _b = (_a = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                        return [4 /*yield*/, erc20TokenA.setBalance.sendTransactionAsync(maliciousMakerAddress, contracts_test_utils_1.constants.INITIAL_ERC20_BALANCE)];
-                    case 1: return [4 /*yield*/, _b.apply(_a, [_e.sent(),
-                            contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
+                        return [4 /*yield*/, erc20TokenA.setBalance.awaitTransactionSuccessAsync(maliciousMakerAddress, contracts_test_utils_1.constants.INITIAL_ERC20_BALANCE)];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, maliciousWallet.approveERC20.awaitTransactionSuccessAsync(erc20TokenA.address, erc20Proxy.address, contracts_test_utils_1.constants.INITIAL_ERC20_ALLOWANCE)];
                     case 2:
-                        _e.sent();
-                        _d = (_c = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                        return [4 /*yield*/, maliciousWallet.approveERC20.sendTransactionAsync(erc20TokenA.address, erc20Proxy.address, contracts_test_utils_1.constants.INITIAL_ERC20_ALLOWANCE)];
-                    case 3: return [4 /*yield*/, _d.apply(_c, [_e.sent(),
-                            contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                    case 4:
-                        _e.sent();
+                        _a.sent();
                         return [4 /*yield*/, orderFactory.newSignedOrderAsync({
                                 makerAddress: maliciousMakerAddress,
                                 makerFee: contracts_test_utils_1.constants.ZERO_AMOUNT,
                             })];
-                    case 5:
-                        signedOrder = _e.sent();
+                    case 3:
+                        signedOrder = _a.sent();
                         signedOrder.signature = "0x0" + types_1.SignatureType.Wallet;
                         return [4 /*yield*/, contracts_test_utils_1.expectTransactionFailedAsync(exchangeWrapper.fillOrderAsync(signedOrder, takerAddress), types_1.RevertReason.WalletError)];
-                    case 6:
-                        _e.sent();
+                    case 4:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
         }); });
         it('should revert if `isValidSignature` tries to update state when SignatureType=Validator', function () { return __awaiter(_this, void 0, void 0, function () {
-            var isApproved, _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var isApproved;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         isApproved = true;
-                        _b = (_a = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                        return [4 /*yield*/, exchange.setSignatureValidatorApproval.sendTransactionAsync(maliciousValidator.address, isApproved, { from: makerAddress })];
-                    case 1: return [4 /*yield*/, _b.apply(_a, [_c.sent(),
-                            contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                    case 2:
-                        _c.sent();
+                        return [4 /*yield*/, exchange.setSignatureValidatorApproval.awaitTransactionSuccessAsync(maliciousValidator.address, isApproved, { from: makerAddress })];
+                    case 1:
+                        _a.sent();
                         signedOrder.signature = maliciousValidator.address + "0" + types_1.SignatureType.Validator;
                         return [4 /*yield*/, contracts_test_utils_1.expectTransactionFailedAsync(exchangeWrapper.fillOrderAsync(signedOrder, takerAddress), types_1.RevertReason.ValidatorError)];
-                    case 3:
-                        _c.sent();
+                    case 2:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -497,24 +446,17 @@ describe('Exchange core', function () {
     });
     describe('Testing exchange of ERC20 tokens with no return values', function () {
         before(function () { return __awaiter(_this, void 0, void 0, function () {
-            var _a, _b, _c, _d;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0: return [4 /*yield*/, contracts_erc20_1.DummyNoReturnERC20TokenContract.deployFrom0xArtifactAsync(contracts_erc20_1.artifacts.DummyNoReturnERC20Token, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults, contracts_test_utils_1.constants.DUMMY_TOKEN_NAME, contracts_test_utils_1.constants.DUMMY_TOKEN_SYMBOL, contracts_test_utils_1.constants.DUMMY_TOKEN_DECIMALS, contracts_test_utils_1.constants.DUMMY_TOKEN_TOTAL_SUPPLY)];
                     case 1:
-                        noReturnErc20Token = _e.sent();
-                        _b = (_a = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                        return [4 /*yield*/, noReturnErc20Token.setBalance.sendTransactionAsync(makerAddress, contracts_test_utils_1.constants.INITIAL_ERC20_BALANCE)];
-                    case 2: return [4 /*yield*/, _b.apply(_a, [_e.sent(),
-                            contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
+                        noReturnErc20Token = _a.sent();
+                        return [4 /*yield*/, noReturnErc20Token.setBalance.awaitTransactionSuccessAsync(makerAddress, contracts_test_utils_1.constants.INITIAL_ERC20_BALANCE)];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, noReturnErc20Token.approve.awaitTransactionSuccessAsync(erc20Proxy.address, contracts_test_utils_1.constants.INITIAL_ERC20_ALLOWANCE, { from: makerAddress })];
                     case 3:
-                        _e.sent();
-                        _d = (_c = contracts_test_utils_1.web3Wrapper).awaitTransactionSuccessAsync;
-                        return [4 /*yield*/, noReturnErc20Token.approve.sendTransactionAsync(erc20Proxy.address, contracts_test_utils_1.constants.INITIAL_ERC20_ALLOWANCE, { from: makerAddress })];
-                    case 4: return [4 /*yield*/, _d.apply(_c, [_e.sent(),
-                            contracts_test_utils_1.constants.AWAIT_TRANSACTION_MINED_MS])];
-                    case 5:
-                        _e.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -1826,6 +1768,172 @@ describe('Exchange core', function () {
                         expect(orderInfo.orderHash).to.be.equal(expectedOrderHash);
                         expect(orderInfo.orderTakerAssetFilledAmount).to.be.bignumber.equal(expectedTakerAssetFilledAmount);
                         expect(orderInfo.orderStatus).to.equal(expectedOrderStatus);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    });
+    describe('Testing orders that utilize StaticCallProxy', function () {
+        before(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, contracts_asset_proxy_1.TestStaticCallTargetContract.deployFrom0xArtifactAsync(contracts_asset_proxy_1.artifacts.TestStaticCallTarget, contracts_test_utils_1.provider, contracts_test_utils_1.txDefaults)];
+                    case 1:
+                        staticCallTarget = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        it('should revert if the staticcall is unsuccessful', function () { return __awaiter(_this, void 0, void 0, function () {
+            var staticCallData, assetData;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        staticCallData = staticCallTarget.assertEvenNumber.getABIEncodedTransactionData(new utils_1.BigNumber(1));
+                        assetData = order_utils_1.assetDataUtils.encodeStaticCallAssetData(staticCallTarget.address, staticCallData, contracts_test_utils_1.constants.KECCAK256_NULL);
+                        return [4 /*yield*/, orderFactory.newSignedOrderAsync({ makerAssetData: assetData })];
+                    case 1:
+                        signedOrder = _a.sent();
+                        return [4 /*yield*/, contracts_test_utils_1.expectTransactionFailedAsync(exchangeWrapper.fillOrderAsync(signedOrder, takerAddress), types_1.RevertReason.TargetNotEven)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        it('should fill the order if the staticcall is successful', function () { return __awaiter(_this, void 0, void 0, function () {
+            var staticCallData, assetData, initialMakerZrxBalance, initialTakerZrxBalance, initialFeeRecipientZrxBalance, initialMakerBalanceB, initialTakerBalanceB, finalMakerZrxBalance, finalTakerZrxBalance, finalFeeRecipientZrxBalance, finalMakerBalanceB, finalTakerBalanceB;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        staticCallData = staticCallTarget.assertEvenNumber.getABIEncodedTransactionData(contracts_test_utils_1.constants.ZERO_AMOUNT);
+                        assetData = order_utils_1.assetDataUtils.encodeStaticCallAssetData(staticCallTarget.address, staticCallData, contracts_test_utils_1.constants.KECCAK256_NULL);
+                        return [4 /*yield*/, orderFactory.newSignedOrderAsync({ makerAssetData: assetData })];
+                    case 1:
+                        signedOrder = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(makerAddress)];
+                    case 2:
+                        initialMakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(takerAddress)];
+                    case 3:
+                        initialTakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(feeRecipientAddress)];
+                    case 4:
+                        initialFeeRecipientZrxBalance = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(makerAddress)];
+                    case 5:
+                        initialMakerBalanceB = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(takerAddress)];
+                    case 6:
+                        initialTakerBalanceB = _a.sent();
+                        return [4 /*yield*/, exchangeWrapper.fillOrderAsync(signedOrder, takerAddress)];
+                    case 7:
+                        _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(makerAddress)];
+                    case 8:
+                        finalMakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(takerAddress)];
+                    case 9:
+                        finalTakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(feeRecipientAddress)];
+                    case 10:
+                        finalFeeRecipientZrxBalance = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(makerAddress)];
+                    case 11:
+                        finalMakerBalanceB = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(takerAddress)];
+                    case 12:
+                        finalTakerBalanceB = _a.sent();
+                        expect(finalMakerZrxBalance).to.bignumber.equal(initialMakerZrxBalance.minus(signedOrder.makerFee));
+                        expect(finalTakerZrxBalance).to.bignumber.equal(initialTakerZrxBalance.minus(signedOrder.takerFee));
+                        expect(finalFeeRecipientZrxBalance).to.bignumber.equal(initialFeeRecipientZrxBalance.plus(signedOrder.makerFee).plus(signedOrder.takerFee));
+                        expect(finalMakerBalanceB).to.bignumber.equal(initialMakerBalanceB.plus(signedOrder.takerAssetAmount));
+                        expect(finalTakerBalanceB).to.bignumber.equal(initialTakerBalanceB.minus(signedOrder.takerAssetAmount));
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        it('should revert if the staticcall is unsuccessful using the MultiAssetProxy', function () { return __awaiter(_this, void 0, void 0, function () {
+            var staticCallData, staticCallAssetData, assetData;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        staticCallData = staticCallTarget.assertEvenNumber.getABIEncodedTransactionData(new utils_1.BigNumber(1));
+                        staticCallAssetData = order_utils_1.assetDataUtils.encodeStaticCallAssetData(staticCallTarget.address, staticCallData, contracts_test_utils_1.constants.KECCAK256_NULL);
+                        assetData = order_utils_1.assetDataUtils.encodeMultiAssetData([new utils_1.BigNumber(1), new utils_1.BigNumber(1)], [order_utils_1.assetDataUtils.encodeERC20AssetData(defaultMakerAssetAddress), staticCallAssetData]);
+                        return [4 /*yield*/, orderFactory.newSignedOrderAsync({ makerAssetData: assetData })];
+                    case 1:
+                        signedOrder = _a.sent();
+                        return [4 /*yield*/, contracts_test_utils_1.expectTransactionFailedAsync(exchangeWrapper.fillOrderAsync(signedOrder, takerAddress), types_1.RevertReason.TargetNotEven)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        it('should fill the order is the staticcall is successful using the MultiAssetProxy', function () { return __awaiter(_this, void 0, void 0, function () {
+            var staticCallData, staticCallAssetData, assetData, initialMakerZrxBalance, initialTakerZrxBalance, initialFeeRecipientZrxBalance, initialMakerBalanceA, initialTakerBalanceA, initialMakerBalanceB, initialTakerBalanceB, finalMakerZrxBalance, finalTakerZrxBalance, finalFeeRecipientZrxBalance, finalMakerBalanceA, finalTakerBalanceA, finalMakerBalanceB, finalTakerBalanceB;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        staticCallData = staticCallTarget.assertEvenNumber.getABIEncodedTransactionData(contracts_test_utils_1.constants.ZERO_AMOUNT);
+                        staticCallAssetData = order_utils_1.assetDataUtils.encodeStaticCallAssetData(staticCallTarget.address, staticCallData, contracts_test_utils_1.constants.KECCAK256_NULL);
+                        assetData = order_utils_1.assetDataUtils.encodeMultiAssetData([new utils_1.BigNumber(1), new utils_1.BigNumber(1)], [order_utils_1.assetDataUtils.encodeERC20AssetData(defaultMakerAssetAddress), staticCallAssetData]);
+                        return [4 /*yield*/, orderFactory.newSignedOrderAsync({ makerAssetData: assetData })];
+                    case 1:
+                        signedOrder = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(makerAddress)];
+                    case 2:
+                        initialMakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(takerAddress)];
+                    case 3:
+                        initialTakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(feeRecipientAddress)];
+                    case 4:
+                        initialFeeRecipientZrxBalance = _a.sent();
+                        return [4 /*yield*/, erc20TokenA.balanceOf.callAsync(makerAddress)];
+                    case 5:
+                        initialMakerBalanceA = _a.sent();
+                        return [4 /*yield*/, erc20TokenA.balanceOf.callAsync(takerAddress)];
+                    case 6:
+                        initialTakerBalanceA = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(makerAddress)];
+                    case 7:
+                        initialMakerBalanceB = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(takerAddress)];
+                    case 8:
+                        initialTakerBalanceB = _a.sent();
+                        return [4 /*yield*/, exchangeWrapper.fillOrderAsync(signedOrder, takerAddress)];
+                    case 9:
+                        _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(makerAddress)];
+                    case 10:
+                        finalMakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(takerAddress)];
+                    case 11:
+                        finalTakerZrxBalance = _a.sent();
+                        return [4 /*yield*/, zrxToken.balanceOf.callAsync(feeRecipientAddress)];
+                    case 12:
+                        finalFeeRecipientZrxBalance = _a.sent();
+                        return [4 /*yield*/, erc20TokenA.balanceOf.callAsync(makerAddress)];
+                    case 13:
+                        finalMakerBalanceA = _a.sent();
+                        return [4 /*yield*/, erc20TokenA.balanceOf.callAsync(takerAddress)];
+                    case 14:
+                        finalTakerBalanceA = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(makerAddress)];
+                    case 15:
+                        finalMakerBalanceB = _a.sent();
+                        return [4 /*yield*/, erc20TokenB.balanceOf.callAsync(takerAddress)];
+                    case 16:
+                        finalTakerBalanceB = _a.sent();
+                        expect(finalMakerZrxBalance).to.bignumber.equal(initialMakerZrxBalance.minus(signedOrder.makerFee));
+                        expect(finalTakerZrxBalance).to.bignumber.equal(initialTakerZrxBalance.minus(signedOrder.takerFee));
+                        expect(finalFeeRecipientZrxBalance).to.bignumber.equal(initialFeeRecipientZrxBalance.plus(signedOrder.makerFee).plus(signedOrder.takerFee));
+                        expect(finalMakerBalanceA).to.bignumber.equal(initialMakerBalanceA.minus(signedOrder.makerAssetAmount));
+                        expect(finalTakerBalanceA).to.bignumber.equal(initialTakerBalanceA.plus(signedOrder.makerAssetAmount));
+                        expect(finalMakerBalanceB).to.bignumber.equal(initialMakerBalanceB.plus(signedOrder.takerAssetAmount));
+                        expect(finalTakerBalanceB).to.bignumber.equal(initialTakerBalanceB.minus(signedOrder.takerAssetAmount));
                         return [2 /*return*/];
                 }
             });

@@ -4,9 +4,14 @@ import { SimpleContractArtifact } from '@0x/types';
 export declare class WalletContract extends BaseContract {
     isValidSignature: {
         callAsync(hash: string, eip712Signature: string, callData?: Partial<CallData>, defaultBlock?: number | BlockParamLiteral | undefined): Promise<boolean>;
+        getABIEncodedTransactionData(hash: string, eip712Signature: string): string;
     };
     static deployFrom0xArtifactAsync(artifact: ContractArtifact | SimpleContractArtifact, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, walletOwner: string): Promise<WalletContract>;
     static deployAsync(bytecode: string, abi: ContractAbi, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, walletOwner: string): Promise<WalletContract>;
-    constructor(abi: ContractAbi, address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>);
+    /**
+     * @returns      The contract ABI
+     */
+    static ABI(): ContractAbi;
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>);
 }
 //# sourceMappingURL=wallet.d.ts.map

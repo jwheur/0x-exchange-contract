@@ -1,7 +1,8 @@
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 import { BaseContract, PromiseWithTransactionHash } from '@0x/base-contract';
+import { schemas } from '@0x/json-schemas';
 import {
     BlockParam,
     BlockParamLiteral,
@@ -18,6 +19,7 @@ import {
 import { BigNumber, classUtils, logUtils, providerUtils } from '@0x/utils';
 import { SimpleContractArtifact } from '@0x/types';
 import { Web3Wrapper } from '@0x/web3-wrapper';
+import { assert } from '@0x/assert';
 import * as ethers from 'ethers';
 // tslint:enable:no-unused-variable
 
@@ -51,87 +53,76 @@ export class ReentrantERC20TokenContract extends BaseContract {
         async sendTransactionAsync(
             _spender: string,
             _value: BigNumber,
-            txData: Partial<TxData> = {},
+        txData?: Partial<TxData> | undefined,
         ): Promise<string> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
+        assert.isString('_spender', _spender);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
     _value
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-                self.approve.estimateGasAsync.bind(
-                    self,
-                    _spender,
-                    _value
-                ),
-            );
-            const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
-            return txHash;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+            self.approve.estimateGasAsync.bind(
+                self,
+                _spender,
+                _value
+            ),
+        );
+        const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
+        return txHash;
         },
         awaitTransactionSuccessAsync(
             _spender: string,
             _value: BigNumber,
-            txData?: Partial<TxData> | number,
+            txData?: Partial<TxData>,
             pollingIntervalMs?: number,
             timeoutMs?: number,
         ): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs> {
-            // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-            if (typeof(txData) === 'number') {
-                pollingIntervalMs = txData;
-                timeoutMs = pollingIntervalMs;
-                txData = {};
-            }
-            //
-            const self = this as any as ReentrantERC20TokenContract;
-            const txHashPromise = self.approve.sendTransactionAsync(_spender,
+        assert.isString('_spender', _spender);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const txHashPromise = self.approve.sendTransactionAsync(_spender,
     _value
     , txData);
-            return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
-                txHashPromise,
-                (async (): Promise<TransactionReceiptWithDecodedLogs> => {
-                    // When the transaction hash resolves, wait for it to be mined.
-                    return self._web3Wrapper.awaitTransactionSuccessAsync(
-                        await txHashPromise,
-                        pollingIntervalMs,
-                        timeoutMs,
-                    );
-                })(),
-            );
+        return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
+            txHashPromise,
+            (async (): Promise<TransactionReceiptWithDecodedLogs> => {
+                // When the transaction hash resolves, wait for it to be mined.
+                return self._web3Wrapper.awaitTransactionSuccessAsync(
+                    await txHashPromise,
+                    pollingIntervalMs,
+                    timeoutMs,
+                );
+            })(),
+        );
         },
         async estimateGasAsync(
             _spender: string,
             _value: BigNumber,
-            txData: Partial<TxData> = {},
+            txData?: Partial<TxData> | undefined,
         ): Promise<number> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
+        assert.isString('_spender', _spender);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
     _value
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-            );
-            const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
-            return gas;
-        },
-        getABIEncodedTransactionData(
-            _spender: string,
-            _value: BigNumber,
-        ): string {
-            const self = this as any as ReentrantERC20TokenContract;
-            const abiEncodedTransactionData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
-    _value
-    ]);
-            return abiEncodedTransactionData;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+        );
+        const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
+        return gas;
         },
         async callAsync(
             _spender: string,
@@ -140,6 +131,16 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<boolean
         > {
+            assert.isString('_spender', _spender);
+            assert.isBigNumber('_value', _value);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
         _value
@@ -161,6 +162,18 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                _spender: string,
+                _value: BigNumber,
+            ): string {
+            assert.isString('_spender', _spender);
+            assert.isBigNumber('_value', _value);
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('approve(address,uint256)', [_spender,
+        _value
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public totalSupply = {
         async callAsync(
@@ -168,6 +181,14 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<BigNumber
         > {
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('totalSupply()', []);
             const callDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
@@ -187,101 +208,97 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+            ): string {
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('totalSupply()', []);
+            return abiEncodedTransactionData;
+        },
     };
     public transferFrom = {
         async sendTransactionAsync(
             _from: string,
             _to: string,
             _value: BigNumber,
-            txData: Partial<TxData> = {},
+        txData?: Partial<TxData> | undefined,
         ): Promise<string> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
+        assert.isString('_from', _from);
+        assert.isString('_to', _to);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
     _to,
     _value
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-                self.transferFrom.estimateGasAsync.bind(
-                    self,
-                    _from,
-                    _to,
-                    _value
-                ),
-            );
-            const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
-            return txHash;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+            self.transferFrom.estimateGasAsync.bind(
+                self,
+                _from,
+                _to,
+                _value
+            ),
+        );
+        const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
+        return txHash;
         },
         awaitTransactionSuccessAsync(
             _from: string,
             _to: string,
             _value: BigNumber,
-            txData?: Partial<TxData> | number,
+            txData?: Partial<TxData>,
             pollingIntervalMs?: number,
             timeoutMs?: number,
         ): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs> {
-            // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-            if (typeof(txData) === 'number') {
-                pollingIntervalMs = txData;
-                timeoutMs = pollingIntervalMs;
-                txData = {};
-            }
-            //
-            const self = this as any as ReentrantERC20TokenContract;
-            const txHashPromise = self.transferFrom.sendTransactionAsync(_from,
+        assert.isString('_from', _from);
+        assert.isString('_to', _to);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const txHashPromise = self.transferFrom.sendTransactionAsync(_from,
     _to,
     _value
     , txData);
-            return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
-                txHashPromise,
-                (async (): Promise<TransactionReceiptWithDecodedLogs> => {
-                    // When the transaction hash resolves, wait for it to be mined.
-                    return self._web3Wrapper.awaitTransactionSuccessAsync(
-                        await txHashPromise,
-                        pollingIntervalMs,
-                        timeoutMs,
-                    );
-                })(),
-            );
+        return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
+            txHashPromise,
+            (async (): Promise<TransactionReceiptWithDecodedLogs> => {
+                // When the transaction hash resolves, wait for it to be mined.
+                return self._web3Wrapper.awaitTransactionSuccessAsync(
+                    await txHashPromise,
+                    pollingIntervalMs,
+                    timeoutMs,
+                );
+            })(),
+        );
         },
         async estimateGasAsync(
             _from: string,
             _to: string,
             _value: BigNumber,
-            txData: Partial<TxData> = {},
+            txData?: Partial<TxData> | undefined,
         ): Promise<number> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
+        assert.isString('_from', _from);
+        assert.isString('_to', _to);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
     _to,
     _value
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-            );
-            const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
-            return gas;
-        },
-        getABIEncodedTransactionData(
-            _from: string,
-            _to: string,
-            _value: BigNumber,
-        ): string {
-            const self = this as any as ReentrantERC20TokenContract;
-            const abiEncodedTransactionData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
-    _to,
-    _value
-    ]);
-            return abiEncodedTransactionData;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+        );
+        const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
+        return gas;
         },
         async callAsync(
             _from: string,
@@ -291,6 +308,17 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<boolean
         > {
+            assert.isString('_from', _from);
+            assert.isString('_to', _to);
+            assert.isBigNumber('_value', _value);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
         _to,
@@ -313,6 +341,21 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                _from: string,
+                _to: string,
+                _value: BigNumber,
+            ): string {
+            assert.isString('_from', _from);
+            assert.isString('_to', _to);
+            assert.isBigNumber('_value', _value);
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('transferFrom(address,address,uint256)', [_from,
+        _to,
+        _value
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public balanceOf = {
         async callAsync(
@@ -321,6 +364,15 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<BigNumber
         > {
+            assert.isString('_owner', _owner);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('balanceOf(address)', [_owner
         ]);
@@ -341,92 +393,90 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                _owner: string,
+            ): string {
+            assert.isString('_owner', _owner);
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('balanceOf(address)', [_owner
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public transfer = {
         async sendTransactionAsync(
             _to: string,
             _value: BigNumber,
-            txData: Partial<TxData> = {},
+        txData?: Partial<TxData> | undefined,
         ): Promise<string> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
+        assert.isString('_to', _to);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
     _value
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-                self.transfer.estimateGasAsync.bind(
-                    self,
-                    _to,
-                    _value
-                ),
-            );
-            const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
-            return txHash;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+            self.transfer.estimateGasAsync.bind(
+                self,
+                _to,
+                _value
+            ),
+        );
+        const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
+        return txHash;
         },
         awaitTransactionSuccessAsync(
             _to: string,
             _value: BigNumber,
-            txData?: Partial<TxData> | number,
+            txData?: Partial<TxData>,
             pollingIntervalMs?: number,
             timeoutMs?: number,
         ): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs> {
-            // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-            if (typeof(txData) === 'number') {
-                pollingIntervalMs = txData;
-                timeoutMs = pollingIntervalMs;
-                txData = {};
-            }
-            //
-            const self = this as any as ReentrantERC20TokenContract;
-            const txHashPromise = self.transfer.sendTransactionAsync(_to,
+        assert.isString('_to', _to);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const txHashPromise = self.transfer.sendTransactionAsync(_to,
     _value
     , txData);
-            return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
-                txHashPromise,
-                (async (): Promise<TransactionReceiptWithDecodedLogs> => {
-                    // When the transaction hash resolves, wait for it to be mined.
-                    return self._web3Wrapper.awaitTransactionSuccessAsync(
-                        await txHashPromise,
-                        pollingIntervalMs,
-                        timeoutMs,
-                    );
-                })(),
-            );
+        return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
+            txHashPromise,
+            (async (): Promise<TransactionReceiptWithDecodedLogs> => {
+                // When the transaction hash resolves, wait for it to be mined.
+                return self._web3Wrapper.awaitTransactionSuccessAsync(
+                    await txHashPromise,
+                    pollingIntervalMs,
+                    timeoutMs,
+                );
+            })(),
+        );
         },
         async estimateGasAsync(
             _to: string,
             _value: BigNumber,
-            txData: Partial<TxData> = {},
+            txData?: Partial<TxData> | undefined,
         ): Promise<number> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
+        assert.isString('_to', _to);
+        assert.isBigNumber('_value', _value);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
     _value
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-            );
-            const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
-            return gas;
-        },
-        getABIEncodedTransactionData(
-            _to: string,
-            _value: BigNumber,
-        ): string {
-            const self = this as any as ReentrantERC20TokenContract;
-            const abiEncodedTransactionData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
-    _value
-    ]);
-            return abiEncodedTransactionData;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+        );
+        const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
+        return gas;
         },
         async callAsync(
             _to: string,
@@ -435,6 +485,16 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<boolean
         > {
+            assert.isString('_to', _to);
+            assert.isBigNumber('_value', _value);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
         _value
@@ -456,83 +516,83 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                _to: string,
+                _value: BigNumber,
+            ): string {
+            assert.isString('_to', _to);
+            assert.isBigNumber('_value', _value);
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('transfer(address,uint256)', [_to,
+        _value
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public setCurrentFunction = {
         async sendTransactionAsync(
             _currentFunctionId: number|BigNumber,
-            txData: Partial<TxData> = {},
+        txData?: Partial<TxData> | undefined,
         ): Promise<string> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
+        assert.isNumberOrBigNumber('_currentFunctionId', _currentFunctionId);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-                self.setCurrentFunction.estimateGasAsync.bind(
-                    self,
-                    _currentFunctionId
-                ),
-            );
-            const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
-            return txHash;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+            self.setCurrentFunction.estimateGasAsync.bind(
+                self,
+                _currentFunctionId
+            ),
+        );
+        const txHash = await self._web3Wrapper.sendTransactionAsync(txDataWithDefaults);
+        return txHash;
         },
         awaitTransactionSuccessAsync(
             _currentFunctionId: number|BigNumber,
-            txData?: Partial<TxData> | number,
+            txData?: Partial<TxData>,
             pollingIntervalMs?: number,
             timeoutMs?: number,
         ): PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs> {
-            // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-            if (typeof(txData) === 'number') {
-                pollingIntervalMs = txData;
-                timeoutMs = pollingIntervalMs;
-                txData = {};
-            }
-            //
-            const self = this as any as ReentrantERC20TokenContract;
-            const txHashPromise = self.setCurrentFunction.sendTransactionAsync(_currentFunctionId
+        assert.isNumberOrBigNumber('_currentFunctionId', _currentFunctionId);
+        const self = this as any as ReentrantERC20TokenContract;
+        const txHashPromise = self.setCurrentFunction.sendTransactionAsync(_currentFunctionId
     , txData);
-            return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
-                txHashPromise,
-                (async (): Promise<TransactionReceiptWithDecodedLogs> => {
-                    // When the transaction hash resolves, wait for it to be mined.
-                    return self._web3Wrapper.awaitTransactionSuccessAsync(
-                        await txHashPromise,
-                        pollingIntervalMs,
-                        timeoutMs,
-                    );
-                })(),
-            );
+        return new PromiseWithTransactionHash<TransactionReceiptWithDecodedLogs>(
+            txHashPromise,
+            (async (): Promise<TransactionReceiptWithDecodedLogs> => {
+                // When the transaction hash resolves, wait for it to be mined.
+                return self._web3Wrapper.awaitTransactionSuccessAsync(
+                    await txHashPromise,
+                    pollingIntervalMs,
+                    timeoutMs,
+                );
+            })(),
+        );
         },
         async estimateGasAsync(
             _currentFunctionId: number|BigNumber,
-            txData: Partial<TxData> = {},
+            txData?: Partial<TxData> | undefined,
         ): Promise<number> {
-            const self = this as any as ReentrantERC20TokenContract;
-            const encodedData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
+        assert.isNumberOrBigNumber('_currentFunctionId', _currentFunctionId);
+        const self = this as any as ReentrantERC20TokenContract;
+        const encodedData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
     ]);
-            const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
-                {
-                    to: self.address,
-                    ...txData,
-                    data: encodedData,
-                },
-                self._web3Wrapper.getContractDefaults(),
-            );
-            const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
-            return gas;
-        },
-        getABIEncodedTransactionData(
-            _currentFunctionId: number|BigNumber,
-        ): string {
-            const self = this as any as ReentrantERC20TokenContract;
-            const abiEncodedTransactionData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
-    ]);
-            return abiEncodedTransactionData;
+        const txDataWithDefaults = await BaseContract._applyDefaultsToTxDataAsync(
+            {
+                to: self.address,
+                ...txData,
+                data: encodedData,
+            },
+            self._web3Wrapper.getContractDefaults(),
+        );
+        const gas = await self._web3Wrapper.estimateGasAsync(txDataWithDefaults);
+        return gas;
         },
         async callAsync(
             _currentFunctionId: number|BigNumber,
@@ -540,6 +600,15 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<void
         > {
+            assert.isNumberOrBigNumber('_currentFunctionId', _currentFunctionId);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
         ]);
@@ -560,6 +629,15 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                _currentFunctionId: number|BigNumber,
+            ): string {
+            assert.isNumberOrBigNumber('_currentFunctionId', _currentFunctionId);
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('setCurrentFunction(uint8)', [_currentFunctionId
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public allowance = {
         async callAsync(
@@ -569,6 +647,16 @@ export class ReentrantERC20TokenContract extends BaseContract {
             defaultBlock?: BlockParam,
         ): Promise<BigNumber
         > {
+            assert.isString('_owner', _owner);
+            assert.isString('_spender', _spender);
+            assert.doesConformToSchema('callData', callData, schemas.callDataSchema, [
+                schemas.addressSchema,
+                schemas.numberSchema,
+                schemas.jsNumber,
+            ]);
+            if (defaultBlock !== undefined) {
+                assert.isBlockParam('defaultBlock', defaultBlock);
+            }
             const self = this as any as ReentrantERC20TokenContract;
             const encodedData = self._strictEncodeArguments('allowance(address,address)', [_owner,
         _spender
@@ -590,6 +678,18 @@ export class ReentrantERC20TokenContract extends BaseContract {
             // tslint:enable boolean-naming
             return result;
         },
+        getABIEncodedTransactionData(
+                _owner: string,
+                _spender: string,
+            ): string {
+            assert.isString('_owner', _owner);
+            assert.isString('_spender', _spender);
+            const self = this as any as ReentrantERC20TokenContract;
+            const abiEncodedTransactionData = self._strictEncodeArguments('allowance(address,address)', [_owner,
+        _spender
+        ]);
+            return abiEncodedTransactionData;
+        },
     };
     public static async deployFrom0xArtifactAsync(
         artifact: ContractArtifact | SimpleContractArtifact,
@@ -597,6 +697,11 @@ export class ReentrantERC20TokenContract extends BaseContract {
         txDefaults: Partial<TxData>,
             _exchange: string,
     ): Promise<ReentrantERC20TokenContract> {
+        assert.doesConformToSchema('txDefaults', txDefaults, schemas.txDataSchema, [
+            schemas.addressSchema,
+            schemas.numberSchema,
+            schemas.jsNumber,
+        ]);
         if (artifact.compilerOutput === undefined) {
             throw new Error('Compiler output not found in the artifact file');
         }
@@ -613,6 +718,12 @@ export class ReentrantERC20TokenContract extends BaseContract {
         txDefaults: Partial<TxData>,
             _exchange: string,
     ): Promise<ReentrantERC20TokenContract> {
+        assert.isHexString('bytecode', bytecode);
+        assert.doesConformToSchema('txDefaults', txDefaults, schemas.txDataSchema, [
+            schemas.addressSchema,
+            schemas.numberSchema,
+            schemas.jsNumber,
+        ]);
         const provider = providerUtils.standardizeOrThrow(supportedProvider);
         const constructorAbi = BaseContract._lookupConstructorAbi(abi);
         [_exchange
@@ -636,14 +747,251 @@ export class ReentrantERC20TokenContract extends BaseContract {
         logUtils.log(`transactionHash: ${txHash}`);
         const txReceipt = await web3Wrapper.awaitTransactionSuccessAsync(txHash);
         logUtils.log(`ReentrantERC20Token successfully deployed at ${txReceipt.contractAddress}`);
-        const contractInstance = new ReentrantERC20TokenContract(abi, txReceipt.contractAddress as string, provider, txDefaults);
+        const contractInstance = new ReentrantERC20TokenContract(txReceipt.contractAddress as string, provider, txDefaults);
         contractInstance.constructorArgs = [_exchange
 ];
         return contractInstance;
     }
-    constructor(abi: ContractAbi, address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>) {
-        super('ReentrantERC20Token', abi, address, supportedProvider, txDefaults);
-        classUtils.bindAll(this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+
+
+    /**
+     * @returns      The contract ABI
+     */
+    public static ABI(): ContractAbi {
+        const abi = [
+            { 
+                constant: false,
+                inputs: [
+                    {
+                        name: '_spender',
+                        type: 'address',
+                        
+                    },
+                    {
+                        name: '_value',
+                        type: 'uint256',
+                        
+                    },
+                ],
+                name: 'approve',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            { 
+                constant: true,
+                inputs: [
+                ],
+                name: 'totalSupply',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'uint256',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            { 
+                constant: false,
+                inputs: [
+                    {
+                        name: '_from',
+                        type: 'address',
+                        
+                    },
+                    {
+                        name: '_to',
+                        type: 'address',
+                        
+                    },
+                    {
+                        name: '_value',
+                        type: 'uint256',
+                        
+                    },
+                ],
+                name: 'transferFrom',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            { 
+                constant: true,
+                inputs: [
+                    {
+                        name: '_owner',
+                        type: 'address',
+                        
+                    },
+                ],
+                name: 'balanceOf',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'uint256',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            { 
+                constant: false,
+                inputs: [
+                    {
+                        name: '_to',
+                        type: 'address',
+                        
+                    },
+                    {
+                        name: '_value',
+                        type: 'uint256',
+                        
+                    },
+                ],
+                name: 'transfer',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            { 
+                constant: false,
+                inputs: [
+                    {
+                        name: '_currentFunctionId',
+                        type: 'uint8',
+                        
+                    },
+                ],
+                name: 'setCurrentFunction',
+                outputs: [
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            { 
+                constant: true,
+                inputs: [
+                    {
+                        name: '_owner',
+                        type: 'address',
+                        
+                    },
+                    {
+                        name: '_spender',
+                        type: 'address',
+                        
+                    },
+                ],
+                name: 'allowance',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'uint256',
+                        
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            { 
+                inputs: [
+                    {
+                        name: '_exchange',
+                        type: 'address',
+                        
+                    },
+                ],
+                outputs: [
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'constructor',
+            },
+            { 
+                anonymous: false,
+                inputs: [
+                    {
+                        name: '_from',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: '_to',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: '_value',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                ],
+                name: 'Transfer',
+                outputs: [
+                ],
+                type: 'event',
+            },
+            { 
+                anonymous: false,
+                inputs: [
+                    {
+                        name: '_owner',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: '_spender',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: '_value',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                ],
+                name: 'Approval',
+                outputs: [
+                ],
+                type: 'event',
+            },
+        ] as ContractAbi;
+        return abi;
     }
-} // tslint:disable:max-file-line-count
-// tslint:enable:no-unbound-method
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>) {
+        super('ReentrantERC20Token', ReentrantERC20TokenContract.ABI(), address, supportedProvider, txDefaults);
+        classUtils.bindAll(this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
+    }
+} 
+
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace

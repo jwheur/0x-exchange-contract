@@ -59,12 +59,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma
+// tslint:disable:whitespace no-unbound-method no-trailing-whitespace
 // tslint:disable:no-unused-variable
-// tslint:disable:no-unbound-method
 var base_contract_1 = require("@0x/base-contract");
+var json_schemas_1 = require("@0x/json-schemas");
 var utils_1 = require("@0x/utils");
 var web3_wrapper_1 = require("@0x/web3-wrapper");
+var assert_1 = require("@0x/assert");
 var ethers = require("ethers");
 var TestExchangeInternalsEvents;
 (function (TestExchangeInternalsEvents) {
@@ -79,8 +81,8 @@ var TestExchangeInternalsEvents;
 // tslint:disable-next-line:class-name
 var TestExchangeInternalsContract = /** @class */ (function (_super) {
     __extends(TestExchangeInternalsContract, _super);
-    function TestExchangeInternalsContract(abi, address, supportedProvider, txDefaults) {
-        var _this = _super.call(this, 'TestExchangeInternals', abi, address, supportedProvider, txDefaults) || this;
+    function TestExchangeInternalsContract(address, supportedProvider, txDefaults) {
+        var _this = _super.call(this, 'TestExchangeInternals', TestExchangeInternalsContract.ABI(), address, supportedProvider, txDefaults) || this;
         _this.publicIsRoundingErrorFloor = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
@@ -89,6 +91,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicIsRoundingErrorFloor(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -109,15 +122,28 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicIsRoundingErrorFloor(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicUpdateFilledState = {
             sendTransactionAsync: function (order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('takerAddress', takerAddress);
+                                assert_1.assert.isString('orderHash', orderHash);
+                                assert_1.assert.isBigNumber('orderTakerAssetFilledAmount', orderTakerAssetFilledAmount);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicUpdateFilledState((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),address,bytes32,uint256,(uint256,uint256,uint256,uint256))', [order,
                                     takerAddress,
@@ -138,13 +164,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('takerAddress', takerAddress);
+                assert_1.assert.isString('orderHash', orderHash);
+                assert_1.assert.isBigNumber('orderTakerAssetFilledAmount', orderTakerAssetFilledAmount);
                 var self = this;
                 var txHashPromise = self.publicUpdateFilledState.sendTransactionAsync(order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -164,12 +186,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('takerAddress', takerAddress);
+                                assert_1.assert.isString('orderHash', orderHash);
+                                assert_1.assert.isBigNumber('orderTakerAssetFilledAmount', orderTakerAssetFilledAmount);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicUpdateFilledState((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),address,bytes32,uint256,(uint256,uint256,uint256,uint256))', [order,
                                     takerAddress,
@@ -188,16 +212,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('publicUpdateFilledState((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),address,bytes32,uint256,(uint256,uint256,uint256,uint256))', [order,
-                    takerAddress,
-                    orderHash,
-                    orderTakerAssetFilledAmount,
-                    fillResults
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -205,6 +219,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('takerAddress', takerAddress);
+                                assert_1.assert.isString('orderHash', orderHash);
+                                assert_1.assert.isBigNumber('orderTakerAssetFilledAmount', orderTakerAssetFilledAmount);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicUpdateFilledState((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),address,bytes32,uint256,(uint256,uint256,uint256,uint256))', [order,
                                     takerAddress,
@@ -227,6 +252,19 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAddress, orderHash, orderTakerAssetFilledAmount, fillResults) {
+                assert_1.assert.isString('takerAddress', takerAddress);
+                assert_1.assert.isString('orderHash', orderHash);
+                assert_1.assert.isBigNumber('orderTakerAssetFilledAmount', orderTakerAssetFilledAmount);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicUpdateFilledState((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),address,bytes32,uint256,(uint256,uint256,uint256,uint256))', [order,
+                    takerAddress,
+                    orderHash,
+                    orderTakerAssetFilledAmount,
+                    fillResults
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicGetPartialAmountCeil = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -236,6 +274,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicGetPartialAmountCeil(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -256,6 +305,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicGetPartialAmountCeil(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.filled = {
             callAsync: function (index_0, callData, defaultBlock) {
@@ -265,6 +325,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('filled(bytes32)', [index_0
                                 ]);
@@ -283,15 +352,24 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('filled(bytes32)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchFillOrders = {
             sendTransactionAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -310,13 +388,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmounts, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.batchFillOrders.sendTransactionAsync(orders, takerAssetFillAmounts, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -336,12 +410,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -358,14 +434,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
-                    takerAssetFillAmounts,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmounts, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -373,6 +441,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -393,6 +472,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
+                    takerAssetFillAmounts,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.cancelled = {
             callAsync: function (index_0, callData, defaultBlock) {
@@ -402,6 +492,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('cancelled(bytes32)', [index_0
                                 ]);
@@ -420,15 +519,24 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('cancelled(bytes32)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.preSign = {
             sendTransactionAsync: function (hash, signerAddress, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -447,13 +555,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (hash, signerAddress, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.preSign.sendTransactionAsync(hash, signerAddress, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -473,12 +577,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (hash, signerAddress, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -495,14 +601,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
-                    signerAddress,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (hash, signerAddress, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -510,6 +608,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -530,15 +639,27 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('preSign(bytes32,address,bytes)', [hash,
+                    signerAddress,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.matchOrders = {
             sendTransactionAsync: function (leftOrder, rightOrder, leftSignature, rightSignature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('leftSignature', leftSignature);
+                                assert_1.assert.isString('rightSignature', rightSignature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)', [leftOrder,
                                     rightOrder,
@@ -558,13 +679,8 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (leftOrder, rightOrder, leftSignature, rightSignature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('leftSignature', leftSignature);
+                assert_1.assert.isString('rightSignature', rightSignature);
                 var self = this;
                 var txHashPromise = self.matchOrders.sendTransactionAsync(leftOrder, rightOrder, leftSignature, rightSignature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -584,12 +700,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (leftOrder, rightOrder, leftSignature, rightSignature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('leftSignature', leftSignature);
+                                assert_1.assert.isString('rightSignature', rightSignature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)', [leftOrder,
                                     rightOrder,
@@ -607,15 +724,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (leftOrder, rightOrder, leftSignature, rightSignature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)', [leftOrder,
-                    rightOrder,
-                    leftSignature,
-                    rightSignature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (leftOrder, rightOrder, leftSignature, rightSignature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -623,6 +731,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('leftSignature', leftSignature);
+                                assert_1.assert.isString('rightSignature', rightSignature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)', [leftOrder,
                                     rightOrder,
@@ -644,15 +762,27 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (leftOrder, rightOrder, leftSignature, rightSignature) {
+                assert_1.assert.isString('leftSignature', leftSignature);
+                assert_1.assert.isString('rightSignature', rightSignature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)', [leftOrder,
+                    rightOrder,
+                    leftSignature,
+                    rightSignature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.fillOrderNoThrow = {
             sendTransactionAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -671,13 +801,8 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAssetFillAmount, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.fillOrderNoThrow.sendTransactionAsync(order, takerAssetFillAmount, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -697,12 +822,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -719,14 +845,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
-                    takerAssetFillAmount,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAssetFillAmount, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -734,6 +852,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -754,6 +882,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.assetProxies = {
             callAsync: function (index_0, callData, defaultBlock) {
@@ -763,6 +901,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('assetProxies(bytes4)', [index_0
                                 ]);
@@ -781,15 +928,22 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('assetProxies(bytes4)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchCancelOrders = {
             sendTransactionAsync: function (orders, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -806,13 +960,7 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
                 var self = this;
                 var txHashPromise = self.batchCancelOrders.sendTransactionAsync(orders, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -832,12 +980,12 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -852,12 +1000,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -865,6 +1007,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -883,15 +1034,24 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders) {
+                assert_1.assert.isArray('orders', orders);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchFillOrKillOrders = {
             sendTransactionAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -910,13 +1070,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmounts, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.batchFillOrKillOrders.sendTransactionAsync(orders, takerAssetFillAmounts, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -936,12 +1092,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -958,14 +1116,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
-                    takerAssetFillAmounts,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmounts, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -973,6 +1123,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -993,15 +1154,26 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
+                    takerAssetFillAmounts,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.cancelOrdersUpTo = {
             sendTransactionAsync: function (targetOrderEpoch, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('targetOrderEpoch', targetOrderEpoch);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('cancelOrdersUpTo(uint256)', [targetOrderEpoch
                                 ]);
@@ -1018,13 +1190,7 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (targetOrderEpoch, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('targetOrderEpoch', targetOrderEpoch);
                 var self = this;
                 var txHashPromise = self.cancelOrdersUpTo.sendTransactionAsync(targetOrderEpoch, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1044,12 +1210,12 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (targetOrderEpoch, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('targetOrderEpoch', targetOrderEpoch);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('cancelOrdersUpTo(uint256)', [targetOrderEpoch
                                 ]);
@@ -1064,12 +1230,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (targetOrderEpoch) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('cancelOrdersUpTo(uint256)', [targetOrderEpoch
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (targetOrderEpoch, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1077,6 +1237,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('targetOrderEpoch', targetOrderEpoch);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('cancelOrdersUpTo(uint256)', [targetOrderEpoch
                                 ]);
@@ -1095,15 +1264,24 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (targetOrderEpoch) {
+                assert_1.assert.isBigNumber('targetOrderEpoch', targetOrderEpoch);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('cancelOrdersUpTo(uint256)', [targetOrderEpoch
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.batchFillOrdersNoThrow = {
             sendTransactionAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -1122,13 +1300,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmounts, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.batchFillOrdersNoThrow.sendTransactionAsync(orders, takerAssetFillAmounts, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1148,12 +1322,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmounts, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -1170,14 +1346,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
-                    takerAssetFillAmounts,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmounts, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1185,6 +1353,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
                                     takerAssetFillAmounts,
@@ -1205,6 +1384,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmounts, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isArray('takerAssetFillAmounts', takerAssetFillAmounts);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])', [orders,
+                    takerAssetFillAmounts,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getAssetProxy = {
             callAsync: function (assetProxyId, callData, defaultBlock) {
@@ -1214,6 +1404,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxyId', assetProxyId);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getAssetProxy(bytes4)', [assetProxyId
                                 ]);
@@ -1232,6 +1431,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetProxyId) {
+                assert_1.assert.isString('assetProxyId', assetProxyId);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getAssetProxy(bytes4)', [assetProxyId
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.transactions = {
             callAsync: function (index_0, callData, defaultBlock) {
@@ -1241,6 +1447,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transactions(bytes32)', [index_0
                                 ]);
@@ -1259,15 +1474,23 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0) {
+                assert_1.assert.isString('index_0', index_0);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('transactions(bytes32)', [index_0
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.fillOrKillOrder = {
             sendTransactionAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -1286,13 +1509,8 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAssetFillAmount, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.fillOrKillOrder.sendTransactionAsync(order, takerAssetFillAmount, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1312,12 +1530,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -1334,14 +1553,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
-                    takerAssetFillAmount,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAssetFillAmount, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1349,6 +1560,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -1369,6 +1590,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicAddFillResults = {
             callAsync: function (totalFillResults, singleFillResults, callData, defaultBlock) {
@@ -1378,6 +1609,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicAddFillResults((uint256,uint256,uint256,uint256),(uint256,uint256,uint256,uint256))', [totalFillResults,
                                     singleFillResults
@@ -1397,6 +1636,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (totalFillResults, singleFillResults) {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicAddFillResults((uint256,uint256,uint256,uint256),(uint256,uint256,uint256,uint256))', [totalFillResults,
+                    singleFillResults
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicIsRoundingErrorCeil = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -1406,6 +1652,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicIsRoundingErrorCeil(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -1426,15 +1683,27 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicIsRoundingErrorCeil(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.setSignatureValidatorApproval = {
             sendTransactionAsync: function (validatorAddress, approval, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('validatorAddress', validatorAddress);
+                                assert_1.assert.isBoolean('approval', approval);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
                                     approval
@@ -1452,13 +1721,8 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (validatorAddress, approval, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('validatorAddress', validatorAddress);
+                assert_1.assert.isBoolean('approval', approval);
                 var self = this;
                 var txHashPromise = self.setSignatureValidatorApproval.sendTransactionAsync(validatorAddress, approval, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1478,12 +1742,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (validatorAddress, approval, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('validatorAddress', validatorAddress);
+                                assert_1.assert.isBoolean('approval', approval);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
                                     approval
@@ -1499,13 +1764,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (validatorAddress, approval) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
-                    approval
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (validatorAddress, approval, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1513,6 +1771,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('validatorAddress', validatorAddress);
+                                assert_1.assert.isBoolean('approval', approval);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
                                     approval
@@ -1532,6 +1800,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (validatorAddress, approval) {
+                assert_1.assert.isString('validatorAddress', validatorAddress);
+                assert_1.assert.isBoolean('approval', approval);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('setSignatureValidatorApproval(address,bool)', [validatorAddress,
+                    approval
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.allowedValidators = {
             callAsync: function (index_0, index_1, callData, defaultBlock) {
@@ -1541,6 +1818,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.isString('index_1', index_1);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('allowedValidators(address,address)', [index_0,
                                     index_1
@@ -1560,15 +1847,26 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0, index_1) {
+                assert_1.assert.isString('index_0', index_0);
+                assert_1.assert.isString('index_1', index_1);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('allowedValidators(address,address)', [index_0,
+                    index_1
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketSellOrders = {
             sendTransactionAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -1587,13 +1885,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketSellOrders.sendTransactionAsync(orders, takerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1613,12 +1907,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -1635,14 +1931,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    takerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1650,6 +1938,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -1670,6 +1969,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    takerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getOrdersInfo = {
             callAsync: function (orders, callData, defaultBlock) {
@@ -1679,6 +1989,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getOrdersInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
                                 ]);
@@ -1697,6 +2016,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders) {
+                assert_1.assert.isArray('orders', orders);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getOrdersInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])', [orders
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.preSigned = {
             callAsync: function (index_0, index_1, callData, defaultBlock) {
@@ -1706,6 +2032,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.isString('index_1', index_1);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('preSigned(bytes32,address)', [index_0,
                                     index_1
@@ -1725,6 +2061,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0, index_1) {
+                assert_1.assert.isString('index_0', index_0);
+                assert_1.assert.isString('index_1', index_1);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('preSigned(bytes32,address)', [index_0,
+                    index_1
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.owner = {
             callAsync: function (callData, defaultBlock) {
@@ -1734,6 +2079,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('owner()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -1751,6 +2104,11 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('owner()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.isValidSignature = {
             callAsync: function (hash, signerAddress, signature, callData, defaultBlock) {
@@ -1760,6 +2118,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('hash', hash);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
                                     signerAddress,
@@ -1780,15 +2149,28 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (hash, signerAddress, signature) {
+                assert_1.assert.isString('hash', hash);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('isValidSignature(bytes32,address,bytes)', [hash,
+                    signerAddress,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketBuyOrdersNoThrow = {
             sendTransactionAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -1807,13 +2189,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, makerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketBuyOrdersNoThrow.sendTransactionAsync(orders, makerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1833,12 +2211,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -1855,14 +2235,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    makerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, makerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1870,6 +2242,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -1890,15 +2273,27 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    makerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.fillOrder = {
             sendTransactionAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -1917,13 +2312,8 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, takerAssetFillAmount, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.fillOrder.sendTransactionAsync(order, takerAssetFillAmount, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1943,12 +2333,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, takerAssetFillAmount, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -1965,14 +2356,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
-                    takerAssetFillAmount,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, takerAssetFillAmount, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -1980,6 +2363,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
                                     takerAssetFillAmount,
@@ -2000,6 +2393,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFillAmount, signature) {
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)', [order,
+                    takerAssetFillAmount,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicGetPartialAmountFloor = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -2009,6 +2412,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicGetPartialAmountFloor(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -2029,15 +2443,29 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicGetPartialAmountFloor(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.executeTransaction = {
             sendTransactionAsync: function (salt, signerAddress, data, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('data', data);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
                                     signerAddress,
@@ -2057,13 +2485,10 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (salt, signerAddress, data, signature, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isBigNumber('salt', salt);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('data', data);
+                assert_1.assert.isString('signature', signature);
                 var self = this;
                 var txHashPromise = self.executeTransaction.sendTransactionAsync(salt, signerAddress, data, signature, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -2083,12 +2508,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (salt, signerAddress, data, signature, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('data', data);
+                                assert_1.assert.isString('signature', signature);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
                                     signerAddress,
@@ -2106,15 +2534,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (salt, signerAddress, data, signature) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
-                    signerAddress,
-                    data,
-                    signature
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (salt, signerAddress, data, signature, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -2122,6 +2541,18 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('salt', salt);
+                                assert_1.assert.isString('signerAddress', signerAddress);
+                                assert_1.assert.isString('data', data);
+                                assert_1.assert.isString('signature', signature);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
                                     signerAddress,
@@ -2143,15 +2574,28 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (salt, signerAddress, data, signature) {
+                assert_1.assert.isBigNumber('salt', salt);
+                assert_1.assert.isString('signerAddress', signerAddress);
+                assert_1.assert.isString('data', data);
+                assert_1.assert.isString('signature', signature);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('executeTransaction(uint256,address,bytes,bytes)', [salt,
+                    signerAddress,
+                    data,
+                    signature
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.registerAssetProxy = {
             sendTransactionAsync: function (assetProxy, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -2168,13 +2612,7 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (assetProxy, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('assetProxy', assetProxy);
                 var self = this;
                 var txHashPromise = self.registerAssetProxy.sendTransactionAsync(assetProxy, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -2194,12 +2632,12 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (assetProxy, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -2214,12 +2652,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (assetProxy) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (assetProxy, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -2227,6 +2659,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('assetProxy', assetProxy);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
                                 ]);
@@ -2245,6 +2686,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (assetProxy) {
+                assert_1.assert.isString('assetProxy', assetProxy);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('registerAssetProxy(address)', [assetProxy
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.getOrderInfo = {
             callAsync: function (order, callData, defaultBlock) {
@@ -2254,6 +2702,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('getOrderInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
                                 ]);
@@ -2272,10 +2728,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order) {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('getOrderInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.cancelOrder = {
             sendTransactionAsync: function (order, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
@@ -2297,13 +2758,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (order, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
                 var self = this;
                 var txHashPromise = self.cancelOrder.sendTransactionAsync(order, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -2323,7 +2777,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (order, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
@@ -2343,12 +2796,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (order) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('cancelOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (order, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -2356,6 +2803,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('cancelOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
                                 ]);
@@ -2374,6 +2829,12 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order) {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('cancelOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))', [order
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.orderEpoch = {
             callAsync: function (index_0, index_1, callData, defaultBlock) {
@@ -2383,6 +2844,16 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('index_0', index_0);
+                                assert_1.assert.isString('index_1', index_1);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('orderEpoch(address,address)', [index_0,
                                     index_1
@@ -2402,6 +2873,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (index_0, index_1) {
+                assert_1.assert.isString('index_0', index_0);
+                assert_1.assert.isString('index_1', index_1);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('orderEpoch(address,address)', [index_0,
+                    index_1
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.ZRX_ASSET_DATA = {
             callAsync: function (callData, defaultBlock) {
@@ -2411,6 +2891,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('ZRX_ASSET_DATA()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -2428,15 +2916,22 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('ZRX_ASSET_DATA()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketSellOrdersNoThrow = {
             sendTransactionAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -2455,13 +2950,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, takerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketSellOrdersNoThrow.sendTransactionAsync(orders, takerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -2481,12 +2972,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, takerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -2503,14 +2996,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    takerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, takerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -2518,6 +3003,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     takerAssetFillAmount,
@@ -2538,6 +3034,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, takerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('takerAssetFillAmount', takerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    takerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicSafeGetPartialAmountFloor = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -2547,6 +3054,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicSafeGetPartialAmountFloor(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -2567,6 +3085,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicSafeGetPartialAmountFloor(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicSafeGetPartialAmountCeil = {
             callAsync: function (numerator, denominator, target, callData, defaultBlock) {
@@ -2576,6 +3105,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('numerator', numerator);
+                                assert_1.assert.isBigNumber('denominator', denominator);
+                                assert_1.assert.isBigNumber('target', target);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicSafeGetPartialAmountCeil(uint256,uint256,uint256)', [numerator,
                                     denominator,
@@ -2596,6 +3136,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (numerator, denominator, target) {
+                assert_1.assert.isBigNumber('numerator', numerator);
+                assert_1.assert.isBigNumber('denominator', denominator);
+                assert_1.assert.isBigNumber('target', target);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicSafeGetPartialAmountCeil(uint256,uint256,uint256)', [numerator,
+                    denominator,
+                    target
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.publicCalculateFillResults = {
             callAsync: function (order, takerAssetFilledAmount, callData, defaultBlock) {
@@ -2605,6 +3156,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isBigNumber('takerAssetFilledAmount', takerAssetFilledAmount);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('publicCalculateFillResults((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256)', [order,
                                     takerAssetFilledAmount
@@ -2624,6 +3184,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (order, takerAssetFilledAmount) {
+                assert_1.assert.isBigNumber('takerAssetFilledAmount', takerAssetFilledAmount);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('publicCalculateFillResults((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256)', [order,
+                    takerAssetFilledAmount
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.EIP712_DOMAIN_HASH = {
             callAsync: function (callData, defaultBlock) {
@@ -2633,6 +3201,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -2650,15 +3226,22 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('EIP712_DOMAIN_HASH()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.marketBuyOrders = {
             sendTransactionAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -2677,13 +3260,9 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (orders, makerAssetFillAmount, signatures, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
                 var self = this;
                 var txHashPromise = self.marketBuyOrders.sendTransactionAsync(orders, makerAssetFillAmount, signatures, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -2703,12 +3282,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (orders, makerAssetFillAmount, signatures, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -2725,14 +3306,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
-                    makerAssetFillAmount,
-                    signatures
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (orders, makerAssetFillAmount, signatures, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -2740,6 +3313,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isArray('orders', orders);
+                                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                                assert_1.assert.isArray('signatures', signatures);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
                                     makerAssetFillAmount,
@@ -2760,6 +3344,17 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (orders, makerAssetFillAmount, signatures) {
+                assert_1.assert.isArray('orders', orders);
+                assert_1.assert.isBigNumber('makerAssetFillAmount', makerAssetFillAmount);
+                assert_1.assert.isArray('signatures', signatures);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])', [orders,
+                    makerAssetFillAmount,
+                    signatures
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.currentContextAddress = {
             callAsync: function (callData, defaultBlock) {
@@ -2769,6 +3364,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('currentContextAddress()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -2786,15 +3389,20 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('currentContextAddress()', []);
+                return abiEncodedTransactionData;
+            },
         };
         _this.transferOwnership = {
             sendTransactionAsync: function (newOwner, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, txHash;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -2811,13 +3419,7 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             },
             awaitTransactionSuccessAsync: function (newOwner, txData, pollingIntervalMs, timeoutMs) {
                 var _this = this;
-                // `txData` may be omitted on its own, so it might be set to `pollingIntervalMs`.
-                if (typeof (txData) === 'number') {
-                    pollingIntervalMs = txData;
-                    timeoutMs = pollingIntervalMs;
-                    txData = {};
-                }
-                //
+                assert_1.assert.isString('newOwner', newOwner);
                 var self = this;
                 var txHashPromise = self.transferOwnership.sendTransactionAsync(newOwner, txData);
                 return new base_contract_1.PromiseWithTransactionHash(txHashPromise, (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -2837,12 +3439,12 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                 }); })());
             },
             estimateGasAsync: function (newOwner, txData) {
-                if (txData === void 0) { txData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
                     var self, encodedData, txDataWithDefaults, gas;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -2857,12 +3459,6 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
-            getABIEncodedTransactionData: function (newOwner) {
-                var self = this;
-                var abiEncodedTransactionData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
-                ]);
-                return abiEncodedTransactionData;
-            },
             callAsync: function (newOwner, callData, defaultBlock) {
                 if (callData === void 0) { callData = {}; }
                 return __awaiter(this, void 0, void 0, function () {
@@ -2870,6 +3466,15 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.isString('newOwner', newOwner);
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
                                 ]);
@@ -2888,6 +3493,13 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function (newOwner) {
+                assert_1.assert.isString('newOwner', newOwner);
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('transferOwnership(address)', [newOwner
+                ]);
+                return abiEncodedTransactionData;
+            },
         };
         _this.VERSION = {
             callAsync: function (callData, defaultBlock) {
@@ -2897,6 +3509,14 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                assert_1.assert.doesConformToSchema('callData', callData, json_schemas_1.schemas.callDataSchema, [
+                                    json_schemas_1.schemas.addressSchema,
+                                    json_schemas_1.schemas.numberSchema,
+                                    json_schemas_1.schemas.jsNumber,
+                                ]);
+                                if (defaultBlock !== undefined) {
+                                    assert_1.assert.isBlockParam('defaultBlock', defaultBlock);
+                                }
                                 self = this;
                                 encodedData = self._strictEncodeArguments('VERSION()', []);
                                 return [4 /*yield*/, base_contract_1.BaseContract._applyDefaultsToTxDataAsync(__assign({ to: self.address }, callData, { data: encodedData }), self._web3Wrapper.getContractDefaults())];
@@ -2914,14 +3534,24 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     });
                 });
             },
+            getABIEncodedTransactionData: function () {
+                var self = this;
+                var abiEncodedTransactionData = self._strictEncodeArguments('VERSION()', []);
+                return abiEncodedTransactionData;
+            },
         };
-        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', 'abi', '_web3Wrapper']);
+        utils_1.classUtils.bindAll(_this, ['_abiEncoderByFunctionSignature', 'address', '_web3Wrapper']);
         return _this;
     }
     TestExchangeInternalsContract.deployFrom0xArtifactAsync = function (artifact, supportedProvider, txDefaults) {
         return __awaiter(this, void 0, void 0, function () {
             var provider, bytecode, abi;
             return __generator(this, function (_a) {
+                assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                    json_schemas_1.schemas.addressSchema,
+                    json_schemas_1.schemas.numberSchema,
+                    json_schemas_1.schemas.jsNumber,
+                ]);
                 if (artifact.compilerOutput === undefined) {
                     throw new Error('Compiler output not found in the artifact file');
                 }
@@ -2938,6 +3568,12 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        assert_1.assert.isHexString('bytecode', bytecode);
+                        assert_1.assert.doesConformToSchema('txDefaults', txDefaults, json_schemas_1.schemas.txDataSchema, [
+                            json_schemas_1.schemas.addressSchema,
+                            json_schemas_1.schemas.numberSchema,
+                            json_schemas_1.schemas.jsNumber,
+                        ]);
                         provider = utils_1.providerUtils.standardizeOrThrow(supportedProvider);
                         constructorAbi = base_contract_1.BaseContract._lookupConstructorAbi(abi);
                         base_contract_1.BaseContract._formatABIDataItemList(constructorAbi.inputs, [], base_contract_1.BaseContract._bigNumberToString);
@@ -2956,15 +3592,2419 @@ var TestExchangeInternalsContract = /** @class */ (function (_super) {
                     case 3:
                         txReceipt = _a.sent();
                         utils_1.logUtils.log("TestExchangeInternals successfully deployed at " + txReceipt.contractAddress);
-                        contractInstance = new TestExchangeInternalsContract(abi, txReceipt.contractAddress, provider, txDefaults);
+                        contractInstance = new TestExchangeInternalsContract(txReceipt.contractAddress, provider, txDefaults);
                         contractInstance.constructorArgs = [];
                         return [2 /*return*/, contractInstance];
                 }
             });
         });
     };
+    /**
+     * @returns      The contract ABI
+     */
+    TestExchangeInternalsContract.ABI = function () {
+        var abi = [
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicIsRoundingErrorFloor',
+                outputs: [
+                    {
+                        name: 'isError',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'orderHash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'orderTakerAssetFilledAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                name: 'publicUpdateFilledState',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicGetPartialAmountCeil',
+                outputs: [
+                    {
+                        name: 'partialAmount',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes32',
+                    },
+                ],
+                name: 'filled',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmounts',
+                        type: 'uint256[]',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'batchFillOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes32',
+                    },
+                ],
+                name: 'cancelled',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'preSign',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'leftOrder',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'rightOrder',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'leftSignature',
+                        type: 'bytes',
+                    },
+                    {
+                        name: 'rightSignature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'matchOrders',
+                outputs: [
+                    {
+                        name: 'matchedFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'left',
+                                type: 'tuple',
+                                components: [
+                                    {
+                                        name: 'makerAssetFilledAmount',
+                                        type: 'uint256',
+                                    },
+                                    {
+                                        name: 'takerAssetFilledAmount',
+                                        type: 'uint256',
+                                    },
+                                    {
+                                        name: 'makerFeePaid',
+                                        type: 'uint256',
+                                    },
+                                    {
+                                        name: 'takerFeePaid',
+                                        type: 'uint256',
+                                    },
+                                ]
+                            },
+                            {
+                                name: 'right',
+                                type: 'tuple',
+                                components: [
+                                    {
+                                        name: 'makerAssetFilledAmount',
+                                        type: 'uint256',
+                                    },
+                                    {
+                                        name: 'takerAssetFilledAmount',
+                                        type: 'uint256',
+                                    },
+                                    {
+                                        name: 'makerFeePaid',
+                                        type: 'uint256',
+                                    },
+                                    {
+                                        name: 'takerFeePaid',
+                                        type: 'uint256',
+                                    },
+                                ]
+                            },
+                            {
+                                name: 'leftMakerAssetSpreadAmount',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'fillOrderNoThrow',
+                outputs: [
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes4',
+                    },
+                ],
+                name: 'assetProxies',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'batchCancelOrders',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmounts',
+                        type: 'uint256[]',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'batchFillOrKillOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'targetOrderEpoch',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'cancelOrdersUpTo',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmounts',
+                        type: 'uint256[]',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'batchFillOrdersNoThrow',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'assetProxyId',
+                        type: 'bytes4',
+                    },
+                ],
+                name: 'getAssetProxy',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes32',
+                    },
+                ],
+                name: 'transactions',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'fillOrKillOrder',
+                outputs: [
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'singleFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                name: 'publicAddFillResults',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicIsRoundingErrorCeil',
+                outputs: [
+                    {
+                        name: 'isError',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'validatorAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'approval',
+                        type: 'bool',
+                    },
+                ],
+                name: 'setSignatureValidatorApproval',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'address',
+                    },
+                    {
+                        name: 'index_1',
+                        type: 'address',
+                    },
+                ],
+                name: 'allowedValidators',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketSellOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'getOrdersInfo',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'orderStatus',
+                                type: 'uint8',
+                            },
+                            {
+                                name: 'orderHash',
+                                type: 'bytes32',
+                            },
+                            {
+                                name: 'orderTakerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'index_1',
+                        type: 'address',
+                    },
+                ],
+                name: 'preSigned',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'owner',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'hash',
+                        type: 'bytes32',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'isValidSignature',
+                outputs: [
+                    {
+                        name: 'isValid',
+                        type: 'bool',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'makerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketBuyOrdersNoThrow',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'fillOrder',
+                outputs: [
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicGetPartialAmountFloor',
+                outputs: [
+                    {
+                        name: 'partialAmount',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'salt',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                    },
+                    {
+                        name: 'data',
+                        type: 'bytes',
+                    },
+                    {
+                        name: 'signature',
+                        type: 'bytes',
+                    },
+                ],
+                name: 'executeTransaction',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'assetProxy',
+                        type: 'address',
+                    },
+                ],
+                name: 'registerAssetProxy',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'getOrderInfo',
+                outputs: [
+                    {
+                        name: 'orderInfo',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'orderStatus',
+                                type: 'uint8',
+                            },
+                            {
+                                name: 'orderHash',
+                                type: 'bytes32',
+                            },
+                            {
+                                name: 'orderTakerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                ],
+                name: 'cancelOrder',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'index_0',
+                        type: 'address',
+                    },
+                    {
+                        name: 'index_1',
+                        type: 'address',
+                    },
+                ],
+                name: 'orderEpoch',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'ZRX_ASSET_DATA',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketSellOrdersNoThrow',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicSafeGetPartialAmountFloor',
+                outputs: [
+                    {
+                        name: 'partialAmount',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'numerator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'denominator',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'target',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicSafeGetPartialAmountCeil',
+                outputs: [
+                    {
+                        name: 'partialAmount',
+                        type: 'uint256',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: 'order',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'takerAssetFilledAmount',
+                        type: 'uint256',
+                    },
+                ],
+                name: 'publicCalculateFillResults',
+                outputs: [
+                    {
+                        name: 'fillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'pure',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'EIP712_DOMAIN_HASH',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'bytes32',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'orders',
+                        type: 'tuple[]',
+                        components: [
+                            {
+                                name: 'makerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'takerAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'feeRecipientAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'senderAddress',
+                                type: 'address',
+                            },
+                            {
+                                name: 'makerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFee',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'expirationTimeSeconds',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'salt',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerAssetData',
+                                type: 'bytes',
+                            },
+                            {
+                                name: 'takerAssetData',
+                                type: 'bytes',
+                            },
+                        ]
+                    },
+                    {
+                        name: 'makerAssetFillAmount',
+                        type: 'uint256',
+                    },
+                    {
+                        name: 'signatures',
+                        type: 'bytes[]',
+                    },
+                ],
+                name: 'marketBuyOrders',
+                outputs: [
+                    {
+                        name: 'totalFillResults',
+                        type: 'tuple',
+                        components: [
+                            {
+                                name: 'makerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerAssetFilledAmount',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'makerFeePaid',
+                                type: 'uint256',
+                            },
+                            {
+                                name: 'takerFeePaid',
+                                type: 'uint256',
+                            },
+                        ]
+                    },
+                ],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'currentContextAddress',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'address',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                constant: false,
+                inputs: [
+                    {
+                        name: 'newOwner',
+                        type: 'address',
+                    },
+                ],
+                name: 'transferOwnership',
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'function',
+            },
+            {
+                constant: true,
+                inputs: [],
+                name: 'VERSION',
+                outputs: [
+                    {
+                        name: '',
+                        type: 'string',
+                    },
+                ],
+                payable: false,
+                stateMutability: 'view',
+                type: 'function',
+            },
+            {
+                inputs: [],
+                outputs: [],
+                payable: false,
+                stateMutability: 'nonpayable',
+                type: 'constructor',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'signerAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'validatorAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'approved',
+                        type: 'bool',
+                        indexed: false,
+                    },
+                ],
+                name: 'SignatureValidatorApproval',
+                outputs: [],
+                type: 'event',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'makerAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'feeRecipientAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'takerAddress',
+                        type: 'address',
+                        indexed: false,
+                    },
+                    {
+                        name: 'senderAddress',
+                        type: 'address',
+                        indexed: false,
+                    },
+                    {
+                        name: 'makerAssetFilledAmount',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                    {
+                        name: 'takerAssetFilledAmount',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                    {
+                        name: 'makerFeePaid',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                    {
+                        name: 'takerFeePaid',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                    {
+                        name: 'orderHash',
+                        type: 'bytes32',
+                        indexed: true,
+                    },
+                    {
+                        name: 'makerAssetData',
+                        type: 'bytes',
+                        indexed: false,
+                    },
+                    {
+                        name: 'takerAssetData',
+                        type: 'bytes',
+                        indexed: false,
+                    },
+                ],
+                name: 'Fill',
+                outputs: [],
+                type: 'event',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'makerAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'feeRecipientAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'senderAddress',
+                        type: 'address',
+                        indexed: false,
+                    },
+                    {
+                        name: 'orderHash',
+                        type: 'bytes32',
+                        indexed: true,
+                    },
+                    {
+                        name: 'makerAssetData',
+                        type: 'bytes',
+                        indexed: false,
+                    },
+                    {
+                        name: 'takerAssetData',
+                        type: 'bytes',
+                        indexed: false,
+                    },
+                ],
+                name: 'Cancel',
+                outputs: [],
+                type: 'event',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'makerAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'senderAddress',
+                        type: 'address',
+                        indexed: true,
+                    },
+                    {
+                        name: 'orderEpoch',
+                        type: 'uint256',
+                        indexed: false,
+                    },
+                ],
+                name: 'CancelUpTo',
+                outputs: [],
+                type: 'event',
+            },
+            {
+                anonymous: false,
+                inputs: [
+                    {
+                        name: 'id',
+                        type: 'bytes4',
+                        indexed: false,
+                    },
+                    {
+                        name: 'assetProxy',
+                        type: 'address',
+                        indexed: false,
+                    },
+                ],
+                name: 'AssetProxyRegistered',
+                outputs: [],
+                type: 'event',
+            },
+        ];
+        return abi;
+    };
     return TestExchangeInternalsContract;
-}(base_contract_1.BaseContract)); // tslint:disable:max-file-line-count
+}(base_contract_1.BaseContract));
 exports.TestExchangeInternalsContract = TestExchangeInternalsContract;
-// tslint:enable:no-unbound-method
+// tslint:disable:max-file-line-count
+// tslint:enable:no-unbound-method no-parameter-reassignment no-consecutive-blank-lines ordered-imports align
+// tslint:enable:trailing-comma whitespace no-trailing-whitespace
 //# sourceMappingURL=test_exchange_internals.js.map

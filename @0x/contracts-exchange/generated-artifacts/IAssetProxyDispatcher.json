@@ -37,6 +37,23 @@
 				"type": "function"
 			}
 		],
+		"devdoc": {
+			"methods": {
+				"getAssetProxy(bytes4)": {
+					"details": "Gets an asset proxy.",
+					"params": {
+						"assetProxyId": "Id of the asset proxy."
+					},
+					"return": "The asset proxy registered to assetProxyId. Returns 0x0 if no proxy is registered."
+				},
+				"registerAssetProxy(address)": {
+					"details": "Registers an asset proxy to its asset proxy id.      Once an asset proxy is registered, it cannot be unregistered.",
+					"params": {
+						"assetProxy": "Address of new asset proxy to register."
+					}
+				}
+			}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
@@ -63,7 +80,7 @@
 	"sourceTreeHashHex": "0x9f2df0836b76e56b8fe113c224a83b95ff0c984cedfb660286eab94edb151b88",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -79,6 +96,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",

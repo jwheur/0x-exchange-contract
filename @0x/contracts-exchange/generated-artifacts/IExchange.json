@@ -1569,6 +1569,186 @@
 				"type": "function"
 			}
 		],
+		"devdoc": {
+			"methods": {
+				"batchCancelOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])": {
+					"details": "Synchronously cancels multiple orders in a single transaction.",
+					"params": {
+						"orders": "Array of order specifications."
+					}
+				},
+				"batchFillOrKillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])": {
+					"details": "Synchronously executes multiple calls of fillOrKill.",
+					"params": {
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been created by makers.",
+						"takerAssetFillAmounts": "Array of desired amounts of takerAsset to sell in orders."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"batchFillOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])": {
+					"details": "Synchronously executes multiple calls of fillOrder.",
+					"params": {
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been created by makers.",
+						"takerAssetFillAmounts": "Array of desired amounts of takerAsset to sell in orders."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"batchFillOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256[],bytes[])": {
+					"details": "Fills an order with specified parameters and ECDSA signature.      Returns false if the transaction would otherwise revert.",
+					"params": {
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been created by makers.",
+						"takerAssetFillAmounts": "Array of desired amounts of takerAsset to sell in orders."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"cancelOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))": {
+					"details": "After calling, the order can not be filled anymore.",
+					"params": {
+						"order": "Order struct containing order specifications."
+					}
+				},
+				"cancelOrdersUpTo(uint256)": {
+					"details": "Cancels all orders created by makerAddress with a salt less than or equal to the targetOrderEpoch      and senderAddress equal to msg.sender (or null address if msg.sender == makerAddress).",
+					"params": {
+						"targetOrderEpoch": "Orders created with a salt less or equal to this value will be cancelled."
+					}
+				},
+				"executeTransaction(uint256,address,bytes,bytes)": {
+					"details": "Executes an exchange method call in the context of signer.",
+					"params": {
+						"data": "AbiV2 encoded calldata.",
+						"salt": "Arbitrary number to ensure uniqueness of transaction hash.",
+						"signature": "Proof of signer transaction by signer.",
+						"signerAddress": "Address of transaction signer."
+					}
+				},
+				"fillOrKillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)": {
+					"details": "Fills the input order. Reverts if exact takerAssetFillAmount not filled.",
+					"params": {
+						"order": "LibOrder.Order struct containing order specifications.",
+						"signature": "Proof that order has been created by maker.",
+						"takerAssetFillAmount": "Desired amount of takerAsset to sell."
+					}
+				},
+				"fillOrder((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)": {
+					"details": "Fills the input order.",
+					"params": {
+						"order": "Order struct containing order specifications.",
+						"signature": "Proof that order has been created by maker.",
+						"takerAssetFillAmount": "Desired amount of takerAsset to sell."
+					},
+					"return": "Amounts filled and fees paid by maker and taker."
+				},
+				"fillOrderNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),uint256,bytes)": {
+					"details": "Fills an order with specified parameters and ECDSA signature.      Returns false if the transaction would otherwise revert.",
+					"params": {
+						"order": "LibOrder.Order struct containing order specifications.",
+						"signature": "Proof that order has been created by maker.",
+						"takerAssetFillAmount": "Desired amount of takerAsset to sell."
+					},
+					"return": "Amounts filled and fees paid by maker and taker."
+				},
+				"getAssetProxy(bytes4)": {
+					"details": "Gets an asset proxy.",
+					"params": {
+						"assetProxyId": "Id of the asset proxy."
+					},
+					"return": "The asset proxy registered to assetProxyId. Returns 0x0 if no proxy is registered."
+				},
+				"getOrderInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes))": {
+					"details": "Gets information about an order: status, hash, and amount filled.",
+					"params": {
+						"order": "Order to gather information on."
+					},
+					"return": "OrderInfo Information about the order and its state.                   See LibOrder.OrderInfo for a complete description."
+				},
+				"getOrdersInfo((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[])": {
+					"details": "Fetches information for all passed in orders",
+					"params": {
+						"orders": "Array of order specifications."
+					},
+					"return": "Array of OrderInfo instances that correspond to each order."
+				},
+				"isValidSignature(bytes32,address,bytes)": {
+					"details": "Verifies that a signature is valid.",
+					"params": {
+						"hash": "Message hash that is signed.",
+						"signature": "Proof of signing.",
+						"signerAddress": "Address of signer."
+					},
+					"return": "Validity of order signature."
+				},
+				"marketBuyOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])": {
+					"details": "Synchronously executes multiple calls of fillOrder until total amount of makerAsset is bought by taker.",
+					"params": {
+						"makerAssetFillAmount": "Desired amount of makerAsset to buy.",
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been signed by makers."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"marketBuyOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])": {
+					"details": "Synchronously executes multiple fill orders in a single transaction until total amount is bought by taker.      Returns false if the transaction would otherwise revert.",
+					"params": {
+						"makerAssetFillAmount": "Desired amount of makerAsset to buy.",
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been signed by makers."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"marketSellOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])": {
+					"details": "Synchronously executes multiple calls of fillOrder until total amount of takerAsset is sold by taker.",
+					"params": {
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been created by makers.",
+						"takerAssetFillAmount": "Desired amount of takerAsset to sell."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"marketSellOrdersNoThrow((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes)[],uint256,bytes[])": {
+					"details": "Synchronously executes multiple calls of fillOrder until total amount of takerAsset is sold by taker.      Returns false if the transaction would otherwise revert.",
+					"params": {
+						"orders": "Array of order specifications.",
+						"signatures": "Proofs that orders have been signed by makers.",
+						"takerAssetFillAmount": "Desired amount of takerAsset to sell."
+					},
+					"return": "Amounts filled and fees paid by makers and taker."
+				},
+				"matchOrders((address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),(address,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes,bytes)": {
+					"details": "Match two complementary orders that have a profitable spread.      Each order is filled at their respective price point. However, the calculations are      carried out as though the orders are both being filled at the right order's price point.      The profit made by the left order goes to the taker (who matched the two orders).",
+					"params": {
+						"leftOrder": "First order to match.",
+						"leftSignature": "Proof that order was created by the left maker.",
+						"rightOrder": "Second order to match.",
+						"rightSignature": "Proof that order was created by the right maker."
+					},
+					"return": "matchedFillResults Amounts filled and fees paid by maker and taker of matched orders."
+				},
+				"preSign(bytes32,address,bytes)": {
+					"details": "Approves a hash on-chain using any valid signature type.      After presigning a hash, the preSign signature type will become valid for that hash and signer.",
+					"params": {
+						"signature": "Proof that the hash has been signed by signer.",
+						"signerAddress": "Address that should have signed the given hash."
+					}
+				},
+				"registerAssetProxy(address)": {
+					"details": "Registers an asset proxy to its asset proxy id.      Once an asset proxy is registered, it cannot be unregistered.",
+					"params": {
+						"assetProxy": "Address of new asset proxy to register."
+					}
+				},
+				"setSignatureValidatorApproval(address,bool)": {
+					"details": "Approves/unnapproves a Validator contract to verify signatures on signer's behalf.",
+					"params": {
+						"approval": "Approval or disapproval of  Validator contract.",
+						"validatorAddress": "Address of Validator contract."
+					}
+				}
+			}
+		},
 		"evm": {
 			"bytecode": {
 				"linkReferences": {},
@@ -1635,7 +1815,7 @@
 	"sourceTreeHashHex": "0x6812f3e089468d30ef748aa91c606749125cf050de6efa6128fce5d8bfd3a2dc",
 	"compiler": {
 		"name": "solc",
-		"version": "soljson-v0.5.8+commit.23d335f2.js",
+		"version": "soljson-v0.5.10+commit.5a6ea5b1.js",
 		"settings": {
 			"optimizer": {
 				"enabled": true,
@@ -1651,6 +1831,7 @@
 				"*": {
 					"*": [
 						"abi",
+						"devdoc",
 						"evm.bytecode.object",
 						"evm.bytecode.sourceMap",
 						"evm.deployedBytecode.object",
